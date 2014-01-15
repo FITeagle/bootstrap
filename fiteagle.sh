@@ -157,7 +157,6 @@ function installFITeagleCore {
     git clone -q --recursive --depth 1 ${git_url} ${_src_folder}
   fi
   
-  #cp "${_src_folder}/src/main/bin/fiteagle.sh" "${_base}"
   echo "OK"
 }
 
@@ -173,7 +172,6 @@ function installBootstrap {
     git clone -q --recursive --depth 1 ${git_url} ${repo}
   fi
   
-  #cp "${_src_folder}/src/main/bin/fiteagle.sh" "${_base}"
   echo "OK"
 }
 
@@ -205,6 +203,10 @@ function deployCore {
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
+
+    installBootstrap
+    installFITeagleCore
+
     installXMPP
     configXMPP
     
@@ -212,9 +214,6 @@ function bootstrap() {
 #    installOSGi
 #    installWebconsole
     configContainer
-    
-    installBootstrap
-    installFITeagleCore
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
