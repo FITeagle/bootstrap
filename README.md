@@ -16,3 +16,13 @@ bash -c "$(curl -fsSkL https://raw.github.com/fiteagle/bootstrap/master/fiteagle
 ```
 ./bootstrap/fiteagle.sh deployCore
 ```
+
+## Start XMPP Server
+```
+./bootstrap/fiteagle.sh startXMPP
+```
+
+## Download and Configure OMF6 on Ubuntu
+```
+./bootstrap/resources/omf6/install_omf6.sh 
+```
