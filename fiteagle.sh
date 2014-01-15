@@ -161,6 +161,21 @@ function installFITeagleCore {
   echo "OK"
 }
 
+function installBootstrap {
+  repo="bootstrap"
+  git_url="https://github.com/FITeagle/${repo}.git"
+
+  if [ -d "${_src_folder}/.git" ]; then
+    echo -n "Updating FITeagle Bootstrap sources..."
+    (cd "${_src_folder}" && git pull -q)
+  else
+    echo -n "Getting FITeagle Bootstrap sources..."
+    git clone -q --recursive --depth 1 ${git_url} ${_src_folder}
+  fi
+  
+  #cp "${_src_folder}/src/main/bin/fiteagle.sh" "${_base}"
+  echo "OK"
+}
 
 function startXMPP() {
     echo "Starting XMPP Server..."
@@ -198,6 +213,7 @@ function bootstrap() {
 #    installWebconsole
     configContainer
     
+    installBootstrap
     installFITeagleCore
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
