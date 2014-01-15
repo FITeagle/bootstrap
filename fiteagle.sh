@@ -165,12 +165,12 @@ function installBootstrap {
   repo="bootstrap"
   git_url="https://github.com/FITeagle/${repo}.git"
 
-  if [ -d "${_src_folder}/.git" ]; then
+  if [ -d "${repo}/.git" ]; then
     echo -n "Updating FITeagle Bootstrap sources..."
-    (cd "${_src_folder}" && git pull -q)
+    (cd "${repo}" && git pull -q)
   else
     echo -n "Getting FITeagle Bootstrap sources..."
-    git clone -q --recursive --depth 1 ${git_url} ${_src_folder}
+    git clone -q --recursive --depth 1 ${git_url} ${repo}
   fi
   
   #cp "${_src_folder}/src/main/bin/fiteagle.sh" "${_base}"
