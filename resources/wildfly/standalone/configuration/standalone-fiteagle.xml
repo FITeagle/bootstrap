@@ -10,7 +10,6 @@
         <extension module="org.jboss.as.logging"/>
         <extension module="org.jboss.as.messaging"/>
         <extension module="org.jboss.as.naming"/>
-        <extension module="org.jboss.as.osgi"/>
         <extension module="org.jboss.as.remoting"/>
         <extension module="org.jboss.as.security"/>
         <extension module="org.jboss.as.transactions"/>
@@ -192,7 +191,6 @@
                     <netty-connector name="netty-throughput" socket-binding="messaging-throughput">
                         <param key="batch-delay" value="50"/>
                     </netty-connector>
-                    <servlet-connector name="servlet" host="default-host" socket-binding="http"/>
                     <in-vm-connector name="in-vm" server-id="0"/>
                 </connectors>
 
@@ -233,14 +231,6 @@
                         </connectors>
                         <entries>
                             <entry name="java:/ConnectionFactory"/>
-                        </entries>
-                    </connection-factory>
-                    <connection-factory name="ServletConnectionFactory">
-                        <connectors>
-                            <connector-ref connector-name="servlet"/>
-                        </connectors>
-                        <entries>
-                            <entry name="java:jboss/exported/jms/ServletConnectionFactory"/>
                         </entries>
                     </connection-factory>
                     <connection-factory name="RemoteConnectionFactory">
@@ -327,29 +317,6 @@
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content" directory-listing="true"/>
             </handlers>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:osgi:1.2" activation="eager">
-            <properties>
-                <property name="org.osgi.framework.startlevel.beginning">
-                    1
-                </property>
-            </properties>
-            <capabilities>
-                <capability name="javax.jws.api"/>
-                <capability name="javax.persistence.api"/>
-                <capability name="javax.servlet.api"/>
-                <capability name="javax.transaction.api"/>
-                <capability name="javax.ws.rs.api"/>
-                <capability name="javax.jms.api"/>
-                <capability name="javax.xml.bind.api"/>
-                <capability name="javax.xml.ws.api"/>
-                <capability name="org.apache.felix.log" startlevel="1"/>
-                <capability name="org.jboss.osgi.logging" startlevel="1"/>
-                <capability name="org.apache.felix.configadmin" startlevel="1"/>
-                <capability name="org.jboss.as.osgi.configadmin" startlevel="1"/>
-                <capability name="org.jboss.as.osgi.http" startlevel="1"/>
-                <capability name="org.jboss.as.osgi.jpa" startlevel="1"/>
-            </capabilities>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:configadmin:1.0">
             <configuration pid="a.test.pid">
