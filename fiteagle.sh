@@ -124,9 +124,11 @@ function configContainer() {
     echo "Configuring container..."
     curl -fsSSkL -o "${_installer_folder}/${_container_config}" "${_container_config_url}"
     cp "${_installer_folder}/${_container_config}" "${_container_root}/standalone/configuration"
+    (
     cd "${_container_root}"
     ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
     ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
+    )
 }
 
 function checkEnvironment {
@@ -217,6 +219,7 @@ function bootstrap() {
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
+    echo "Now run: ./bootstrap/fiteagle.sh"
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
