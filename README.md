@@ -26,3 +26,8 @@ bash -c "$(curl -fsSkL https://raw.github.com/fiteagle/bootstrap/master/fiteagle
 ```
 ./bootstrap/resources/omf6/install_omf6.sh 
 ```
+
+## Download NEPI3 EC and Example
+```
+./bootstrap/resources/nepi3/install_nepi3.sh 
+```
