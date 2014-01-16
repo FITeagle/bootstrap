@@ -26,11 +26,12 @@ function installNepiEC {
  curl -s http://nepi.inria.fr/code/nepi/archive/652bc2e46cfe.tar.gz|tar xzf -
  mv nepi-652bc2e46cfe nepi
  echo "Setup the environment:"
- echo "  export PYTHONPATH=\$PYTHONPATH:$(pwd)/src"
+ echo "  export PYTHONPATH=\$PYTHONPATH:$(pwd)/nepi/src"
 
- curl -s -O https://raw.github.com/fiteagle/bootstrap/master/resources/nepi3/nepi3_example_ping.py
+ curl -s -O https://raw.github.com/FITeagle/bootstrap/master/resources/nepi3/nepi3_example_ping.py
+ mv nepi3_example_ping.py nepi
  echo "Run the first experiment:"
- echo "  python nepi3_example_ping.py"
+ echo "  python nepi/nepi3_example_ping.py"
  )
 }
 
