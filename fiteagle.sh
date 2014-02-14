@@ -24,7 +24,7 @@ _xmpp_keystore_url="${_resources_url}/${_xmpp_type}/${_xmpp_keystore_path}/${_xm
 _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
-_container_version="8.0.0.CR1"
+_container_version="8.0.0.Final"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
@@ -32,15 +32,6 @@ _container_folder="${_base}/server"
 _container_config="standalone-fiteagle.xml"
 _container_config_url="${_resources_url}//wildfly/standalone/configuration/standalone-fiteagle.xml"
 _container_root="${_container_folder}/${_container_type}"
-
-_osgi_file="jbosgi-installer-2.1.0.jar"
-_osgi_url="http://sourceforge.net/projects/jboss/files/JBossOSGi/2.1.0/${_osgi_file}/download"
-_osgi_config="autoinstall.xml"
-_osgi_config_url="${_resources_url}//jbosgi/${_osgi_config}"
-
-_osgi_console_file="org.apache.felix.webconsole-4.2.0-all.jar"
-_osgi_console_url="http://mirror.switch.ch/mirror/apache/dist/felix/${_osgi_console_file}"
-_osgi_console_folder="${_container_root}/standalone/deployments"
 
 _installer_folder="${_base}/tmp"
 _logfile="${_installer_folder}/log"
@@ -100,24 +91,6 @@ function installContainer() {
     mv "${_container_folder}/${_container_name}" "${_container_root}"
 }
 
-
-function installOSGi() {
-    echo "Downloading OSGi..."
-    mkdir -p "${_installer_folder}"
-    [ -f "${_installer_folder}/${_osgi_file}" ] || curl -fsSkL -o "${_installer_folder}/${_osgi_file}" "${_osgi_url}"
-    echo "Installing OSGi..."
-    mkdir -p "${_installer_folder}"
-    curl -fsSSkL -o "${_installer_folder}/${_osgi_config}" "${_osgi_config_url}"
-    java -jar "${_installer_folder}/${_osgi_file}" "${_installer_folder}/${_osgi_config}" >> "${_logfile}"
-}
-
-
-function installWebconsole {
-  echo "Downloading OSGi web console..."
-  curl -fsSkL -o "${_installer_folder}/${_osgi_console_file}" "${_osgi_console_url}"
-  echo "Installing OSGi web console..."
-  cp "${_installer_folder}/${_osgi_console_file}" "${_osgi_console_folder}"
-}
 
 
 function configContainer() {
@@ -213,8 +186,6 @@ function bootstrap() {
     configXMPP
     
     installContainer
-#    installOSGi
-#    installWebconsole
     configContainer
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
