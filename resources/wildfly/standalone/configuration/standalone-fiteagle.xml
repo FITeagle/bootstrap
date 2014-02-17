@@ -496,10 +496,4 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
-
-    <deployments>
-        <deployment name="sfa-0.0.1-SNAPSHOT.war" runtime-name="sfa-0.0.1-SNAPSHOT.war">
-            <content sha1="3946513f7a487f1bee3bdd3113fe12a8fc35a5a7"/>
-        </deployment>
-    </deployments>
 </server>
