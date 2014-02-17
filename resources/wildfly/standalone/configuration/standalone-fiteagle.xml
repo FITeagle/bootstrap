@@ -3,19 +3,30 @@
 <server xmlns="urn:jboss:domain:2.0">
 
     <extensions>
-        <extension module="org.jboss.as.configadmin"/>
+        <extension module="org.jboss.as.clustering.infinispan"/>
         <extension module="org.jboss.as.connector"/>
         <extension module="org.jboss.as.deployment-scanner"/>
+        <extension module="org.jboss.as.ee"/>
+        <extension module="org.jboss.as.ejb3"/>
+        <extension module="org.jboss.as.jacorb"/>
+        <extension module="org.jboss.as.jaxrs"/>
+        <extension module="org.jboss.as.jdr"/>
         <extension module="org.jboss.as.jmx"/>
+        <extension module="org.jboss.as.jpa"/>
+        <extension module="org.jboss.as.jsf"/>
+        <extension module="org.jboss.as.jsr77"/>
         <extension module="org.jboss.as.logging"/>
+        <extension module="org.jboss.as.mail"/>
         <extension module="org.jboss.as.messaging"/>
         <extension module="org.jboss.as.naming"/>
+        <extension module="org.jboss.as.pojo"/>
         <extension module="org.jboss.as.remoting"/>
+        <extension module="org.jboss.as.sar"/>
         <extension module="org.jboss.as.security"/>
+        <extension module="org.jboss.as.threads"/>
         <extension module="org.jboss.as.transactions"/>
-        <extension module="org.jboss.as.ee"/>
         <extension module="org.jboss.as.webservices"/>
-        <extension module="org.jboss.as.jaxrs"/>
+        <extension module="org.jboss.as.weld"/>
         <extension module="org.wildfly.extension.batch"/>
         <extension module="org.wildfly.extension.io"/>
         <extension module="org.wildfly.extension.undertow"/>
@@ -42,6 +53,13 @@
                     <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
                 </authorization>
             </security-realm>
+             <security-realm name="xmlrpc-realm">
+                <server-identities>
+                    <ssl>
+                        <keystore path="jetty-ssl.keystore" relative-to="jboss.server.config.dir" keystore-password="jetty6" />
+                    </ssl>
+                </server-identities>
+            </security-realm>
         </security-realms>
         <audit-log>
             <formatters>
@@ -57,9 +75,6 @@
             </logger>
         </audit-log>
         <management-interfaces>
-            <native-interface security-realm="ManagementRealm">
-                <socket-binding native="management-native"/>
-            </native-interface>
             <http-interface security-realm="ManagementRealm" http-upgrade-enabled="true">
                 <socket-binding http="management-http"/>
             </http-interface>
@@ -149,13 +164,112 @@
                 </drivers>
             </datasources>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
+        <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
             <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ee:2.0">
+            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
+            <jboss-descriptor-property-replacement>true</jboss-descriptor-property-replacement>
+            <annotation-property-replacement>false</annotation-property-replacement>
+            <concurrent>
+                <context-services>
+                    <context-service name="default" jndi-name="java:jboss/ee/concurrency/context/default" use-transaction-setup-provider="true"/>
+                </context-services>
+                <managed-thread-factories>
+                    <managed-thread-factory name="default" jndi-name="java:jboss/ee/concurrency/factory/default" context-service="default"/>
+                </managed-thread-factories>
+                <managed-executor-services>
+                    <managed-executor-service name="default" jndi-name="java:jboss/ee/concurrency/executor/default" context-service="default" hung-task-threshold="60000" core-threads="5" max-threads="25" keepalive-time="5000"/>
+                </managed-executor-services>
+                <managed-scheduled-executor-services>
+                    <managed-scheduled-executor-service name="default" jndi-name="java:jboss/ee/concurrency/scheduler/default" context-service="default" hung-task-threshold="60000" core-threads="2" keepalive-time="3000"/>
+                </managed-scheduled-executor-services>
+            </concurrent>
+            <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ejb3:2.0">
+            <session-bean>
+                <stateful default-access-timeout="5000" cache-ref="simple" passivation-disabled-cache-ref="simple"/>
+                <singleton default-access-timeout="5000"/>
+            </session-bean>
+            <mdb>
+                <resource-adapter-ref resource-adapter-name="${ejb.resource-adapter-name:hornetq-ra.rar}"/>
+                <bean-instance-pool-ref pool-name="mdb-strict-max-pool"/>
+            </mdb>
+            <pools>
+                <bean-instance-pools>
+                    <strict-max-pool name="slsb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="mdb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                </bean-instance-pools>
+            </pools>
+            <caches>
+                <cache name="simple"/>
+                <cache name="distributable" passivation-store-ref="infinispan" aliases="passivating clustered"/>
+            </caches>
+            <passivation-stores>
+                <passivation-store name="infinispan" cache-container="ejb" max-size="10000"/>
+            </passivation-stores>
+            <async thread-pool-name="default"/>
+            <timer-service thread-pool-name="default" default-data-store="default-file-store">
+                <data-stores>
+                    <file-data-store name="default-file-store" path="timer-service-data" relative-to="jboss.server.data.dir"/>
+                </data-stores>
+            </timer-service>
+            <remote connector-ref="http-remoting-connector" thread-pool-name="default"/>
+            <thread-pools>
+                <thread-pool name="default">
+                    <max-threads count="10"/>
+                    <keepalive-time time="100" unit="milliseconds"/>
+                </thread-pool>
+            </thread-pools>
+            <iiop enable-by-default="false" use-qualified-name="false"/>
+            <default-security-domain value="other"/>
+            <default-missing-method-permissions-deny-access value="true"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:io:1.0">
             <worker name="default" io-threads="3"/>
             <buffer-pool name="default" buffer-size="16384" buffers-per-slice="128"/>
         </subsystem>
+        <subsystem xmlns="urn:jboss:domain:infinispan:2.0">
+            <cache-container name="web" default-cache="passivation" module="org.wildfly.clustering.web.infinispan">
+                <local-cache name="passivation" batching="true">
+                    <file-store passivation="true" purge="false"/>
+                </local-cache>
+                <local-cache name="persistent" batching="true">
+                    <file-store passivation="false" purge="false"/>
+                </local-cache>
+            </cache-container>
+            <cache-container name="ejb" default-cache="passivation" module="org.wildfly.clustering.ejb.infinispan" aliases="sfsb">
+                <local-cache name="passivation" batching="true">
+                    <file-store passivation="true" purge="false"/>
+                </local-cache>
+                <local-cache name="persistent" batching="true">
+                    <file-store passivation="false" purge="false"/>
+                </local-cache>
+            </cache-container>
+            <cache-container name="hibernate" default-cache="local-query" module="org.hibernate">
+                <local-cache name="entity">
+                    <transaction mode="NON_XA"/>
+                    <eviction strategy="LRU" max-entries="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="local-query">
+                    <transaction mode="NONE"/>
+                    <eviction strategy="LRU" max-entries="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="timestamps">
+                    <transaction mode="NONE"/>
+                    <eviction strategy="NONE"/>
+                </local-cache>
+            </cache-container>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jacorb:1.3">
+            <orb socket-binding="jacorb" ssl-socket-binding="jacorb-ssl">
+                <initializers security="identity" transactions="spec"/>
+            </orb>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jca:2.0">
             <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
             <bean-validation enabled="true"/>
@@ -175,31 +289,45 @@
             </default-workmanager>
             <cached-connection-manager/>
         </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jmx:1.3">
             <expose-resolved-model/>
             <expose-expression-model/>
             <remoting-connector/>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:messaging:1.4">
+        <subsystem xmlns="urn:jboss:domain:jpa:1.1">
+            <jpa default-datasource="" default-extended-persistence-inheritance="DEEP"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jsf:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:jsr77:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:mail:2.0">
+            <mail-session name="default" jndi-name="java:jboss/mail/Default">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:messaging:2.0">
             <hornetq-server>
-                <persistence-enabled>false</persistence-enabled>
+                <persistence-enabled>true</persistence-enabled>
                 <journal-file-size>102400</journal-file-size>
                 <journal-min-files>2</journal-min-files>
 
                 <connectors>
-                    <netty-connector name="netty" socket-binding="messaging"/>
-                    <netty-connector name="netty-throughput" socket-binding="messaging-throughput">
+                    <http-connector name="http-connector" socket-binding="http">
+                        <param key="http-upgrade-endpoint" value="http-acceptor"/>
+                    </http-connector>
+                    <http-connector name="http-connector-throughput" socket-binding="http">
+                        <param key="http-upgrade-endpoint" value="http-acceptor-throughput"/>
                         <param key="batch-delay" value="50"/>
-                    </netty-connector>
+                    </http-connector>
                     <in-vm-connector name="in-vm" server-id="0"/>
                 </connectors>
 
                 <acceptors>
-                    <netty-acceptor name="netty" socket-binding="messaging"/>
-                    <netty-acceptor name="netty-throughput" socket-binding="messaging-throughput">
+                    <http-acceptor http-listener="default" name="http-acceptor"/>
+                    <http-acceptor http-listener="default" name="http-acceptor-throughput">
                         <param key="batch-delay" value="50"/>
                         <param key="direct-deliver" value="false"/>
-                    </netty-acceptor>
+                    </http-acceptor>
                     <in-vm-acceptor name="in-vm" server-id="0"/>
                 </acceptors>
 
@@ -235,7 +363,7 @@
                     </connection-factory>
                     <connection-factory name="RemoteConnectionFactory">
                         <connectors>
-                            <connector-ref connector-name="netty"/>
+                            <connector-ref connector-name="http-connector"/>
                         </connectors>
                         <entries>
                             <entry name="java:jboss/exported/jms/RemoteConnectionFactory"/>
@@ -252,21 +380,18 @@
                         </entries>
                     </pooled-connection-factory>
                 </jms-connection-factories>
-
-                <jms-destinations>
-                    <jms-topic name="fiteagleTopic">
-                        <entry name="topic/fiteagle"/>
-                        <entry name="java:jboss/exported/jms/topic/fiteagle"/>
-                    </jms-topic>
-                </jms-destinations>
-            </hornetq-server>
+</hornetq-server>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
             <remote-naming/>
         </subsystem>
+        <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
         <subsystem xmlns="urn:jboss:domain:remoting:2.0">
+            <endpoint worker="default"/>
             <http-connector name="http-remoting-connector" connector-ref="default" security-realm="ApplicationRealm"/>
         </subsystem>
+        <subsystem xmlns="urn:jboss:domain:resource-adapters:2.0"/>
+        <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
                 <security-domain name="other" cache-type="default">
@@ -291,6 +416,7 @@
                 </security-domain>
             </security-domains>
         </subsystem>
+        <subsystem xmlns="urn:jboss:domain:threads:1.1"/>
         <subsystem xmlns="urn:jboss:domain:transactions:2.0">
             <core-environment>
                 <process-id>
@@ -305,46 +431,29 @@
                 <buffer-cache name="default" buffer-size="1024" buffers-per-region="1024" max-regions="10"/>
             </buffer-caches>
             <server name="default-server">
-                <http-listener name="default" max-post-size="10485760" socket-binding="http"/>
+                <http-listener name="default" socket-binding="http"/>
                 <host name="default-host" alias="localhost">
+                    <location name="/" handler="welcome-content"/>
+                    <filter-ref name="server-header"/>
+                    <filter-ref name="x-powered-by-header"/>
+                </host>
+            </server>
+             <server name="xmlrpc-server">
+                <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUIRED"/>
+                <host name="xmlrpc-host" alias="localhost">
                     <location name="/" handler="welcome-content"/>
                 </host>
             </server>
             <servlet-container name="default" default-buffer-cache="default" stack-trace-on-error="local-only">
                 <jsp-config/>
-                <persistent-sessions path="persistent-web-sessions" relative-to="jboss.server.data.dir"/>
             </servlet-container>
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content" directory-listing="true"/>
             </handlers>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:configadmin:1.0">
-            <configuration pid="a.test.pid">
-                <property name="service.pid" value="a.test.pid"/>
-                <property name=".transient.serial.id" value="1"/>
-                <property name="testkey" value="test value"/>
-                <property name=".transient.skip.cm.update" value="true"/>
-                <property name="test.key.2" value="nothing"/>
-            </configuration>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:ee:2.0">
-            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
-            <jboss-descriptor-property-replacement>true</jboss-descriptor-property-replacement>
-            <concurrent>
-                <context-services>
-                    <context-service name="default" jndi-name="java:jboss/ee/concurrency/context/default" use-transaction-setup-provider="true"/>
-                </context-services>
-                <managed-thread-factories>
-                    <managed-thread-factory name="default" jndi-name="java:jboss/ee/concurrency/factory/default" context-service="default"/>
-                </managed-thread-factories>
-                <managed-executor-services>
-                    <managed-executor-service name="default" jndi-name="java:jboss/ee/concurrency/executor/default" context-service="default" hung-task-threshold="60000" core-threads="5" max-threads="25" keepalive-time="5000"/>
-                </managed-executor-services>
-                <managed-scheduled-executor-services>
-                    <managed-scheduled-executor-service name="default" jndi-name="java:jboss/ee/concurrency/scheduler/default" context-service="default" hung-task-threshold="60000" core-threads="2" keepalive-time="3000"/>
-                </managed-scheduled-executor-services>
-            </concurrent>
-            <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+            <filters>
+                <response-header name="server-header" header-name="Server" header-value="Wildfly 8"/>
+                <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="Undertow 1"/>
+            </filters>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:webservices:1.2">
             <modify-wsdl-address>true</modify-wsdl-address>
@@ -357,7 +466,7 @@
             </endpoint-config>
             <client-config name="Standard-Client-Config"/>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:weld:2.0"/>
     </profile>
 
     <interfaces>
@@ -373,7 +482,6 @@
     </interfaces>
 
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
-        <socket-binding name="management-native" interface="management" port="${jboss.management.native.port:9999}"/>
         <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
         <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
         <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
@@ -381,13 +489,17 @@
         <socket-binding name="https" port="${jboss.https.port:8443}"/>
         <socket-binding name="jacorb" interface="unsecure" port="3528"/>
         <socket-binding name="jacorb-ssl" interface="unsecure" port="3529"/>
-        <socket-binding name="messaging" port="5445"/>
         <socket-binding name="messaging-group" port="0" multicast-address="${jboss.messaging.group.address:231.7.7.7}" multicast-port="${jboss.messaging.group.port:9876}"/>
-        <socket-binding name="messaging-throughput" port="5455"/>
         <socket-binding name="txn-recovery-environment" port="4712"/>
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+
+    <deployments>
+        <deployment name="sfa-0.0.1-SNAPSHOT.war" runtime-name="sfa-0.0.1-SNAPSHOT.war">
+            <content sha1="3946513f7a487f1bee3bdd3113fe12a8fc35a5a7"/>
+        </deployment>
+    </deployments>
 </server>
