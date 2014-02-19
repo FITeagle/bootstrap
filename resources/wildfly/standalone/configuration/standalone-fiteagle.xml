@@ -157,6 +157,18 @@
                         <password>sa</password>
                     </security>
                 </datasource>
+		<datasource jta="true" jndi-name="java:jboss/datasources/usersDS" pool-name="usersDS" enabled="true" use-ccm="true">
+                    <connection-url>jdbc:h2:~/.fiteagle/users;INIT=CREATE SCHEMA IF NOT EXISTS users</connection-url>
+                    <driver-class>org.h2.Driver</driver-class>
+                    <driver>h2</driver>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                    <statement>
+                        <share-prepared-statements>false</share-prepared-statements>
+                    </statement>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
