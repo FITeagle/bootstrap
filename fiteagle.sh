@@ -6,6 +6,7 @@ _resources_url="https://raw.github.com/fiteagle/bootstrap/master/resources/"
 
 _xmpp_type="openfire"
 _xmpp_version="3_8_2"
+#_xmpp_version="3_9_1"
 _xmpp_file="${_xmpp_type}_${_xmpp_version}.tar"
 _xmpp_folder="${_base}/server"
 _xmpp_url="http://download.igniterealtime.org/${_xmpp_type}/${_xmpp_file}.gz"
@@ -36,6 +37,15 @@ _container_keystore="jetty-ssl.keystore"
 _container_keystore_url="${_resources_url}//wildfly/standalone/configuration/jetty-ssl.keystore"
 _container_truststore="jetty-ssl.truststore"
 _container_truststore_url="${_resources_url}//wildfly/standalone/configuration/jetty-ssl.truststore"
+_container_index="index.html"
+_container_index_url="${_resources_url}/wildfly/welcome-content/${_container_index}"
+_container_css="fiteagle.css"
+_container_css_url="${_resources_url}/wildfly/welcome-content/${_container_css}"
+_container_bg="fiteagle_bg.jpg"
+_container_bg_url="${_resources_url}/wildfly/welcome-content/${_container_bg}"
+_container_logo="fiteagle_logo.png"
+_container_logo_url="${_resources_url}/wildfly/welcome-content/${_container_logo}"
+
 _installer_folder="${_base}/tmp"
 _logfile="${_installer_folder}/log"
 _src_folder="${_base}/core"
@@ -109,6 +119,14 @@ function configContainer() {
     ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
     ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
     )
+    curl -fsSSkL -o "${_installer_folder}/${_container_index}" "${_container_index_url}"
+    cp "${_installer_folder}/${_container_index}" "${_container_root}/welcome-content/"
+    curl -fsSSkL -o "${_installer_folder}/${_container_css}" "${_container_css_url}"
+    cp "${_installer_folder}/${_container_css}" "${_container_root}/welcome-content/"
+    curl -fsSSkL -o "${_installer_folder}/${_container_bg}" "${_container_bg_url}"
+    cp "${_installer_folder}/${_container_bg}" "${_container_root}/welcome-content/"
+    curl -fsSSkL -o "${_installer_folder}/${_container_logo}" "${_container_logo_url}"
+    cp "${_installer_folder}/${_container_logo}" "${_container_root}/welcome-content/"
 }
 
 function checkEnvironment {
