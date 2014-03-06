@@ -392,7 +392,14 @@
                         </entries>
                     </pooled-connection-factory>
                 </jms-connection-factories>
-</hornetq-server>
+
+                <jms-destinations>
+                    <jms-topic name="core">
+                        <entry name="topic/core"/>
+                        <entry name="java:jboss/exported/topic/core"/>
+                    </jms-topic>
+                </jms-destinations>
+            </hornetq-server>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
             <remote-naming/>
