@@ -17,6 +17,11 @@ bash -c "$(curl -fsSkL https://raw.github.com/fiteagle/bootstrap/master/fiteagle
 ./bootstrap/fiteagle.sh deployCore
 ```
 
+## Have a look at the admin GUI
+```
+open http://localhost:8080/native/gui/admin/console.html
+```
+
 ## Start XMPP Server
 ```
 ./bootstrap/fiteagle.sh startXMPP

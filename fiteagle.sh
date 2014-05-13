@@ -48,7 +48,6 @@ _container_logo_url="${_resources_url}/wildfly/welcome-content/${_container_logo
 
 _installer_folder="${_base}/tmp"
 _logfile="${_installer_folder}/log"
-_src_folder="${_base}/core"
 
 _wildfly_admin_user="admin"
 _wildfly_admin_pwd="admin"
@@ -145,31 +144,17 @@ function checkEnvironment {
 }
 
 
-function installFITeagleCore {
-  repo="core"
+function installFITeagleModule {
+  repo="$1"
+  _src_folder="${_base}/${repo}"
   git_url="https://github.com/FITeagle/${repo}.git"
 
   if [ -d "${_src_folder}/.git" ]; then
-    echo -n "Updating FITeagle Core sources..."
+    echo -n "Updating FITeagle ${repo} sources..."
     (cd "${_src_folder}" && git pull -q)
   else
-    echo -n "Getting FITeagle Core sources..."
+    echo -n "Getting FITeagle ${repo} sources..."
     git clone -q --recursive --depth 1 ${git_url} ${_src_folder}
-  fi
-  
-  echo "OK"
-}
-
-function installBootstrap {
-  repo="bootstrap"
-  git_url="https://github.com/FITeagle/${repo}.git"
-
-  if [ -d "${repo}/.git" ]; then
-    echo -n "Updating FITeagle Bootstrap sources..."
-    (cd "${repo}" && git pull -q)
-  else
-    echo -n "Getting FITeagle Bootstrap sources..."
-    git clone -q --recursive --depth 1 ${git_url} ${repo}
   fi
   
   echo "OK"
@@ -196,17 +181,21 @@ function startContainer() {
 }
 
 function deployCore {
-    cd "${_src_folder}"
-    mvn -DskipTests clean install wildfly:deploy
+    cd "${_base}/api" && mvn -DskipTests clean install wildfly:deploy
+    cd "${_base}/core" && mvn -DskipTests clean install wildfly:deploy
+    cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
+
 }
 
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
 
-    installBootstrap
-    installFITeagleCore
-
+    installFITeagleModule bootstrap
+    installFITeagleModule api
+    installFITeagleModule core
+    installFITeagleModule native    
+    
     installXMPP
     configXMPP
     
