@@ -181,10 +181,9 @@ function startContainer() {
 }
 
 function deployCore {
-    cd "${_base}/api" && mvn -DskipTests clean install wildfly:deploy
-    cd "${_base}/core" && mvn -DskipTests clean install wildfly:deploy
-    cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
-
+    cd "${_base}/api" && mvn clean install
+    cd "${_base}/core" && mvn clean wildfly:deploy
+    cd "${_base}/native" && mvn clean wildfly:deploy
 }
 
 function bootstrap() {
