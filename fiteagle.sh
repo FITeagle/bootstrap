@@ -4,6 +4,17 @@ _dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 _base="$(pwd)"
 _resources_url="https://raw.githubusercontent.com/FITeagle/bootstrap/master/resources"
 
+_sparql_type="jena-fuseki"
+_sparql_version="1.0.1"
+_sparql_versiontype="distribution"
+_sparql_extractfolder="${_sparql_type}-${_sparql_version}"
+_sparql_file="${_sparql_type}-${_sparql_version}-${_sparql_versiontype}.zip"
+_sparql_folder="${_base}/server"
+_sparql_url="http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist//jena/binaries/${_sparql_file}"
+_sparql_config="config.ttl"
+_sparql_config_path="conf"
+_sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config_path}/${_sparql_config}"
+
 _xmpp_type="openfire"
 _xmpp_version="3_8_2"
 #_xmpp_version="3_9_1"
@@ -66,6 +77,16 @@ function checkBinary {
    fi
 }
 
+function installSPARQL() {
+    echo "Downloading SPARQL server..."
+    mkdir -p "${_installer_folder}"
+    [ -f "${_installer_folder}/${_sparql_file}" ] || curl -fsSSkL -o "${_installer_folder}/${_sparql_file}" "${_sparql_url}"
+    echo "Installing SPARQL server..."
+    mkdir -p "${_sparql_folder}"
+    unzip -qu "${_installer_folder}/${_sparql_file}" -d "${_sparql_folder}"
+    mv "${_sparql_folder}/${_sparql_extractfolder}" "${_sparql_folder}/${_sparql_type}"
+}
+
 function installXMPP() {
     echo "Downloading XMPP server..."
     mkdir -p "${_installer_folder}"
@@ -91,7 +112,6 @@ function configXMPP() {
     cp "${_installer_folder}/${_xmpp_keystore}" "${_xmpp_root}/${_xmpp_keystore_path}"
 }
 
-
 function installContainer() {
     echo "Downloading container..."
     mkdir -p "${_installer_folder}"
@@ -102,8 +122,6 @@ function installContainer() {
     rm -r "${_container_root}" 2>/dev/null
     mv "${_container_folder}/${_container_name}" "${_container_root}"
 }
-
-
 
 function configContainer() {
     echo "Configuring container..."
@@ -143,7 +161,6 @@ function checkEnvironment {
   fi
 }
 
-
 function installFITeagleModule {
   repo="$1"
   _src_folder="${_base}/${repo}"
@@ -180,6 +197,12 @@ function startContainer() {
     ${CMD} -b 0.0.0.0 -c "${_container_config}"
 }
 
+function startSPARQL() {
+    echo "Starting SPARQL Server..."
+    cd "${_sparql_folder}/${_sparql_type}"
+    sh ./fuseki-server -config "${_sparql_config}"
+}
+
 function deployCore {
     cd "${_base}/api" && mvn clean install
     cd "${_base}/core" && mvn clean wildfly:deploy
@@ -200,6 +223,9 @@ function bootstrap() {
     
     installContainer
     configContainer
+    
+    installSPARQL
+    # configSPARQL
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
@@ -207,11 +233,12 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | deployCore"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | startSPARQL | deployCore"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
+    [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "deployCore" ] && deployCore
 done
