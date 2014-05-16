@@ -205,8 +205,8 @@ function startSPARQL() {
 
 function deployCore {
     cd "${_base}/api" && mvn clean install
-    cd "${_base}/core" && mvn clean wildfly:deploy
-    cd "${_base}/native" && mvn clean wildfly:deploy
+    cd "${_base}/core" && mvn clean install wildfly:deploy
+    cd "${_base}/native" && mvn clean install wildfly:deploy
 }
 
 function bootstrap() {
