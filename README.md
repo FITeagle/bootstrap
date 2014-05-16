@@ -22,6 +22,24 @@ bash -c "$(curl -fsSkL https://raw.github.com/fiteagle/bootstrap/master/fiteagle
 open http://localhost:8080/native/gui/admin/console.html
 ```
 
+## Start SPARQL Server
+```
+./bootstrap/fiteagle.sh startSPARQL
+```
+
+## Have a look at the SPARQL GUI
+```
+open http://localhost:3030/sparql.html
+```
+
+## Submit the first query
+```
+SELECT ?s ?p ?o
+FROM <http://localhost:3030/ds/data?default>
+WHERE { ?s ?p ?o }
+LIMIT 10
+```
+
 ## Start XMPP Server
 ```
 ./bootstrap/fiteagle.sh startXMPP
