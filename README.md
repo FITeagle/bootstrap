@@ -12,6 +12,11 @@ bash -c "$(curl -fsSkL https://raw.github.com/fiteagle/bootstrap/master/fiteagle
 ./bootstrap/fiteagle.sh startJ2EE
 ```
 
+## Have a look at the J2EE Server Management Console. Default login is: admin/admin
+```
+http://localhost:9990/console/App.html
+```
+
 ## Deploy FITeagle Core
 ```
 ./bootstrap/fiteagle.sh deployCore
