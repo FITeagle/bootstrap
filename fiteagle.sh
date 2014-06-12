@@ -36,7 +36,7 @@ _xmpp_keystore_url="${_resources_url}/${_xmpp_type}/${_xmpp_keystore_path}/${_xm
 _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
-_container_version="8.0.1.Final"
+_container_version="8.1.0.Final"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
