@@ -398,10 +398,6 @@
                         <entry name="topic/core"/>
                         <entry name="java:jboss/exported/topic/core"/>
                     </jms-topic>
-		    <jms-topic name="usermanagement">
-			<entry name="topic/usermanagement"/>
-			<entry name="java:jboss/exported/topic/usermanagement"/>
-		    </jms-topic>
                 </jms-destinations>
             </hornetq-server>
         </subsystem>
