@@ -451,16 +451,11 @@
             </buffer-caches>
             <server name="default-server">
                 <http-listener name="default" socket-binding="http"/>
+                <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUESTED"/>
                 <host name="default-host" alias="localhost">
                     <location name="/" handler="welcome-content"/>
                     <filter-ref name="server-header"/>
                     <filter-ref name="x-powered-by-header"/>
-                </host>
-            </server>
-             <server name="xmlrpc-server">
-                <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUIRED"/>
-                <host name="xmlrpc-host" alias="localhost">
-                    <location name="/" handler="welcome-content"/>
                 </host>
             </server>
             <servlet-container name="default" default-buffer-cache="default" stack-trace-on-error="local-only">
