@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<server xmlns="urn:jboss:domain:2.0">
+<server xmlns="urn:jboss:domain:2.1">
 
     <extensions>
         <extension module="org.jboss.as.clustering.infinispan"/>
@@ -53,12 +53,15 @@
                     <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
                 </authorization>
             </security-realm>
-             <security-realm name="xmlrpc-realm">
+            <security-realm name="xmlrpc-realm">
                 <server-identities>
                     <ssl>
-                        <keystore path="jetty-ssl.keystore" relative-to="jboss.server.config.dir" keystore-password="jetty6" />
+                        <keystore path="jetty-ssl.keystore" relative-to="jboss.server.config.dir" keystore-password="jetty6"/>
                     </ssl>
                 </server-identities>
+                <authentication>
+                    <truststore path="jetty-ssl.truststore" relative-to="jboss.server.config.dir" keystore-password="jetty6" />
+                </authentication>
             </security-realm>
         </security-realms>
         <audit-log>
@@ -157,7 +160,7 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-		<datasource jta="true" jndi-name="java:jboss/datasources/usersDS" pool-name="usersDS" enabled="true" use-ccm="true">
+                <datasource jta="true" jndi-name="java:jboss/datasources/usersDS" pool-name="usersDS" enabled="true" use-ccm="true">
                     <connection-url>jdbc:h2:~/.fiteagle/users;INIT=CREATE SCHEMA IF NOT EXISTS users</connection-url>
                     <driver-class>org.h2.Driver</driver-class>
                     <driver>h2</driver>
@@ -238,9 +241,9 @@
             <default-security-domain value="other"/>
             <default-missing-method-permissions-deny-access value="true"/>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:io:1.0">
-            <worker name="default" io-threads="3"/>
-            <buffer-pool name="default" buffer-size="16384" buffers-per-slice="128"/>
+        <subsystem xmlns="urn:jboss:domain:io:1.1">
+            <worker name="default"/>
+            <buffer-pool name="default"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:infinispan:2.0">
             <cache-container name="web" default-cache="passivation" module="org.wildfly.clustering.web.infinispan">
@@ -445,10 +448,8 @@
             <recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/>
             <coordinator-environment default-timeout="300"/>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:undertow:1.0">
-            <buffer-caches>
-                <buffer-cache name="default" buffer-size="1024" buffers-per-region="1024" max-regions="10"/>
-            </buffer-caches>
+        <subsystem xmlns="urn:jboss:domain:undertow:1.1">
+            <buffer-cache name="default"/>
             <server name="default-server">
                 <http-listener name="default" socket-binding="http"/>
                 <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUESTED"/>
@@ -458,11 +459,11 @@
                     <filter-ref name="x-powered-by-header"/>
                 </host>
             </server>
-            <servlet-container name="default" default-buffer-cache="default" stack-trace-on-error="local-only">
+            <servlet-container name="default">
                 <jsp-config/>
             </servlet-container>
             <handlers>
-                <file name="welcome-content" path="${jboss.home.dir}/welcome-content" directory-listing="true"/>
+                <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
             </handlers>
             <filters>
                 <response-header name="server-header" header-name="Server" header-value="Wildfly 8"/>
