@@ -197,6 +197,14 @@ function startContainer() {
     ${CMD} -b 0.0.0.0 -c "${_container_config}"
 }
 
+function stopContainer() {
+    echo "Stopping J2EE Container..."
+    [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
+    CMD="${WILDFLY_HOME}/bin/jboss-cli.sh"
+    [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
+    ${CMD} --connect command=:shutdown
+}
+
 function startSPARQL() {
     echo "Starting SPARQL Server..."
     cd "${_sparql_folder}/${_sparql_type}"
@@ -233,12 +241,13 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | startSPARQL | deployCore"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
+    [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployCore" ] && deployCore
 done

@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# fiteagled        Startup script for the FITeagle Federation Server
+#
+# chkconfig: - 85 15
+# description: The FITeagle Federation Server is an efficient and extensible  \
+#              server implementing the current Federation standards.
+# processname: fiteagled
+# config: /etc/fiteagled/conf/fiteagled.conf
+# config: /etc/sysconfig/fiteagled
+# pidfile: /var/run/fiteagled.pid
+#
+### BEGIN INIT INFO
+# Provides: fiteagled
+# Required-Start: $local_fs $remote_fs $network $named
+# Required-Stop: $local_fs $remote_fs $network
+# Should-Start: 
+# Short-Description: start and stop FITeagle Federation Server
+# Description: The FITeagle Federation Server is an extensible server 
+#  implementing the current Federation standards.
+### END INIT INFO
+
+# Source function library.
+#. /etc/rc.d/init.d/functions
+
+if [ -f /etc/sysconfig/fiteagled ]; then
+        . /etc/sysconfig/fiteagled
+fi
+
+# Path to the fiteagle.sh script, server binary, and short-form for messages.
+fiteaglepath=${FITEAGLEPATH-$WILDFLY_HOME/../../bootstrap}
+fiteagle=${FITEAGLE-$fiteaglepath/fiteagle.sh}
+fiteagleuser=${FITEAGLEUSER-fiteagle}
+prog=fiteagled
+pidfile=${PIDFILE-/var/run/fiteagled.pid}
+lockfile=${LOCKFILE-/var/lock/subsys/fiteagled}
+logFile=${LOGFILE-/var/log/fiteagled}
+RETVAL=0
+PATH=$PATH:/usr/local/sbin
+ARGS=startJ2EE
+
+start() {
+        echo -n $"Starting $prog: "
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --exec ${fiteagle} --name $prog -- $ARGS
+        RETVAL=$?
+        echo
+        [ $RETVAL = 0 ] && touch ${lockfile}
+        return $RETVAL
+}
+stop() {
+        echo -n $"Stopping $prog: "
+        $fiteagle stopJ2EE
+        pid=$(cat $pidfile)
+        [ ! -z $pid ] && pkill -P $pid
+        start-stop-daemon --stop --chuid $fiteagleuser --pidfile $pidfile
+        RETVAL=$?
+        echo
+        [ $RETVAL = 0 ] && rm -f ${lockfile} ${pidfile}
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        sleep 2
+        start
+        ;;
+  *)
+        echo $"Usage: $prog {start|stop|restart}"
+        RETVAL=2
+esac
+
+exit $RETVAL
