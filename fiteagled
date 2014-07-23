@@ -29,8 +29,10 @@ if [ -f /etc/sysconfig/fiteagled ]; then
         . /etc/sysconfig/fiteagled
 fi
 
+source /etc/profile
+
 # Path to the fiteagle.sh script, server binary, and short-form for messages.
-fiteaglepath=${FITEAGLEPATH-$WILDFLY_HOME/../../bootstrap}
+fiteaglepath=${FITEAGLEPATH-/home/fiteagle/bootstrap}
 fiteagle=${FITEAGLE-$fiteaglepath/fiteagle.sh}
 fiteagleuser=${FITEAGLEUSER-fiteagle}
 prog=fiteagled
@@ -41,9 +43,12 @@ RETVAL=0
 PATH=$PATH:/usr/local/sbin
 ARGS=startJ2EE
 
+touch $logFile
+chown $fiteagleuser $logFile
+
 start() {
         echo -n $"Starting $prog: "
-        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --exec ${fiteagle} --name $prog -- $ARGS
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --name $prog --exec /bin/bash -- -c "$fiteagle $ARGS > $logFile 2>&1"
         RETVAL=$?
         echo
         [ $RETVAL = 0 ] && touch ${lockfile}
