@@ -15,6 +15,11 @@ _sparql_config="config.ttl"
 _sparql_config_path="conf"
 _sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config_path}/${_sparql_config}"
 
+_labwiki_folder="${_base}/server"
+_labwiki_root="${_labwiki_folder}/labwiki"
+_labwiki_git_url="https://github.com/mytestbed/labwiki.git"
+
+
 _xmpp_type="openfire"
 _xmpp_version="3_8_2"
 #_xmpp_version="3_9_1"
@@ -77,6 +82,30 @@ function checkBinary {
    fi
 }
 
+function checkPackage {
+  echo -n " * Checking for '$1'..."
+  PKG_OK=$(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed")
+  if [ $PKG_OK -eq 1 ]; then
+     echo "OK"
+     return 0
+   else
+     echo >&2 "FAILED."
+     return 1
+   fi
+}
+
+function checkRubyVersion {
+  echo -n " * Checking ruby version..."
+  VERSION_OK=$(command -v ruby 2>/dev/null | grep -c "1.9.3")
+  if [ $VERSION_OK -eq 1 ]; then
+     echo "OK"
+     return 0
+   else
+     echo >&2 "FAILED. Run \"./bootstrap/fiteagle.sh installRuby\" to install the correct version"
+     return 1
+   fi
+}
+
 function installSPARQL() {
     echo "Downloading SPARQL server..."
     mkdir -p "${_installer_folder}"
@@ -94,6 +123,36 @@ function installXMPP() {
     echo "Installing XMPP server..."
     mkdir -p "${_xmpp_folder}"
     tar xzf "${_installer_folder}/${_xmpp_file}" -C "${_xmpp_folder}"
+}
+
+function installLabwiki() {
+    checkEnvironmentForLabwiki
+    echo "Cloning Labwiki code..."
+    mkdir -p "${_labwiki_folder}"
+    cd "${_labwiki_folder}"
+    git clone -q ${_labwiki_git_url}
+    echo "Installing Labwiki..."
+    cd ${_labwiki_root}
+    bundle install --path vendor
+    rake post-install
+    echo "Installation finished."
+    echo "Save to ~/.bashrc: export LABWIKI_TOP=${_labwiki_root}"
+}
+
+function installRuby() {
+    removeOldRuby
+    echo "Installing ruby 1.9.3-p286 via rvm..."
+    apt-get install -qq -y build-essential libxml2-dev libxslt-dev libssl-dev
+    \curl -L https://get.rvm.io | bash -s stable
+    source /etc/profile.d/rvm.sh
+    rvm --quiet-curl install ruby-1.9.3-p286 --autolibs=4
+    rvm use ruby-1.9.3-p286 --default
+
+    rvm current; ruby -v
+    echo "Installation finished."
+    echo "Save to ~/.bashrc: source /etc/profile.d/rvm.sh"
+    echo "To use ruby, you need to add your user to the 'rvm' group: sudo adduser <username> rvm"
+    echo "Finally, logout and login again."
 }
 
 function configXMPP() {
@@ -161,6 +220,26 @@ function checkEnvironment {
   fi
 }
 
+function checkEnvironmentForLabwiki {
+  _error=0
+  echo "Checking environment for Labwiki..."
+  checkPackage libpq-dev; _error=$(($_error + $?))
+  checkPackage libicu-dev; _error=$(($_error + $?))
+  checkBinary ruby; _error=$(($_error + $?))
+  checkRubyVersion; _error=$(($_error + $?))
+  if [ "0" != "$_error" ]; then
+    echo >&2 "FAILED. Please install the above mentioned binaries."
+    exit 1
+  fi
+}
+
+function removeOldRuby {
+  echo "Removing old ruby versions..."
+  apt-get -qq -y --purge remove ruby-rvm ruby ruby1.8 ruby1.8-dev ruby1.9.3
+  rm -rf /usr/share/ruby-rvm /etc/rvmrc /etc/profile.d/rvm.sh
+  apt-get -qq -y autoremove
+}
+
 function installFITeagleModule {
   repo="$1"
   _src_folder="${_base}/${repo}"
@@ -211,6 +290,15 @@ function startSPARQL() {
     sh ./fuseki-server -config "${_sparql_config}"
 }
 
+function startLabwiki() {
+    echo "Starting Labwiki Server..."
+    [ ! -z "${LABWIKI_TOP}" ] || LABWIKI_TOP="${_labwiki_root}"
+    CMD="${LABWIKI_TOP}/bin/labwiki"
+    [ -x "${CMD}" ] || { echo "Please set LABWIKI_TOP first "; exit 2; }
+    cd "${LABWIKI_TOP}"
+    ${CMD} --lw-config etc/labwiki/first_test.yaml --lw-no-login start
+}
+
 function deployCore {
     cd "${_base}/api" && mvn clean install
     cd "${_base}/core" && mvn clean install wildfly:deploy
@@ -241,7 +329,7 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
@@ -250,4 +338,7 @@ for arg in "$@"; do
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployCore" ] && deployCore
+    [ "${arg}" = "installLabwiki" ] && installLabwiki
+    [ "${arg}" = "installRuby" ] && installRuby
+    [ "${arg}" = "startLabwiki" ] && startLabwiki
 done
