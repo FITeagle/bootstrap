@@ -32,37 +32,53 @@ fi
 source /etc/profile
 
 # Path to the fiteagle.sh script, server binary, and short-form for messages.
-fiteaglepath=${FITEAGLEPATH-/home/fiteagle/bootstrap}
-fiteagle=${FITEAGLE-$fiteaglepath/fiteagle.sh}
 fiteagleuser=${FITEAGLEUSER-fiteagle}
-prog=fiteagled
+fiteaglepath=${FITEAGLEPATH-/home/$fiteagleuser/bootstrap}
+fiteagle=${FITEAGLE-$fiteaglepath/fiteagle.sh}
+prog=fiteagle
 pidfile=${PIDFILE-/var/run/fiteagled.pid}
 lockfile=${LOCKFILE-/var/lock/fiteagled}
-logFile=${LOGFILE-/var/log/fiteagled}
+logfile=${LOGFILE-/var/log/fiteagled}
 RETVAL=0
 PATH=$PATH:/usr/local/sbin
-ARGS=startJ2EE
+args_j2ee=startJ2EE
 
-touch $logFile
-chown $fiteagleuser $logFile
+prog_xmpp=fiteagle_xmpp
+pidfile_xmpp=${PIDFILE_XMPP-/var/run/fiteagle_xmpp.pid}
+lockfile_xmpp=${LOCKFILE_XMPP-/var/lock/fiteagle_xmpp}
+logfile_xmpp=${LOGFILE_XMPP-/var/log/fiteagle_xmpp}
+args_xmpp=startXMPP
+
+touch $logfile
+touch $logfile_xmpp
+chown $fiteagleuser $logfile
+chown $fiteagleuser $logfile_xmpp
+
 
 start() {
-        echo -n $"Starting $prog: "
-        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --name $prog --exec /bin/bash -- -c "$fiteagle $ARGS > $logFile 2>&1"
+        echo -n $"Starting $prog.. "
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --name $prog --exec /bin/bash -- -c "$fiteagle $args_j2ee > $logfile 2>&1"
         RETVAL=$?
-        echo
         [ $RETVAL = 0 ] && touch ${lockfile}
+        echo $"OK. Check logs at $logfile."
+        echo -n $"Starting $prog_xmpp.. "
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile_xmpp --make-pidfile --name $prog_xmpp --exec /bin/bash -- -c "$fiteagle $args_xmpp > $logfile_xmpp 2>&1"
+        RETVAL=$?
+        [ $RETVAL = 0 ] && touch ${lockfile_xmpp}
+        echo $"OK. Check logs at $logfile_xmpp."
         return $RETVAL
 }
 stop() {
-        echo -n $"Stopping $prog: "
+        echo -n $"Stopping $prog.. "
         $fiteagle stopJ2EE
         pid=$(cat $pidfile)
         [ ! -z $pid ] && pkill -P $pid
-        start-stop-daemon --stop --chuid $fiteagleuser --pidfile $pidfile
-        RETVAL=$?
-        echo
-        [ $RETVAL = 0 ] && rm -f ${lockfile} ${pidfile}
+        echo -n $"Stopping $prog_xmpp.. "
+        $fiteagle stopXMPP
+        pid=$(cat $pidfile_xmpp)
+        [ ! -z $pid ] && pkill -P $pid
+        rm -f ${lockfile} ${pidfile}
+        rm -f ${lockfile_xmpp} ${pidfile_xmpp}
 }
 
 # See how we were called.
