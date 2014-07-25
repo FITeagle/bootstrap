@@ -259,12 +259,19 @@ function installFITeagleModule {
 function startXMPP() {
     echo "Starting XMPP Server..."
     [ ! -z "${OPENFIRE_HOME}" ] || OPENFIRE_HOME="${_xmpp_root}"
-    export OPENFIRE_LIB="${OPENFIRE_HOME}/lib"
-    export OPENFIRE_OPTS="-Xmx256m -DopenfireHome=${OPENFIRE_HOME} -Dopenfire.lib.dir=${OPENFIRE_LIB}"
-    export OPENFIRE_JAR="${OPENFIRE_LIB}/startup.jar"
-    export OPENFIRE_ARGS="-server ${OPENFIRE_OPTS} -classpath ${OPENFIRE_JAR} -jar ${OPENFIRE_JAR}"
-    [ -f "${OPENFIRE_JAR}" ] || { echo "Please set OPENFIRE_HOME first "; exit 3; }
-    java $OPENFIRE_ARGS
+    export OPENFIRE_CMD="${OPENFIRE_HOME}/bin/openfire"
+    export OPENFIRE_LOG="${OPENFIRE_HOME}/logs/stdoutt.log"
+    [ -f "${OPENFIRE_CMD}" ] || { echo "Please set OPENFIRE_HOME first "; exit 3; }
+    ${OPENFIRE_CMD} start
+    echo "Check logs at $OPENFIRE_LOG"
+}
+
+function stopXMPP() {
+    echo "Stopping XMPP Server..."
+    [ ! -z "${OPENFIRE_HOME}" ] || OPENFIRE_HOME="${_xmpp_root}"
+    export OPENFIRE_CMD="${OPENFIRE_HOME}/bin/openfire"
+    [ -f "${OPENFIRE_CMD}" ] || { echo "Please set OPENFIRE_HOME first "; exit 3; }
+    ${OPENFIRE_CMD} stop
 }
 
 function startContainer() {
@@ -329,11 +336,12 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
+    [ "${arg}" = "stopXMPP" ] && stopXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "stopJ2EE" ] && stopContainer
