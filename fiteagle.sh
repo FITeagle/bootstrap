@@ -135,6 +135,7 @@ function installLabwiki() {
     cd ${_labwiki_root}
     bundle install --path vendor
     rake post-install
+    ${_labwiki_root}/install_plugin https://github.com/mytestbed/labwiki_experiment_plugin.git
     echo "Installation finished."
     echo "Save to ~/.bashrc: export LABWIKI_TOP=${_labwiki_root}"
 }
