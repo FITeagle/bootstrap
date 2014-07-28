@@ -147,7 +147,8 @@ function installRuby() {
     source /etc/profile.d/rvm.sh
     rvm --quiet-curl install ruby-1.9.3-p286 --autolibs=4
     rvm use ruby-1.9.3-p286 --default
-
+    gem install bundler
+    gem install rake
     rvm current; ruby -v
     echo "Installation finished."
     echo "Save to ~/.bashrc: source /etc/profile.d/rvm.sh"
@@ -300,7 +301,7 @@ function startSPARQL() {
 function startLabwiki() {
     echo "Starting Labwiki Server..."
     [ ! -z "${LABWIKI_TOP}" ] || LABWIKI_TOP="${_labwiki_root}"
-    CMD="${LABWIKI_TOP}/bin/labwiki"
+    CMD="${LABWIKI_TOP}/bin/labwiki.in"
     [ -x "${CMD}" ] || { echo "Please set LABWIKI_TOP first "; exit 2; }
     cd "${LABWIKI_TOP}"
     ${CMD} --lw-config etc/labwiki/first_test.yaml --lw-no-login start
