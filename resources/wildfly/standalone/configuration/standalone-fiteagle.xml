@@ -344,6 +344,11 @@
                         <param key="direct-deliver" value="false"/>
                     </http-acceptor>
                     <in-vm-acceptor name="in-vm" server-id="0"/>
+                    <acceptor name="stomp-acceptor">
+                        <factory-class>org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory</factory-class>
+                        <param key="protocols"  value="AMQP"/>
+                        <param key="port"  value="5672"/>
+                    </acceptor>
                 </acceptors>
 
                 <security-settings>
