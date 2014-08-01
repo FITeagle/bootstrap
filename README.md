@@ -1,6 +1,6 @@
 # FITeagle Bootstrap
 
-Scripts to bootstrap the environment.
+Scripts and configurations to bootstrap the environment.
 
 ## Download and Configure Server Components
 ```
