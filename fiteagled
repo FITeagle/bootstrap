@@ -43,6 +43,7 @@ RETVAL=0
 PATH=$PATH:/usr/local/sbin
 args_j2ee=startJ2EE
 
+xmpp_root=${OPENFIRE_HOME-$fiteaglepath/../server/openfire}
 prog_xmpp=fiteagle_xmpp
 pidfile_xmpp=${PIDFILE_XMPP-/var/run/fiteagle_xmpp.pid}
 lockfile_xmpp=${LOCKFILE_XMPP-/var/lock/fiteagle_xmpp}
@@ -53,7 +54,7 @@ touch $logfile
 touch $logfile_xmpp
 chown $fiteagleuser $logfile
 chown $fiteagleuser $logfile_xmpp
-
+chown -R $fiteagleuser $xmpp_root
 
 start() {
         echo -n $"Starting $prog.. "
