@@ -464,6 +464,7 @@
 				<artifactId>jdepend-maven-plugin</artifactId>
 				<version>${jdepend.version}</version>
 			</plugin>
+			<!-- too slow
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
@@ -478,6 +479,7 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
