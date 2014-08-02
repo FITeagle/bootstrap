@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FITeagle/bootstrap.svg?branch=master)](https://travis-ci.org/FITeagle/bootstrap)
+
 # FITeagle Bootstrap
 
 Scripts and configurations to bootstrap the environment.
