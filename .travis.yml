@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - oraclejdk7
+script:
+  - mvn clean install site
+notifications:
+  email:
+    - alexander.willner@tu-berlin.de
+    - fiteagle.dev@av.tu-berlin.de
