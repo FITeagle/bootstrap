@@ -46,6 +46,7 @@
 		<taglist.version>2.4</taglist.version>
 		<jdepend.version>2.0</jdepend.version>
 		<pmd.version>3.1</pmd.version>
+		<wildfly.version>1.0.2.Final</wildfly.version>
 	</properties>
 
 	<repositories>
@@ -98,18 +99,16 @@
 
 	<mailingLists>
 		<mailingList>
-			<name>fiteagle-dev</name>
-			<subscribe>http://lists.fiteagle.org/cgi-bin/mailman/listinfo/dev</subscribe>
-			<unsubscribe>http://lists.fiteagle.org/cgi-bin/mailman/listinfo/dev</unsubscribe>
-			<post>dev@lists.fiteagle.org</post>
-			<archive>http://lists.fiteagle.org/pipermail/dev/</archive>
+			<name>fiteagle.dev</name>
+			<subscribe>https://lists.tu-berlin.de/mailman/listinfo/av-fiteagle.dev?language=en</subscribe>
+			<unsubscribe>https://lists.tu-berlin.de/mailman/listinfo/av-fiteagle.dev?language=en</unsubscribe>
+			<post>fiteagle.dev@av.tu-berlin.de</post>
 		</mailingList>
 		<mailingList>
-			<name>fiteagle-user</name>
-			<subscribe>http://lists.fiteagle.org/cgi-bin/mailman/listinfo/users</subscribe>
-			<unsubscribe>http://lists.fiteagle.org/cgi-bin/mailman/listinfo/users</unsubscribe>
-			<post>users@lists.fiteagle.org</post>
-			<archive>http://lists.fiteagle.org/pipermail/users/</archive>
+			<name>fiteagle.user</name>
+			<subscribe>https://lists.tu-berlin.de/mailman/listinfo/av-fiteagle.user?language=en</subscribe>
+			<unsubscribe>https://lists.tu-berlin.de/mailman/listinfo/av-fiteagle.user?language=en</unsubscribe>
+			<post>fiteagle.user@av.tu-berlin.de</post>
 		</mailingList>
 	</mailingLists>
 
@@ -174,7 +173,7 @@
 			<groupId>org.apache.jena</groupId>
 			<artifactId>apache-jena-libs</artifactId>
 			<type>pom</type>
-			<version>2.11.1</version>
+			<version>2.11.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -240,7 +239,7 @@
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.0.2.Final</version>
+				<version>${wildfly.version}</version>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
