@@ -207,7 +207,7 @@
 		<dependency>
 			<groupId>org.wildfly</groupId>
 			<artifactId>wildfly-jms-client-bom</artifactId>
-			<version>8.0.0.Final</version>
+			<version>8.1.0.Final</version>
 			<scope>provided</scope>
 			<type>pom</type>
 		</dependency>
