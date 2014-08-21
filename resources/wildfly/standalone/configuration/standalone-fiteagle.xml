@@ -460,6 +460,7 @@
                 <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUESTED"/>
                 <host name="default-host" alias="localhost">
                     <location name="/" handler="welcome-content"/>
+		    <location name="/unifi" handler="unifi"/>
                     <filter-ref name="server-header"/>
                     <filter-ref name="x-powered-by-header"/>
                 </host>
@@ -469,6 +470,7 @@
             </servlet-container>
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
+		<file name="unifi" path="${jboss.home.dir}/../../unifi/src/main/webapp"/>
             </handlers>
             <filters>
                 <response-header name="server-header" header-name="Server" header-value="Wildfly 8"/>
