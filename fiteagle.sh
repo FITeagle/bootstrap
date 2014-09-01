@@ -237,7 +237,7 @@ function checkEnvironmentForLabwiki {
 
 function removeOldRuby {
   echo "Removing old ruby versions..."
-  apt-get -qq -y --purge remove ruby-rvm ruby ruby1.8 ruby1.8-dev ruby1.9.3
+  apt-get -qq -y --purge remove ruby ruby1.8 ruby1.8-dev ruby1.9.3 ruby1.9.1 ruby1.9.1-dev
   rm -rf /usr/share/ruby-rvm /etc/rvmrc /etc/profile.d/rvm.sh
   apt-get -qq -y autoremove
 }
