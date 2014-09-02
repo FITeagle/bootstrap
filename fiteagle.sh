@@ -299,6 +299,15 @@ function startSPARQL() {
     sh ./fuseki-server -config "${_sparql_config}"
 }
 
+function startSPARQLPersist() {
+    echo "Starting Persistent SPARQL Server..."
+    cd "${_sparql_folder}/${_sparql_type}"
+    # Dataset called ds for compatibility reasons for now
+    mkdir ds
+    sh ./fuseki-server --update --loc=ds /ds
+}
+
+
 function startLabwiki() {
     echo "Starting Labwiki Server..."
     [ ! -z "${LABWIKI_TOP}" ] || LABWIKI_TOP="${_labwiki_root}"
@@ -338,13 +347,14 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | stopJ2EE | startSPARQL | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | stopJ2EE | startSPARQL | startSPARQLPersist | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
     [ "${arg}" = "stopXMPP" ] && stopXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
+    [ "${arg}" = "startSPARQLPersist" ] && startSPARQLPersist
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployCore" ] && deployCore
