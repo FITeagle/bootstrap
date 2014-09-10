@@ -60,7 +60,7 @@ PATH=$PATH:/usr/local/sbin
 
 start() {
         echo -n $"Starting $prog_j2ee.. "
-        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile_j2ee $pidfile_j2ee --make-pidfile --name $prog_j2ee --exec /bin/bash -- -c "$fiteagle $args_j2ee > $logfile_j2ee 2>&1"
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile_j2ee --make-pidfile --name $prog_j2ee --exec /bin/bash -- -c "$fiteagle $args_j2ee > $logfile_j2ee 2>&1"
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_j2ee}
         echo $"OK. Check logs at $logfile_j2ee."
