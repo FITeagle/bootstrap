@@ -31,16 +31,15 @@ fi
 
 source /etc/profile
 
-# Path to the fiteagle.sh script, server binary, and short-form for messages.
+# Path to the fiteagle.sh script, server binaries, and short-form for messages.
 fiteagleuser=${FITEAGLEUSER-fiteagle}
 fiteaglepath=${FITEAGLEPATH-/home/$fiteagleuser/bootstrap}
 fiteagle=${FITEAGLE-$fiteaglepath/fiteagle.sh}
-prog=fiteagle
-pidfile=${PIDFILE-/var/run/fiteagled.pid}
-lockfile=${LOCKFILE-/var/lock/fiteagled}
-logfile=${LOGFILE-/var/log/fiteagled}
-RETVAL=0
-PATH=$PATH:/usr/local/sbin
+
+prog_j2ee=fiteagle_j2ee
+pidfile_j2ee=${PIDFILE-/var/run/fiteagle_j2ee.pid}
+lockfile_j2ee=${LOCKFILE-/var/lock/fiteagle_j2ee}
+logfile_j2ee=${LOGFILE-/var/log/fiteagle_j2ee}
 args_j2ee=startJ2EE
 
 xmpp_root=${OPENFIRE_HOME-$fiteaglepath/../server/openfire}
@@ -50,18 +49,21 @@ lockfile_xmpp=${LOCKFILE_XMPP-/var/lock/fiteagle_xmpp}
 logfile_xmpp=${LOGFILE_XMPP-/var/log/fiteagle_xmpp}
 args_xmpp=startXMPP
 
-touch $logfile
+touch $logfile_j2ee
 touch $logfile_xmpp
-chown $fiteagleuser $logfile
+chown $fiteagleuser $logfile_j2ee
 chown $fiteagleuser $logfile_xmpp
 chown -R $fiteagleuser $xmpp_root
 
+RETVAL=0
+PATH=$PATH:/usr/local/sbin
+
 start() {
-        echo -n $"Starting $prog.. "
-        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile --make-pidfile --name $prog --exec /bin/bash -- -c "$fiteagle $args_j2ee > $logfile 2>&1"
+        echo -n $"Starting $prog_j2ee.. "
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile_j2ee $pidfile_j2ee --make-pidfile --name $prog_j2ee --exec /bin/bash -- -c "$fiteagle $args_j2ee > $logfile_j2ee 2>&1"
         RETVAL=$?
-        [ $RETVAL = 0 ] && touch ${lockfile}
-        echo $"OK. Check logs at $logfile."
+        [ $RETVAL = 0 ] && touch ${lockfile_j2ee}
+        echo $"OK. Check logs at $logfile_j2ee."
         echo -n $"Starting $prog_xmpp.. "
         start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile_xmpp --make-pidfile --name $prog_xmpp --exec /bin/bash -- -c "$fiteagle $args_xmpp > $logfile_xmpp 2>&1"
         RETVAL=$?
@@ -70,15 +72,15 @@ start() {
         return $RETVAL
 }
 stop() {
-        echo -n $"Stopping $prog.. "
+        echo -n $"Stopping $prog_j2ee.. "
         $fiteagle stopJ2EE
-        pid=$(cat $pidfile)
+        pid=$(cat $pidfile_j2ee)
         [ ! -z $pid ] && pkill -P $pid
         echo -n $"Stopping $prog_xmpp.. "
         $fiteagle stopXMPP
         pid=$(cat $pidfile_xmpp)
         [ ! -z $pid ] && pkill -P $pid
-        rm -f ${lockfile} ${pidfile}
+        rm -f ${lockfile_j2ee} ${pidfile_j2ee}
         rm -f ${lockfile_xmpp} ${pidfile_xmpp}
 }
 
@@ -96,7 +98,7 @@ case "$1" in
         start
         ;;
   *)
-        echo $"Usage: $prog {start|stop|restart}"
+        echo $"Usage: fiteagled {start|stop|restart}"
         RETVAL=2
 esac
 
