@@ -34,7 +34,7 @@ labwikipath=${LABWIKI_TOP-/home/$labwikiuser/server/labwiki}
 labwiki=${LABWIKI-$labwikipath/bin/labwiki}
 
 job_service_path=${JOB_SERVICE_PATH-/home/$labwikiuser/server/omf_job_service}
-job_service_start_command=${rake run}
+job_service_start_command={rake run}
 
 prog_labwiki=labwiki
 pidfile_labwiki=${PIDFILE-/var/run/labwiki.pid}
