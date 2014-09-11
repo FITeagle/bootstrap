@@ -1,0 +1,104 @@
+#!/bin/bash
+#
+# labwikid        Startup script for Labwiki
+#
+# chkconfig: - 85 15
+# description: Labwiki
+# processname: labwikid
+# config: /etc/labwikid/conf/labwikid.conf
+# config: /etc/sysconfig/labwikid
+# pidfile: /var/run/labwikid.pid
+#
+### BEGIN INIT INFO
+# Provides: labwikid
+# Required-Start: $local_fs $remote_fs $network $named
+# Required-Stop: $local_fs $remote_fs $network
+# Default-Start: 2 3 4 5 
+# Default-Stop: 0 1 6
+# Should-Start: 
+# Short-Description: start and stop Labwiki Server
+# Description: start and stop Labwiki Server (including omf_job_service)
+### END INIT INFO
+
+# Source function library.
+#. /etc/rc.d/init.d/functions
+
+if [ -f /etc/sysconfig/labwikid ]; then
+        . /etc/sysconfig/labwikid
+fi
+
+source /etc/profile
+
+labwikiuser=${LABWIKIUSER-fiteagle}
+labwikipath=${LABWIKI_TOP-/home/$labwikiuser/server/labwiki}
+labwiki=${LABWIKI-$labwikipath/bin/labwiki}
+
+job_service_path=${JOB_SERVICE_PATH-/home/$labwikiuser/server/omf_job_service}
+job_service_start_command=rake run
+
+prog_labwiki=labwiki
+pidfile_labwiki=${PIDFILE-/var/run/labwiki.pid}
+lockfile_labwiki=${LOCKFILE-/var/lock/labwiki}
+logfile_labwiki=${LOGFILE-/var/log/labwiki}
+args_labwiki=--lw-config etc/labwiki/first_test.yaml --lw-no-login start
+
+prog_job_service=job_service
+pidfile_job_service=${PIDFILE-/var/run/job_service.pid}
+lockfile_job_service=${LOCKFILE-/var/lock/job_service}
+logfile_job_service=${LOGFILE-/var/log/job_service}
+
+touch $logfile_labwiki
+touch $logfile_job_service
+chown $labwikiuser $logfile_labwiki
+chown $labwikiuser $logfile_job_service
+
+RETVAL=0
+PATH=$PATH:/usr/local/sbin
+
+start() {
+        echo -n $"Starting $prog_labwiki.. "
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_labwiki --make-pidfile --name $prog_labwiki --exec /bin/bash -- -c "$labwiki $args_labwiki > $logfile_labwiki 2>&1"
+        RETVAL=$?
+        [ $RETVAL = 0 ] && touch ${lockfile_labwiki}
+        echo $"OK. Check logs at $logfile_labwiki."
+
+        echo -n $"Starting $prog_job_service.. "
+        cd $job_service_path
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --exec /bin/bash -- -c "$job_service_start_command > $logfile_job_service 2>&1"
+        cd -
+        RETVAL=$?
+        [ $RETVAL = 0 ] && touch ${lockfile_job_service}
+        echo $"OK. Check logs at $logfile_job_service."
+        return $RETVAL
+}
+stop() {
+        echo -n $"Stopping $prog_labwiki.. "
+        pid=$(cat $pidfile_labwiki)
+        [ ! -z $pid ] && pkill -P $pid
+        rm -f ${lockfile_labwiki} ${pidfile_labwiki}
+
+        echo -n $"Stopping $prog_job_service.. "
+        pid=$(cat $pidfile_job_service)
+        [ ! -z $pid ] && pkill -P $pid
+        rm -f ${lockfile_job_service} ${pidfile_job_service}
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        sleep 2
+        start
+        ;;
+  *)
+        echo $"Usage: labwikid {start|stop|restart}"
+        RETVAL=2
+esac
+
+exit $RETVAL
