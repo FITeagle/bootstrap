@@ -31,7 +31,7 @@ source /etc/profile
 
 labwikiuser=${LABWIKIUSER-fiteagle}
 labwikipath=${LABWIKI_TOP-/home/$labwikiuser/server/labwiki}
-labwiki=${LABWIKI-$labwikipath/bin/labwiki}
+labwiki=${LABWIKI-$labwikipath/lib/labwiki/start.rb}
 
 job_service_path=${JOB_SERVICE_PATH-/home/$labwikiuser/server/omf_job_service}
 
@@ -56,13 +56,13 @@ PATH=$PATH:/usr/local/sbin
 
 start() {
         echo -n $"Starting $prog_labwiki.. "
-        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_labwiki --make-pidfile --name $prog_labwiki --exec /bin/bash -- -c "$labwiki $args_labwiki > $logfile_labwiki 2>&1"
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_labwiki --make-pidfile --name $prog_labwiki --exec /bin/bash -- -c "ruby $labwiki $args_labwiki > $logfile_labwiki 2>&1"
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_labwiki}
         echo $"OK. Check logs at $logfile_labwiki."
 
         echo -n $"Starting $prog_job_service.. "
-        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --chdir $job_service_path --exec /bin/bash -- -c "rake run > $logfile_job_service 2>&1"
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --chdir $job_service_path --exec /bin/bash -- -c "ruby lib/omf/job_service/runner.rb start > $logfile_job_service 2>&1"
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_job_service}
         echo $"OK. Check logs at $logfile_job_service."
