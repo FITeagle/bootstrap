@@ -39,7 +39,7 @@ prog_labwiki=labwiki
 pidfile_labwiki=${PIDFILE-/var/run/labwiki.pid}
 lockfile_labwiki=${LOCKFILE-/var/lock/labwiki}
 logfile_labwiki=${LOGFILE-/var/log/labwiki}
-args_labwiki=${--lw-config $labwikipath/etc/labwiki/first_test.yaml --lw-no-login start}
+args_labwiki="--lw-config $labwikipath/etc/labwiki/first_test.yaml --lw-no-login start"
 
 prog_job_service=job_service
 pidfile_job_service=${PIDFILE-/var/run/job_service.pid}
@@ -62,9 +62,7 @@ start() {
         echo $"OK. Check logs at $logfile_labwiki."
 
         echo -n $"Starting $prog_job_service.. "
-        cd $job_service_path
-        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --exec /bin/bash -- -c "rake run > $logfile_job_service 2>&1"
-        cd -
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --chdir $job_service_path --exec /bin/bash -- -c "rake run > $logfile_job_service 2>&1"
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_job_service}
         echo $"OK. Check logs at $logfile_job_service."
