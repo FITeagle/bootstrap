@@ -34,7 +34,6 @@ labwikipath=${LABWIKI_TOP-/home/$labwikiuser/server/labwiki}
 labwiki=${LABWIKI-$labwikipath/bin/labwiki}
 
 job_service_path=${JOB_SERVICE_PATH-/home/$labwikiuser/server/omf_job_service}
-job_service_start_command={rake run}
 
 prog_labwiki=labwiki
 pidfile_labwiki=${PIDFILE-/var/run/labwiki.pid}
@@ -64,7 +63,7 @@ start() {
 
         echo -n $"Starting $prog_job_service.. "
         cd $job_service_path
-        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --exec /bin/bash -- -c "$job_service_start_command > $logfile_job_service 2>&1"
+        start-stop-daemon --start --background --chuid $labwikiuser --pidfile $pidfile_job_service --make-pidfile --name $prog_job_service --exec /bin/bash -- -c "rake run > $logfile_job_service 2>&1"
         cd -
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_job_service}
