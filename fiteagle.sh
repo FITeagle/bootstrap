@@ -285,6 +285,15 @@ function startContainer() {
     ${CMD} -b 0.0.0.0 -c "${_container_config}"
 }
 
+function startContainerDebug() {
+    echo "Starting J2EE Container in debug mode (port: 8787)..."
+    [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
+    CMD="${WILDFLY_HOME}/bin/standalone.sh"
+    [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
+    cd "${WILDFLY_HOME}"
+    ${CMD} --debug 8787 -b 0.0.0.0 -c "${_container_config}"
+}
+
 function stopContainer() {
     echo "Stopping J2EE Container..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
@@ -347,7 +356,7 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | stopJ2EE | startSPARQL | startSPARQLPersist | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | startJ2EEDebug | stopJ2EE | startSPARQL | startSPARQLPersist | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
@@ -356,6 +365,7 @@ for arg in "$@"; do
     [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startSPARQLPersist" ] && startSPARQLPersist
     [ "${arg}" = "startJ2EE" ] && startContainer
+    [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployCore" ] && deployCore
     [ "${arg}" = "installLabwiki" ] && installLabwiki
