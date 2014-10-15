@@ -49,11 +49,19 @@ lockfile_xmpp=${LOCKFILE_XMPP-/var/lock/fiteagle_xmpp}
 logfile_xmpp=${LOGFILE_XMPP-/var/log/fiteagle_xmpp}
 args_xmpp=startXMPP
 
+#sparql_root=${SPARQL_HOME-$fiteaglepath/../server/}
+prog_sparql=fiteagle_sparql
+pidfile_sparql=${PIDFILE_SPARQL-/var/run/fiteagle_sparql.pid}
+lockfile_sparql=${LOCKFILE_SPARQL-/var/lock/fiteagle_sparql}
+logfile_sparql=${LOGFILE_SPARQL-/var/log/fiteagle_sparql}
+args_sparql=startSPARQL
+
 touch $logfile_j2ee
 touch $logfile_xmpp
 chown $fiteagleuser $logfile_j2ee
 chown $fiteagleuser $logfile_xmpp
 chown -R $fiteagleuser $xmpp_root
+#chown -R $fiteagleuser $sparql_root
 
 RETVAL=0
 PATH=$PATH:/usr/local/sbin
@@ -64,11 +72,17 @@ start() {
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_j2ee}
         echo $"OK. Check logs at $logfile_j2ee."
+
         echo -n $"Starting $prog_xmpp.. "
         start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile_xmpp --make-pidfile --name $prog_xmpp --exec /bin/bash -- -c "$fiteagle $args_xmpp > $logfile_xmpp 2>&1"
         RETVAL=$?
         [ $RETVAL = 0 ] && touch ${lockfile_xmpp}
         echo $"OK. Check logs at $logfile_xmpp."
+        
+        echo -n $"Starting $prog_sparql.. "
+        start-stop-daemon --start --background --chuid $fiteagleuser --pidfile $pidfile_sparql --make-pidfile --name $prog_sparql --exec /bin/bash -- -c "$fiteagle $args_sparql > $logfile_sparql 2>&1"
+        sh ./fuseki-server -config "${_sparql_config}"
+
         return $RETVAL
 }
 stop() {
@@ -76,10 +90,18 @@ stop() {
         $fiteagle stopJ2EE
         pid=$(cat $pidfile_j2ee)
         [ ! -z $pid ] && pkill -P $pid
+
         echo -n $"Stopping $prog_xmpp.. "
         $fiteagle stopXMPP
         pid=$(cat $pidfile_xmpp)
         [ ! -z $pid ] && pkill -P $pid
+
+        echo -n $"Stopping $prog_sparql.. "
+       # $fiteagle stopSPARQL
+        pid=$(cat $pidfile_sparql)
+        [ ! -z $pid ] && pkill -P $pid
+
+        rm -f ${lockfile_sparql} ${pidfile_sparql}
         rm -f ${lockfile_j2ee} ${pidfile_j2ee}
         rm -f ${lockfile_xmpp} ${pidfile_xmpp}
 }
