@@ -5,7 +5,7 @@ _base="$(pwd)"
 _resources_url="https://raw.githubusercontent.com/FITeagle/bootstrap/master/resources"
 
 _sparql_type="jena-fuseki"
-_sparql_version="1.1.0"
+_sparql_version="1.1.1"
 _sparql_versiontype="distribution"
 _sparql_extractfolder="${_sparql_type}-${_sparql_version}"
 _sparql_file="${_sparql_type}-${_sparql_version}-${_sparql_versiontype}.zip"
