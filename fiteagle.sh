@@ -12,8 +12,7 @@ _sparql_file="${_sparql_type}-${_sparql_version}-${_sparql_versiontype}.zip"
 _sparql_folder="${_base}/server"
 _sparql_url="http://www.eu.apache.org/dist/jena/binaries/${_sparql_file}"
 _sparql_config="config.ttl"
-_sparql_config_path="conf"
-_sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config_path}/${_sparql_config}"
+_sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config}"
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -114,6 +113,9 @@ function installSPARQL() {
     mkdir -p "${_sparql_folder}"
     unzip -qu "${_installer_folder}/${_sparql_file}" -d "${_sparql_folder}"
     mv "${_sparql_folder}/${_sparql_extractfolder}" "${_sparql_folder}/${_sparql_type}"
+    echo "Configuring SPARQL server..."
+    curl -fsSSkL -o "${_installer_folder}/${_sparql_config}" "${_sparql_config_url}"
+    cp "${_installer_folder}/${_sparql_config}" "${_sparql_folder}/${_sparql_type}"
 }
 
 function installXMPP() {
