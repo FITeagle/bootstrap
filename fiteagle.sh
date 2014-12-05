@@ -40,7 +40,7 @@ _xmpp_keystore_url="${_resources_url}/${_xmpp_type}/${_xmpp_keystore_path}/${_xm
 _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
-_container_version="8.1.0.Final"
+_container_version="8.2.0.Final"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
@@ -358,7 +358,22 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | startJ2EEDebug | stopJ2EE | startSPARQL | startSPARQLPersist | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
+[ "${#}" -eq 1 ] || {
+  echo "Usage: $(basename $0) <command>";
+  echo "  bootstrap          - Download and configure all required binaries and sources";
+  echo "  startJ2EE          - Start the J2EE service (WildFly)";
+  echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
+  echo "  deployCore         - Deploy core FITeagle modules";
+  echo "  stopJ2EE           - Stop the J2EE service";
+  echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
+  echo "  stopXMPP           - Stop the XMPP Service";
+  echo "  startSPARQL        - Start the SPARQL service (Jena triplet store)";
+  echo "  startSPARQLPersist - Start the SPARQL service (non-memory only";
+  echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
+  echo "  startLabwiki       - Start LabWiki";
+  echo "  installRuby        - Install ruby";
+  exit 1;
+}
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
