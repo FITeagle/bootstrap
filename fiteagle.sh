@@ -334,6 +334,11 @@ function deployCore {
     cd "${_base}/native" && mvn clean install wildfly:deploy
 }
 
+function deployFT1 {
+    installFITeagleModule ft1
+    cd "${_base}/ft1" && mvn clean install -DskipTests && mvn wildfly:deploy -DskipTests
+}
+
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
@@ -341,7 +346,7 @@ function bootstrap() {
     installFITeagleModule bootstrap
     installFITeagleModule api
     installFITeagleModule core
-    installFITeagleModule native    
+    installFITeagleModule native
     
     installXMPP
     configXMPP
@@ -354,7 +359,9 @@ function bootstrap() {
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
-    echo "Now run: ./bootstrap/fiteagle.sh"
+    echo ""
+    echo "Now play around with ./bootstrap/fiteagle.sh"
+    ./bootstrap/fiteagle.sh
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
@@ -364,6 +371,7 @@ function bootstrap() {
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
   echo "  deployCore         - Deploy core FITeagle modules";
+  echo "  deployFT1          - Deploy FITeagle1";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
   echo "  stopXMPP           - Stop the XMPP Service";
@@ -385,6 +393,7 @@ for arg in "$@"; do
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployCore" ] && deployCore
+    [ "${arg}" = "deployFT1" ] && deployFT1
     [ "${arg}" = "installLabwiki" ] && installLabwiki
     [ "${arg}" = "installRuby" ] && installRuby
     [ "${arg}" = "startLabwiki" ] && startLabwiki
