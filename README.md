@@ -21,7 +21,7 @@ http://localhost:9990/console/App.html
 
 ## Deploy FITeagle Core
 ```
-./bootstrap/fiteagle.sh deployCore
+./bootstrap/fiteagle.sh deployFT2
 ```
 
 ## Have a look at the admin GUI

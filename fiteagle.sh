@@ -331,22 +331,19 @@ function startLabwiki() {
     ${CMD} --lw-config etc/labwiki/first_test.yaml --lw-no-login start
 }
 
-function deployCore {
-    cd "${_base}/api" && mvn clean install
-    cd "${_base}/core" && mvn clean install wildfly:deploy
-    cd "${_base}/native" && mvn clean install wildfly:deploy
-}
-
-function deployOSCO {
-    echo "WARNING: this only works within the Fraunhofer FOKUS network. Press ENTER."
-    read
+function checkContainer {
     echo "Checking container..."
     isRunning="$(curl -s http://localhost:8080 > /dev/null; echo $?)"
     if [ "${isRunning}" != "0" ]; then
       startContainer
       sleep 5
     fi
-    
+}
+
+function deployOSCO {
+    echo "WARNING: this only works within the Fraunhofer FOKUS network. Press ENTER."
+    read
+    checkContainer    
     echo "Getting OSCO..."
     svn checkout "${_osco_url}" "${_base}/osco"
 
@@ -367,10 +364,23 @@ function deployOSCO {
     echo "Now open http://localhost:8080/gui"
 }
 
-
 function deployFT1 {
+    checkContainer
     installFITeagleModule ft1
     cd "${_base}/ft1" && mvn clean install -DskipTests && mvn wildfly:deploy -DskipTests
+}
+
+function deployFT2 {
+    checkContainer
+
+    installFITeagleModule api
+    cd "${_base}/api" && mvn clean install
+
+    installFITeagleModule core
+    cd "${_base}/core" && mvn clean install wildfly:deploy
+
+    installFITeagleModule native
+    cd "${_base}/native" && mvn clean install wildfly:deploy
 }
 
 function bootstrap() {
@@ -378,9 +388,6 @@ function bootstrap() {
     checkEnvironment
 
     installFITeagleModule bootstrap
-    installFITeagleModule api
-    installFITeagleModule core
-    installFITeagleModule native
     
     installXMPP
     configXMPP
@@ -401,17 +408,17 @@ function bootstrap() {
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
 [ "${#}" -eq 1 ] || {
   echo "Usage: $(basename $0) <command>";
-  echo "  bootstrap          - Download and configure all required binaries and sources";
+  echo "  bootstrap          - Download and configure all required binaries";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
-  echo "  deployCore         - Deploy core FITeagle modules";
-  echo "  deployFT1          - Deploy FITeagle1";
+  echo "  deployFT1          - Deploy FITeagle 1";
+  echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
   echo "  stopXMPP           - Stop the XMPP Service";
   echo "  startSPARQL        - Start the SPARQL service (Jena triplet store)";
-  echo "  startSPARQLPersist - Start the SPARQL service (non-memory only";
+  echo "  startSPARQLPersist - Start the SPARQL service (non-memory only)";
   echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
   echo "  startLabwiki       - Start LabWiki";
   echo "  installRuby        - Install ruby";
@@ -427,7 +434,7 @@ for arg in "$@"; do
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
-    [ "${arg}" = "deployCore" ] && deployCore
+    [ "${arg}" = "deployFT2" ] && deployFT2
     [ "${arg}" = "deployFT1" ] && deployFT1
     [ "${arg}" = "deployOSCO" ] && deployOSCO
     [ "${arg}" = "installLabwiki" ] && installLabwiki
