@@ -285,7 +285,9 @@ function startContainer() {
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
     cd "${WILDFLY_HOME}"
-    ${CMD} -b 0.0.0.0 -c "${_container_config}"
+    screen -S wildfly -dm ${CMD} -b 0.0.0.0 -c "${_container_config}"
+    echo "Now running in background, to show it run:"
+    echo "screen -R wildfly"
 }
 
 function startContainerDebug() {
