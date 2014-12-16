@@ -338,9 +338,19 @@ function deployCore {
 }
 
 function deployOSCO {
-    echo "WARNING: you've to be in the Fraunhofer FOKUS network (e.g. via VPN) for this operation. Press ENTER."
+    echo "WARNING: this only works within the Fraunhofer FOKUS network. Press ENTER."
     read
+    echo "Checking container..."
+    isRunning="$(curl -s http://localhost:8080 > /dev/null; echo $?)"
+    if [ "${isRunning}" != "0" ]; then
+      startContainer
+      sleep 5
+    fi
+    
+    echo "Getting OSCO..."
     svn checkout "${_osco_url}" "${_base}/osco"
+
+    echo "Configuring container..."
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --connect command="data-source remove --name=opensdncore"
     ${CMD} --connect command="data-source add --name=opensdncore --connection-url=jdbc:h2:mem:opensdncore;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE; --jndi-name=java:jboss/datasources/opensdncore --driver-name=h2 --user-name=neto --password=oten"
@@ -348,9 +358,13 @@ function deployOSCO {
     ${CMD} --connect command="jms-topic add --topic-address=adapterRequestTopic --entries=topic/adapterRequestTopic,java:jboss/exported/jms/topic/adapterRequestTopic"
     ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestQueue"
     ${CMD} --connect command="jms-queue add --queue-address=adapterRequestQueue --entries=queue/adapterRequestQueue,java:jboss/exported/jms/queue/adapterRequestQueue"
+
+    echo "Deploying OSCO..."
     cd "${_base}/osco"
     find . -iname "*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
     mvn clean install && mvn wildfly:deploy
+
+    echo "Now open http://localhost:8080/gui"
 }
 
 
