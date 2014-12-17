@@ -17,5 +17,3 @@ openssl pkcs12 -export -name root -in ${URL}.crt -inkey ${URL}.key -out ${URL}.p
 keytool -importkeystore -destkeystore ${KEYSTORE}.keystore -srckeystore ${URL}.p12 -srcstoretype pkcs12 -alias root \
   -srcstorepass ${PWD} -deststorepass ${PWD} -destkeypass ${PWD} -srckeypass ${PWD}
  
-#keytool -import -noprompt -storepass ${PWD} -alias root -keystore ${KEYSTORE}.keystore -file ${URL}.crt
-#keytool -importkeystore -srckeystore openssl_ca3.p12 -srcstoretype PKCS12 -alias
