@@ -333,10 +333,9 @@ function startLabwiki() {
 
 function checkContainer {
     echo "Checking container..."
-    isRunning="$(curl -s http://localhost:8080 > /dev/null; echo $?)"
+    isRunning="$(curl -s -m 2 http://localhost:8080 > /dev/null; echo $?)"
     if [ "${isRunning}" != "0" ]; then
       startContainer
-      sleep 5
     fi
 }
 
@@ -347,6 +346,11 @@ function deployOSCO {
     echo "Getting OSCO..."
     svn checkout "${_osco_url}" "${_base}/osco"
 
+    echo "Building OSCO..."
+    cd "${_base}/osco"
+    find . -iname "*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
+    mvn clean install 
+    
     echo "Configuring container..."
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --connect command="data-source remove --name=opensdncore"
@@ -356,10 +360,9 @@ function deployOSCO {
     ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestQueue"
     ${CMD} --connect command="jms-queue add --queue-address=adapterRequestQueue --entries=queue/adapterRequestQueue,java:jboss/exported/jms/queue/adapterRequestQueue"
 
-    echo "Deploying OSCO..."
+    echo "Starting OSCO..."
     cd "${_base}/osco"
-    find . -iname "*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
-    mvn clean install && mvn wildfly:deploy
+    mvn wildfly:deploy
 
     echo "Now open http://localhost:8080/gui"
 }
