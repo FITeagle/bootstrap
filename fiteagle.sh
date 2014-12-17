@@ -406,9 +406,9 @@ function bootstrap() {
 }
 
 [ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
-[ "${#}" -eq 1 ] || {
+[ "${#}" -eq 0 ] && {
   echo "Usage: $(basename $0) <command>";
-  echo "  bootstrap          - Download and configure all required binaries";
+  echo "  init               - Download and configure all required binaries";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
   echo "  deployFT1          - Deploy FITeagle 1";
@@ -427,6 +427,7 @@ function bootstrap() {
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
+    [ "${arg}" = "init" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
     [ "${arg}" = "stopXMPP" ] && stopXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
