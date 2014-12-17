@@ -405,7 +405,6 @@ function bootstrap() {
     ./bootstrap/fiteagle.sh
 }
 
-[ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
 [ "${#}" -eq 0 ] && {
   echo "Usage: $(basename $0) <command>";
   echo "  init               - Download and configure all required binaries";
