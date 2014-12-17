@@ -350,7 +350,7 @@ function deployOSCO {
 
     echo "Building OSCO..."
     cd "${_base}/osco"
-    find . -iname "*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
+    find . -iname "application-*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
     mvn clean install 
     
     echo "Configuring container..."
