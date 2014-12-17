@@ -219,6 +219,8 @@ function checkEnvironment {
   checkBinary git; _error=$(($_error + $?))
   checkBinary curl; _error=$(($_error + $?))
   checkBinary unzip; _error=$(($_error + $?))
+  checkBinary screen; _error=$(($_error + $?))
+  checkBinary svn; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
