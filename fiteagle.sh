@@ -312,7 +312,9 @@ function stopContainer() {
 function startSPARQL() {
     echo "Starting SPARQL Server..."
     cd "${_sparql_folder}/${_sparql_type}"
-    sh ./fuseki-server -config "${_sparql_config}"
+    screen -S fuseki -dm sh ./fuseki-server -config "${_sparql_config}"
+    echo "Now running in background, to show it run:"
+    echo "screen -R fuseki"
 }
 
 function startSPARQLPersist() {
@@ -320,9 +322,15 @@ function startSPARQLPersist() {
     cd "${_sparql_folder}/${_sparql_type}"
     # Dataset called ds for compatibility reasons for now
     mkdir ds
-    sh ./fuseki-server --update --loc=ds /ds
+    screen -S fuseki -dm  sh ./fuseki-server --update --loc=ds /ds
+    echo "Now running in background, to show it run:"
+    echo "screen -R fuseki"
 }
 
+function stopSPARQL() {
+    echo "Stopping SPARQL Server..."
+    screen -S fuseki -X quit
+}
 
 function startLabwiki() {
     echo "Starting Labwiki Server..."
@@ -423,6 +431,7 @@ function bootstrap() {
   echo "  stopXMPP           - Stop the XMPP Service";
   echo "  startSPARQL        - Start the SPARQL service (Jena triplet store)";
   echo "  startSPARQLPersist - Start the SPARQL service (non-memory only)";
+  echo "  stopSPARQL         - Stop the SPARQL service";
   echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
   echo "  startLabwiki       - Start LabWiki";
   echo "  installRuby        - Install ruby";
@@ -436,6 +445,7 @@ for arg in "$@"; do
     [ "${arg}" = "stopXMPP" ] && stopXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startSPARQLPersist" ] && startSPARQLPersist
+    [ "${arg}" = "stopSPARQL" ] && stopSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
