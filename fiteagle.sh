@@ -364,7 +364,7 @@ function deployOSCO {
     echo "Configuring container..."
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --connect command="data-source remove --name=opensdncore"
-    ${CMD} --connect command="data-source add --name=opensdncore --connection-url=jdbc:h2:mem:opensdncore;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE; --jndi-name=java:jboss/datasources/opensdncore --driver-name=h2 --user-name=neto --password=oten"
+    ${CMD} --connect command="data-source add --name=opensdncore --connection-url=jdbc:h2:mem:opensdncore;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MVCC=TRUE; --jndi-name=java:jboss/datasources/opensdncore --driver-name=h2 --user-name=neto --password=oten"
     ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestTopic"
     ${CMD} --connect command="jms-topic add --topic-address=adapterRequestTopic --entries=topic/adapterRequestTopic,java:jboss/exported/jms/topic/adapterRequestTopic"
     ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestQueue"
