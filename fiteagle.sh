@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#TODO: change screen command to screen -dmS session_name sh -c '/path/to/script.sh; exec bash' (to see errors)
 
 _dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 _base="$(pwd)"
