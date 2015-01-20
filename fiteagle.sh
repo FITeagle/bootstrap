@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
-#TODO: change screen command to screen -dmS session_name sh -c '/path/to/script.sh; exec bash' (to see errors)
 
 _dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 _base="$(pwd)"
 _resources_url="https://raw.githubusercontent.com/FITeagle/bootstrap/master/resources"
-_osco_url="https://svnsrv.fokus.fraunhofer.de/svn/cc/ngni/OpenSDNCore/orchestrator/branches/wildfly-branch"
 
-_sparql_type="jena-fuseki"
-_sparql_version="1.1.1"
-_sparql_versiontype="distribution"
-_sparql_extractfolder="${_sparql_type}-${_sparql_version}"
-_sparql_file="${_sparql_type}-${_sparql_version}-${_sparql_versiontype}.zip"
-_sparql_folder="${_base}/server"
-_sparql_url="http://www.eu.apache.org/dist/jena/binaries/${_sparql_file}"
-_sparql_config="config.ttl"
-_sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config}"
+#_sparql_type="jena-fuseki"
+#_sparql_version="1.1.1"
+#_sparql_versiontype="distribution"
+#_sparql_extractfolder="${_sparql_type}-${_sparql_version}"
+#_sparql_file="${_sparql_type}-${_sparql_version}-${_sparql_versiontype}.zip"
+#_sparql_folder="${_base}/server"
+#_sparql_url="http://www.eu.apache.org/dist/jena/binaries/${_sparql_file}"
+#_sparql_config="config.ttl"
+#_sparql_config_url="${_resources_url}/${_sparql_type}/${_sparql_config}"
+
+_sesame_type="openrdf-sesame"
+_sesame_version="2.7.14"
+_sesame_extractfolder="${_sesame_type}-${_sesame_version}"
+_sesame_folder="${_base}/server"
+_bootstrap_res_folder="${_base}/bootstrap/resources/sesame"
+_sesame_git_url="https://bitbucket.org/openrdf/sesame.git"
+_sesame_zip_url="http://sourceforge.net/projects/sesame/files/Sesame%202/2.7.14/openrdf-sesame-2.7.14-sdk.zip/download"
+
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -42,7 +49,7 @@ _xmpp_keystore_url="${_resources_url}/${_xmpp_type}/${_xmpp_keystore_path}/${_xm
 _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
-_container_version="8.2.0.Final"
+_container_version="8.1.0.Final"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
@@ -62,6 +69,8 @@ _container_bg="fiteagle_bg.jpg"
 _container_bg_url="${_resources_url}/wildfly/welcome-content/${_container_bg}"
 _container_logo="fiteagle_logo.png"
 _container_logo_url="${_resources_url}/wildfly/welcome-content/${_container_logo}"
+_container_standalone_deployments="${_base}/server/wildfly/standalone/deployments/"
+_container_standalone_config="${_base}/server/wildfly/bin/"
 
 _installer_folder="${_base}/tmp"
 _logfile="${_installer_folder}/log"
@@ -107,17 +116,14 @@ function checkRubyVersion {
    fi
 }
 
-function installSPARQL() {
-    echo "Downloading SPARQL server..."
-    mkdir -p "${_installer_folder}"
-    [ -f "${_installer_folder}/${_sparql_file}" ] || curl -fsSSkL -o "${_installer_folder}/${_sparql_file}" "${_sparql_url}"
-    echo "Installing SPARQL server..."
-    mkdir -p "${_sparql_folder}"
-    unzip -qu "${_installer_folder}/${_sparql_file}" -d "${_sparql_folder}"
-    mv "${_sparql_folder}/${_sparql_extractfolder}" "${_sparql_folder}/${_sparql_type}"
-    echo "Configuring SPARQL server..."
-    curl -fsSSkL -o "${_installer_folder}/${_sparql_config}" "${_sparql_config_url}"
-    cp "${_installer_folder}/${_sparql_config}" "${_sparql_folder}/${_sparql_type}"
+function installSesame() {
+	#Sesame von unserem Git beziehen(temporäre Lösung)
+	cp -r "${_bootstrap_res_folder}/openrdf-sesame.war" "${_container_standalone_deployments}"
+	cp -r "${_bootstrap_res_folder}/openrdf-workbench.war" "${_container_standalone_deployments}"
+        cp -r "${_bootstrap_res_folder}/standalone.conf" "${_container_standalone_config}"
+	mkdir "${_base}/server/sesame"
+   	cp -r "${_bootstrap_res_folder}/openrdf-workbench/" "${_base}/server/sesame/"
+        cp -r "${_bootstrap_res_folder}/openrdf-sesame/" "${_base}/server/sesame/" 
 }
 
 function installXMPP() {
@@ -220,8 +226,6 @@ function checkEnvironment {
   checkBinary git; _error=$(($_error + $?))
   checkBinary curl; _error=$(($_error + $?))
   checkBinary unzip; _error=$(($_error + $?))
-  checkBinary screen; _error=$(($_error + $?))
-  checkBinary svn; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
@@ -288,9 +292,7 @@ function startContainer() {
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
     cd "${WILDFLY_HOME}"
-    screen -S wildfly -dm ${CMD} -b 0.0.0.0 -c "${_container_config}"
-    echo "Now running in background, to show it run:"
-    echo "screen -R wildfly"
+    ${CMD} -b 0.0.0.0 -c "${_container_config}"
 }
 
 function startContainerDebug() {
@@ -310,29 +312,6 @@ function stopContainer() {
     ${CMD} --connect command=:shutdown
 }
 
-function startSPARQL() {
-    echo "Starting SPARQL Server..."
-    cd "${_sparql_folder}/${_sparql_type}"
-    screen -S fuseki -dm sh ./fuseki-server -config "${_sparql_config}"
-    echo "Now running in background, to show it run:"
-    echo "screen -R fuseki"
-}
-
-function startSPARQLPersist() {
-    echo "Starting Persistent SPARQL Server..."
-    cd "${_sparql_folder}/${_sparql_type}"
-    # Dataset called ds for compatibility reasons for now
-    mkdir ds
-    screen -S fuseki -dm  sh ./fuseki-server --update --loc=ds /ds
-    echo "Now running in background, to show it run:"
-    echo "screen -R fuseki"
-}
-
-function stopSPARQL() {
-    echo "Stopping SPARQL Server..."
-    screen -S fuseki -X quit
-}
-
 function startLabwiki() {
     echo "Starting Labwiki Server..."
     [ ! -z "${LABWIKI_TOP}" ] || LABWIKI_TOP="${_labwiki_root}"
@@ -342,118 +321,54 @@ function startLabwiki() {
     ${CMD} --lw-config etc/labwiki/first_test.yaml --lw-no-login start
 }
 
-function checkContainer {
-    echo "Checking container..."
-    isRunning="$(curl -s -m 2 http://localhost:8080 > /dev/null; echo $?)"
-    if [ "${isRunning}" != "0" ]; then
-      startContainer
-    fi
-}
-
-function deployOSCO {
-    echo "WARNING: this only works within the Fraunhofer FOKUS network. Press ENTER."
-    read
-    checkContainer    
-    echo "Getting OSCO..."
-    svn checkout "${_osco_url}" "${_base}/osco"
-
-    echo "Building OSCO..."
-    cd "${_base}/osco"
-    find . -iname "application-*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
-    mvn clean install 
-    
-    echo "Configuring container..."
-    CMD="${_container_root}/bin/jboss-cli.sh"
-    ${CMD} --connect command="data-source remove --name=opensdncore"
-    ${CMD} --connect command="data-source add --name=opensdncore --connection-url=jdbc:h2:mem:opensdncore;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MVCC=TRUE; --jndi-name=java:jboss/datasources/opensdncore --driver-name=h2 --user-name=neto --password=oten"
-    ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestTopic"
-    ${CMD} --connect command="jms-topic add --topic-address=adapterRequestTopic --entries=topic/adapterRequestTopic,java:jboss/exported/jms/topic/adapterRequestTopic"
-    ${CMD} --connect command="jms-topic remove --topic-address=adapterRequestQueue"
-    ${CMD} --connect command="jms-queue add --queue-address=adapterRequestQueue --entries=queue/adapterRequestQueue,java:jboss/exported/jms/queue/adapterRequestQueue"
-
-    echo "Starting OSCO..."
-    cd "${_base}/osco"
-    mvn wildfly:deploy
-
-    echo "Now open http://localhost:8080/gui"
-}
-
-function deployFT1 {
-    checkContainer
-    installFITeagleModule ft1
-    cd "${_base}/ft1" && mvn clean install -DskipTests && mvn wildfly:deploy -DskipTests
-}
-
-function deployFT2 {
-    checkContainer
-
-    installFITeagleModule api
+function deployCore {
     cd "${_base}/api" && mvn clean install
-
-    installFITeagleModule core
     cd "${_base}/core" && mvn clean install wildfly:deploy
-
-    installFITeagleModule native
     cd "${_base}/native" && mvn clean install wildfly:deploy
 }
+
 
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
 
     installFITeagleModule bootstrap
+    installFITeagleModule api
+    installFITeagleModule core
+    installFITeagleModule native    
     
     installXMPP
     configXMPP
     
     installContainer
     configContainer
-    
-    installSPARQL
+
+    installSesame
+
+    #installSPARQL
     # configSPARQL
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
-    echo ""
-    echo "Now play around with ./bootstrap/fiteagle.sh"
-    ./bootstrap/fiteagle.sh
+    echo "Now run: ./bootstrap/fiteagle.sh"
 }
 
-[ "${#}" -eq 0 ] && {
-  echo "Usage: $(basename $0) <command>";
-  echo "  init               - Download and configure all required binaries";
-  echo "  startJ2EE          - Start the J2EE service (WildFly)";
-  echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
-  echo "  deployFT1          - Deploy FITeagle 1";
-  echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
-  echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
-  echo "  stopJ2EE           - Stop the J2EE service";
-  echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
-  echo "  stopXMPP           - Stop the XMPP Service";
-  echo "  startSPARQL        - Start the SPARQL service (Jena triplet store)";
-  echo "  startSPARQLPersist - Start the SPARQL service (non-memory only)";
-  echo "  stopSPARQL         - Stop the SPARQL service";
-  echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
-  echo "  startLabwiki       - Start LabWiki";
-  echo "  installRuby        - Install ruby";
-  exit 1;
-}
+[ "${0}" == "bootstrap" ] && { bootstrap; exit 0; }
+[ "${#}" -eq 1 ] || { echo "Usage: $(basename $0) bootstrap | startXMPP | stopXMPP | startJ2EE | startJ2EEDebug | stopJ2EE | startSPARQL | startSPARQLPersist | deployCore | installLabwiki | startLabwiki | installRuby"; exit 1; }
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
-    [ "${arg}" = "init" ] && bootstrap
     [ "${arg}" = "startXMPP" ] && startXMPP
     [ "${arg}" = "stopXMPP" ] && stopXMPP
     [ "${arg}" = "startSPARQL" ] && startSPARQL
     [ "${arg}" = "startSPARQLPersist" ] && startSPARQLPersist
-    [ "${arg}" = "stopSPARQL" ] && stopSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
-    [ "${arg}" = "deployFT2" ] && deployFT2
-    [ "${arg}" = "deployFT1" ] && deployFT1
-    [ "${arg}" = "deployOSCO" ] && deployOSCO
+    [ "${arg}" = "deployCore" ] && deployCore
     [ "${arg}" = "installLabwiki" ] && installLabwiki
     [ "${arg}" = "installRuby" ] && installRuby
     [ "${arg}" = "startLabwiki" ] && startLabwiki
+    [ "${arg}" = "installSesame" ] && installSesame
+    [ "${arg}" = "configureSesame" ] && configureSesame
 done

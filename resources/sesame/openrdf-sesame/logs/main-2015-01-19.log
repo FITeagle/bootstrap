@@ -1,0 +1,155 @@
+[INFO ] 2015-01-19 14:35:01,474 [MSC service thread 1-3] Logback logging API implementation is configured.
+[INFO ] 2015-01-19 14:35:15,646 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:35:15,786 [default task-9] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:35:15,900 [default task-10] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:35:16,093 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:35:17,997 [default task-16] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:35:18,094 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:35:19,703 [default task-22] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:35:19,787 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:35:19,936 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:36:55,185 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:36:55,227 [default task-33] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:36:55,241 [default task-34] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:44:58,093 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:44:58,103 [default task-36] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:44:58,115 [default task-37] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:45:42,157 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 14:45:42,190 [default task-41] Request for query 3392903 is finished
+[INFO ] 2015-01-19 14:45:42,210 [default task-42] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:01:14,355 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:01:14,384 [default task-45] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:01:14,398 [default task-46] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:02:05,705 [default task-49] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:02:05,949 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:02:13,002 [default task-55] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:02:13,182 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:04:27,515 [default task-63] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:04:27,670 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:04:29,480 [default task-6] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:04:29,652 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:04:33,801 [default task-27] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:04:33,923 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:04:35,994 [default task-35] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:04:36,327 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:04:42,419 [default task-7] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:04:42,610 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:30,337 [default task-31] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:30,513 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:31,928 [default task-55] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:32,090 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:33,738 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:33,771 [default task-14] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:37,547 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:37,698 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:39,510 [default task-31] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:39,661 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:41,337 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:41,473 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:45,034 [repositories/SYSTEM] GET namespace list
+[INFO ] 2015-01-19 15:05:45,035 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:45,038 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:45,197 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:57,195 [default task-46] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:57,357 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:05:58,629 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:05:58,818 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:06:04,869 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-19 15:06:04,870 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:06:04,874 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-19 15:06:05,050 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:06:06,888 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-19 15:06:06,888 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:06:07,039 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:06:13,700 [default task-16] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:06:59,042 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:06:59,068 [default task-18] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:06:59,077 [default task-19] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:07:19,099 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:07:19,114 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:07:19,132 [repositories/SYSTEM] POST transaction to repository
+[INFO ] 2015-01-19 15:07:21,760 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:07:21,769 [default task-26] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:07:21,774 [default task-23] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:07:21,779 [default task-25] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:08:03,003 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:08:03,013 [default task-31] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:08:03,020 [default task-29] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:08:03,022 [default task-29] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:08:07,325 [default task-35] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:08:09,591 [default task-58] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:56:36,299 [MSC service thread 1-4] Logback logging API implementation is configured.
+[INFO ] 2015-01-19 15:57:41,060 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 15:57:41,472 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:57:44,215 [default task-28] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:06,882 [default task-33] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:08,184 [default task-38] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:09,464 [default task-43] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:10,486 [default task-48] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:11,258 [default task-53] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:58:11,914 [default task-58] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:59:22,415 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-19 15:59:24,855 [default task-9] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:51,780 [default task-16] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:53,775 [default task-36] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:54,403 [default task-59] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:55,156 [default task-19] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:59,707 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:01:59,721 [default task-41] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:59,800 [repositories/fiteagle2] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:01:59,941 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:02:05,444 [repositories/fiteagle2] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:02:05,644 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:02:10,343 [repositories/fiteagle2] GET namespace list
+[INFO ] 2015-01-19 16:02:10,344 [repositories/fiteagle2] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:02:10,545 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:05:41,855 [repositories/fiteagle2] GET namespace list
+[INFO ] 2015-01-19 16:05:41,856 [repositories/fiteagle2] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:42,097 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:05:44,319 [default task-24] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:44,460 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:05:55,381 [default task-37] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:57,541 [default task-42] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:59,374 [default task-46] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:59,436 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:05:59,604 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:06:03,426 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:06:03,632 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:06:06,306 [repositories/SYSTEM] GET namespace list
+[INFO ] 2015-01-19 16:06:06,307 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:06:06,468 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:06:07,544 [repositories/SYSTEM] GET namespace list
+[INFO ] 2015-01-19 16:06:07,545 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:06:07,548 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:06:07,702 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:10:44,131 [default task-12] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:10:44,302 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:13:17,783 [default task-17] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:13:17,956 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:13:19,029 [repositories/SYSTEM] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:13:19,176 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:13:20,246 [default task-37] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:13:20,389 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:14:00,296 [default task-38] Request for query 3392903 is finished
+[INFO ] 2015-01-19 16:14:00,522 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 16:52:21,095 [MSC service thread 1-3] Logback logging API implementation is configured.
+[INFO ] 2015-01-19 17:04:26,710 [MSC service thread 1-3] Logback logging API implementation is configured.
+[INFO ] 2015-01-19 18:23:56,882 [MSC service thread 1-7] Logback logging API implementation is configured.
+[INFO ] 2015-01-19 18:24:11,075 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:11,292 [default task-15] Request for query 3392903 is finished
+[INFO ] 2015-01-19 18:24:13,451 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:13,465 [default task-39] Request for query 3392903 is finished
+[INFO ] 2015-01-19 18:24:13,587 [repositories/fiteagle2] Request for query 3392903 is finished
+[INFO ] 2015-01-19 18:24:13,744 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:14,440 [default task-49] Request for query 3392903 is finished
+[INFO ] 2015-01-19 18:24:14,603 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:17,250 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:17,302 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:24:17,314 [repositories/fiteagle2] DELETE request invoked for repository 'fiteagle2'
+[INFO ] 2015-01-19 18:24:17,330 [repositories/fiteagle2] DELETE request successfully completed
+[INFO ] 2015-01-19 18:24:17,402 [default task-64] Request for query 3392903 is finished
+[INFO ] 2015-01-19 18:26:53,300 [MSC service thread 1-4] Logback logging API implementation is configured.
+[WARN ] 2015-01-19 18:26:53,515 [MSC service thread 1-4] Removing invalid lock 11799@home-ThinkPad-T430s
+[INFO ] 2015-01-19 18:26:56,938 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:27:04,214 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-19 18:27:04,599 [default task-11] Request for query 3392903 is finished

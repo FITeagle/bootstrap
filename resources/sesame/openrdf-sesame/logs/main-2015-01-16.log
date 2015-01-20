@@ -1,0 +1,906 @@
+[INFO ] 2015-01-16 13:40:29,255 [MSC service thread 1-8] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 13:41:00,560 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 13:41:00,715 [default task-14] Request for query 3392903 is finished
+[INFO ] 2015-01-16 13:41:01,008 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 13:41:01,225 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 13:41:01,228 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 13:41:04,817 [default task-23] Request for query 3392903 is finished
+[INFO ] 2015-01-16 13:41:04,920 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 13:41:06,129 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 13:41:06,359 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 13:43:31,914 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 13:43:31,915 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 13:43:32,078 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 14:10:54,301 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 14:10:54,302 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 14:10:54,324 [repositories/fiteagle] POST query 466162361
+[INFO ] 2015-01-16 14:10:54,367 [repositories/fiteagle] Request for query 466162361 is finished
+[INFO ] 2015-01-16 14:10:54,506 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 14:10:54,535 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 14:10:54,537 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 14:10:54,543 [repositories/fiteagle] POST query 466162361
+[INFO ] 2015-01-16 14:10:54,546 [repositories/fiteagle] Request for query 466162361 is finished
+[INFO ] 2015-01-16 14:10:54,566 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 14:34:01,509 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 14:34:01,671 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:30:07,914 [MSC service thread 1-6] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:30:28,873 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:30:29,060 [default task-15] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:30:29,167 [default task-16] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:30:29,355 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:30:32,902 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:30:33,043 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:31:34,909 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:31:35,094 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:31:37,060 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:31:37,234 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:31:47,516 [MSC service thread 1-5] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:31:55,256 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:31:55,615 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:31:55,766 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:31:56,106 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:30,370 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:30,374 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:30,537 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:35,297 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:33:35,313 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:35,314 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:35,464 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:39,279 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:33:39,287 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:39,295 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:39,485 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:42,001 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:33:42,006 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:42,009 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:42,163 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:45,609 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:33:45,618 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:45,619 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:45,764 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:33:48,295 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:33:48,299 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:33:48,301 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:33:48,735 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:34:09,801 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:34:09,809 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:34:09,810 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:34:10,002 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:34:13,195 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:34:13,201 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:34:13,204 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:34:13,353 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:40:09,307 [MSC service thread 1-7] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:40:29,343 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:40:29,474 [default task-15] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:40:29,619 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:40:29,780 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:40:31,897 [default task-23] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:40:32,017 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:40:35,524 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:40:35,667 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:33,151 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:33,153 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:33,161 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:33,319 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:34,035 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:34,036 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:34,184 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:40,388 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:40,561 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:42,731 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:42,733 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:42,882 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:53,496 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:44:53,509 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:53,510 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:53,826 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:56,750 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:44:56,754 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:56,755 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:56,928 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:44:59,334 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:44:59,335 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:59,339 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:44:59,484 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:45:00,361 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:45:00,362 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:45:00,502 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:45:17,657 [MSC service thread 1-5] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:45:23,452 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:45:23,793 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:45:23,912 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:45:23,914 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:45:24,097 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:45:34,398 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:45:34,417 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:45:34,420 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:45:34,604 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:46:01,706 [MSC service thread 1-7] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:46:09,938 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:46:10,071 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:46:10,479 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:46:10,489 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:46:10,683 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:47:24,837 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:47:24,899 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:47:24,904 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:47:37,154 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 15:47:37,294 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:47:37,580 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:47:40,905 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:47:40,914 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:47:41,061 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:47:49,090 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:47:49,141 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:47:49,142 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:01,526 [repositories/fiteagle] POST SPARQL update request to repository
+[WARN ] 2015-01-16 15:48:01,535 [repositories/fiteagle] exception during update execution: 
+org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Namespace prefix 'abc' used but not defined [line 8]
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:377)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeUpdate(SailUpdateExecutor.java:134)
+	at org.openrdf.repository.sail.SailUpdate.execute(SailUpdate.java:91)
+	at org.openrdf.http.server.repository.statements.StatementsController.getSparqlUpdateResult(StatementsController.java:271)
+	at org.openrdf.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:126)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:153)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:48)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:875)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.openrdf.rio.RDFParseException: Namespace prefix 'abc' used but not defined [line 8]
+	at org.openrdf.rio.helpers.RDFParserHelper.reportFatalError(RDFParserHelper.java:441)
+	at org.openrdf.rio.helpers.RDFParserBase.reportFatalError(RDFParserBase.java:671)
+	at org.openrdf.rio.turtle.TurtleParser.reportFatalError(TurtleParser.java:1306)
+	at org.openrdf.rio.helpers.RDFParserBase.getNamespace(RDFParserBase.java:356)
+	at org.openrdf.rio.turtle.TurtleParser.parseQNameOrBoolean(TurtleParser.java:1037)
+	at org.openrdf.rio.turtle.TurtleParser.parseValue(TurtleParser.java:618)
+	at org.openrdf.rio.turtle.TurtleParser.parseSubject(TurtleParser.java:449)
+	at org.openrdf.rio.turtle.TurtleParser.parseTriples(TurtleParser.java:383)
+	at org.openrdf.repository.sail.helpers.SPARQLUpdateDataBlockParser.parseGraph(SPARQLUpdateDataBlockParser.java:166)
+	at org.openrdf.rio.trig.TriGParser.parseStatement(TriGParser.java:119)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:216)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:159)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:374)
+	... 38 common frames omitted
+[ERROR] 2015-01-16 15:48:01,536 [repositories/fiteagle] Error while handling request (500): org.openrdf.query.UpdateExecutionException: org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Namespace prefix 'abc' used but not defined [line 8]
+[WARN ] 2015-01-16 15:48:01,537 [repositories/fiteagle] Rolling back transaction due to connection close
+java.lang.Throwable: null
+	at org.openrdf.sail.helpers.SailConnectionBase.close(SailConnectionBase.java:245)
+	at org.openrdf.repository.sail.SailRepositoryConnection.close(SailRepositoryConnection.java:129)
+	at org.openrdf.http.server.repository.RepositoryInterceptor.cleanUpResources(RepositoryInterceptor.java:157)
+	at org.openrdf.http.server.ServerInterceptor.afterCompletion(ServerInterceptor.java:55)
+	at org.openrdf.http.server.ServerInterceptor$$FastClassByCGLIB$$966e62ef.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:700)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:635)
+	at org.openrdf.http.server.repository.RepositoryInterceptor$$EnhancerByCGLIB$$866027a9.afterCompletion(<generated>)
+	at org.springframework.web.servlet.DispatcherServlet.triggerAfterCompletion(DispatcherServlet.java:1244)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:915)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[INFO ] 2015-01-16 15:48:01,707 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:48:01,758 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:48:01,760 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:13,461 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 15:48:13,513 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:13,679 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:48:16,046 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:48:16,046 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:16,207 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:48:46,933 [MSC service thread 1-1] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:48:51,640 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:48:51,981 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:52,115 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:48:52,121 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:52,416 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:48:55,012 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:48:55,014 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:48:55,194 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:49:15,256 [MSC service thread 1-7] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:49:18,808 [MSC service thread 1-3] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:49:25,370 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:49:25,508 [default task-52] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:49:25,615 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:49:25,617 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:49:25,903 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:04,267 [MSC service thread 1-8] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:50:08,358 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:08,685 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:08,822 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:08,826 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:09,176 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:13,793 [default task-28] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:13,960 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:15,215 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:15,358 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:17,218 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:17,221 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:17,357 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:44,178 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:44,179 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:44,198 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 15:50:44,238 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 15:50:44,425 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:45,128 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:45,136 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:45,278 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:45,942 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:45,942 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:45,949 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:46,088 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:46,771 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:46,907 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:47,501 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:50:47,505 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:47,640 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:50:57,375 [default task-20] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:50:57,549 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:51:06,756 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:51:06,923 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:51:44,389 [MSC service thread 1-8] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 15:51:49,083 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:51:49,440 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:51:49,613 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:51:49,887 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:51:53,092 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:51:53,095 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:51:53,237 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:51:57,919 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:51:57,937 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:51:57,940 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:51:58,111 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:52:01,362 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:52:01,369 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:52:01,374 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:52:01,530 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:52:34,777 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:52:34,785 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:52:34,786 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:52:34,960 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:02,772 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:53:02,783 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:53:02,787 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:02,971 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:32,505 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:53:32,511 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:53:32,513 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:32,684 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:34,664 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:53:34,669 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:53:34,670 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:34,841 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:45,402 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:45,445 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:53:45,445 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:51,141 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 15:53:51,220 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:51,405 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:53:53,196 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:53:53,196 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:53:53,339 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:54:00,290 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:54:00,291 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:54:00,455 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:54:04,019 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:54:04,069 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:54:04,070 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:55:30,592 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 15:55:30,596 [repositories/fiteagle] Client sent bad request (400): MALFORMED QUERY: Encountered "<EOF>" at line 1, column 40.
+Was expecting one of:
+    "where" ...
+    "using" ...
+    
+[INFO ] 2015-01-16 15:55:30,882 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:55:30,935 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:55:30,936 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:55:40,669 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:55:43,130 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:55:43,175 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:55:43,176 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:56:41,262 [repositories/fiteagle] POST SPARQL update request to repository
+[WARN ] 2015-01-16 15:56:41,286 [repositories/fiteagle] exception during update execution: 
+org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Namespace prefix 'abs' used but not defined [line 7]
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:377)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeUpdate(SailUpdateExecutor.java:134)
+	at org.openrdf.repository.sail.SailUpdate.execute(SailUpdate.java:91)
+	at org.openrdf.http.server.repository.statements.StatementsController.getSparqlUpdateResult(StatementsController.java:271)
+	at org.openrdf.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:126)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:153)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:48)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:875)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.openrdf.rio.RDFParseException: Namespace prefix 'abs' used but not defined [line 7]
+	at org.openrdf.rio.helpers.RDFParserHelper.reportFatalError(RDFParserHelper.java:441)
+	at org.openrdf.rio.helpers.RDFParserBase.reportFatalError(RDFParserBase.java:671)
+	at org.openrdf.rio.turtle.TurtleParser.reportFatalError(TurtleParser.java:1306)
+	at org.openrdf.rio.helpers.RDFParserBase.getNamespace(RDFParserBase.java:356)
+	at org.openrdf.rio.turtle.TurtleParser.parseQNameOrBoolean(TurtleParser.java:1037)
+	at org.openrdf.rio.turtle.TurtleParser.parseValue(TurtleParser.java:618)
+	at org.openrdf.rio.turtle.TurtleParser.parseSubject(TurtleParser.java:449)
+	at org.openrdf.rio.turtle.TurtleParser.parseTriples(TurtleParser.java:383)
+	at org.openrdf.repository.sail.helpers.SPARQLUpdateDataBlockParser.parseGraph(SPARQLUpdateDataBlockParser.java:166)
+	at org.openrdf.rio.trig.TriGParser.parseStatement(TriGParser.java:119)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:216)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:159)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:374)
+	... 38 common frames omitted
+[ERROR] 2015-01-16 15:56:41,287 [repositories/fiteagle] Error while handling request (500): org.openrdf.query.UpdateExecutionException: org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Namespace prefix 'abs' used but not defined [line 7]
+[WARN ] 2015-01-16 15:56:41,291 [repositories/fiteagle] Rolling back transaction due to connection close
+java.lang.Throwable: null
+	at org.openrdf.sail.helpers.SailConnectionBase.close(SailConnectionBase.java:245)
+	at org.openrdf.repository.sail.SailRepositoryConnection.close(SailRepositoryConnection.java:129)
+	at org.openrdf.http.server.repository.RepositoryInterceptor.cleanUpResources(RepositoryInterceptor.java:157)
+	at org.openrdf.http.server.ServerInterceptor.afterCompletion(ServerInterceptor.java:55)
+	at org.openrdf.http.server.ServerInterceptor$$FastClassByCGLIB$$966e62ef.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:700)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:635)
+	at org.openrdf.http.server.repository.RepositoryInterceptor$$EnhancerByCGLIB$$8df76c68.afterCompletion(<generated>)
+	at org.springframework.web.servlet.DispatcherServlet.triggerAfterCompletion(DispatcherServlet.java:1244)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:915)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[INFO ] 2015-01-16 15:56:41,535 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:56:41,580 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:56:41,581 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:57:23,933 [repositories/fiteagle] POST SPARQL update request to repository
+[WARN ] 2015-01-16 15:57:23,935 [repositories/fiteagle] exception during update execution: 
+org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Not a valid (absolute) URI: /absbs [line 1]
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:377)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeUpdate(SailUpdateExecutor.java:134)
+	at org.openrdf.repository.sail.SailUpdate.execute(SailUpdate.java:91)
+	at org.openrdf.http.server.repository.statements.StatementsController.getSparqlUpdateResult(StatementsController.java:271)
+	at org.openrdf.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:126)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:153)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:48)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:875)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.openrdf.rio.RDFParseException: Not a valid (absolute) URI: /absbs [line 1]
+	at org.openrdf.rio.helpers.RDFParserHelper.reportFatalError(RDFParserHelper.java:486)
+	at org.openrdf.rio.helpers.RDFParserBase.reportFatalError(RDFParserBase.java:704)
+	at org.openrdf.rio.turtle.TurtleParser.reportFatalError(TurtleParser.java:1317)
+	at org.openrdf.rio.helpers.RDFParserBase.createURI(RDFParserBase.java:420)
+	at org.openrdf.rio.helpers.RDFParserBase.resolveURI(RDFParserBase.java:407)
+	at org.openrdf.rio.turtle.TurtleParser.parseURI(TurtleParser.java:981)
+	at org.openrdf.rio.turtle.TurtleParser.parsePrefixID(TurtleParser.java:328)
+	at org.openrdf.rio.turtle.TurtleParser.parseDirective(TurtleParser.java:271)
+	at org.openrdf.rio.trig.TriGParser.parseStatement(TriGParser.java:110)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:216)
+	at org.openrdf.rio.turtle.TurtleParser.parse(TurtleParser.java:159)
+	at org.openrdf.repository.sail.helpers.SailUpdateExecutor.executeInsertData(SailUpdateExecutor.java:374)
+	... 38 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Not a valid (absolute) URI: /absbs
+	at org.openrdf.model.impl.URIImpl.setURIString(URIImpl.java:79)
+	at org.openrdf.model.impl.URIImpl.<init>(URIImpl.java:68)
+	at org.openrdf.sail.memory.model.MemValueFactory.createURI(MemValueFactory.java:357)
+	at org.openrdf.rio.helpers.RDFParserBase.createURI(RDFParserBase.java:417)
+	... 46 common frames omitted
+[ERROR] 2015-01-16 15:57:23,935 [repositories/fiteagle] Error while handling request (500): org.openrdf.query.UpdateExecutionException: org.openrdf.sail.SailException: org.openrdf.rio.RDFParseException: Not a valid (absolute) URI: /absbs [line 1]
+[WARN ] 2015-01-16 15:57:23,937 [repositories/fiteagle] Rolling back transaction due to connection close
+java.lang.Throwable: null
+	at org.openrdf.sail.helpers.SailConnectionBase.close(SailConnectionBase.java:245)
+	at org.openrdf.repository.sail.SailRepositoryConnection.close(SailRepositoryConnection.java:129)
+	at org.openrdf.http.server.repository.RepositoryInterceptor.cleanUpResources(RepositoryInterceptor.java:157)
+	at org.openrdf.http.server.ServerInterceptor.afterCompletion(ServerInterceptor.java:55)
+	at org.openrdf.http.server.ServerInterceptor$$FastClassByCGLIB$$966e62ef.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:700)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:635)
+	at org.openrdf.http.server.repository.RepositoryInterceptor$$EnhancerByCGLIB$$8df76c68.afterCompletion(<generated>)
+	at org.springframework.web.servlet.DispatcherServlet.triggerAfterCompletion(DispatcherServlet.java:1244)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:915)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:807)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:571)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:511)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:61)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:113)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:56)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:45)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:61)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:58)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:70)
+	at io.undertow.security.handlers.SecurityInitialHandler.handleRequest(SecurityInitialHandler.java:76)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:25)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:240)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:73)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:146)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:177)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:727)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[INFO ] 2015-01-16 15:57:24,102 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:57:24,149 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:57:24,151 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:57:55,529 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 15:57:55,583 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:57:55,744 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:57:57,412 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:57:57,413 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:57:57,554 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:58:09,773 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:58:09,778 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:58:09,779 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:58:09,957 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:58:11,700 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 15:58:11,705 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:58:11,706 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 15:58:11,850 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:58:13,400 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 15:58:13,444 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 15:58:13,445 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:01:51,101 [repositories/fiteagle] POST SPARQL update request to repository
+[INFO ] 2015-01-16 16:01:51,169 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:01:51,366 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:01:53,078 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:01:53,078 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:01:53,254 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:02:36,754 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:02:36,757 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:02:36,758 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:36,944 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:02:39,964 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:02:39,969 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:02:39,971 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:40,114 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:02:42,394 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:02:42,436 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:02:42,437 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:47,200 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:02:47,201 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:47,337 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:02:56,643 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:02:56,644 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:56,647 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:02:56,813 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:00,838 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:00,979 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:02,764 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:02,764 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:02,950 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:03,497 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:03,497 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:03,501 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:03,679 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:04,769 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:04,770 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:04,775 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 16:03:04,789 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 16:03:04,943 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:05,620 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:05,622 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:05,775 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:07,889 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:07,889 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:08,025 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:08,065 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:08,065 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:11,987 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:03:12,284 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:12,892 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:12,892 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:13,035 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:13,075 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:13,075 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:15,689 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:15,690 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:15,699 [repositories/fiteagle] POST query 2047214309
+[INFO ] 2015-01-16 16:03:15,701 [repositories/fiteagle] Request for query 2047214309 is finished
+[INFO ] 2015-01-16 16:03:15,850 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:36,751 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:36,752 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:36,755 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:03:36,934 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:40,873 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:48,916 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:48,966 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:48,967 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:52,522 [default task-6] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:52,664 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:53,867 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:54,061 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:57,838 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:57,839 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:58,009 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:58,534 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:58,671 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:03:59,500 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:03:59,501 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:03:59,639 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:01,440 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:01,440 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:01,444 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:01,578 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:02,992 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:02,992 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:02,997 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 16:04:02,999 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 16:04:03,420 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:04,142 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:04,143 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:04,315 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:07,658 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:07,658 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:07,832 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:14,383 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:14,383 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:14,387 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 16:04:14,389 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 16:04:14,557 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:16,397 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:16,399 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:16,602 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:22,648 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:22,649 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:22,837 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:25,863 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:25,863 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:26,051 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:27,228 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:27,377 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:30,100 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:30,101 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:30,346 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:36,071 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:38,513 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:39,922 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:42,150 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:42,151 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:42,153 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:04:42,315 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:51,989 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:51,990 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:52,156 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:04:57,699 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:04:57,699 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:04:57,702 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:04:57,874 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:02,775 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:05:02,775 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:05:02,940 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:07,142 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:05:07,142 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:05:07,145 [repositories/fiteagle] GET namespace for prefix http
+[INFO ] 2015-01-16 16:05:07,145 [repositories/fiteagle] Client sent bad request (404): Undefined prefix: http
+[INFO ] 2015-01-16 16:05:07,310 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:10,273 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:05:10,273 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:05:10,276 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,279 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,282 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,285 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,289 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,292 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,297 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,304 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:10,518 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:50,115 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:05:50,116 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:05:50,119 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:05:50,308 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:59,560 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:05:59,622 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:05:59,622 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:06:01,546 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:06:24,659 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:06:24,660 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:06:24,663 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:06:24,848 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:06:28,351 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:06:35,268 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:07:07,110 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:30,903 [repositories/fiteagle] POST data to repository
+[WARN ] 2015-01-16 16:07:30,928 [repositories/fiteagle] http://javax.xml.XMLConstants/feature/secure-processing is not a recognized SAX feature. (-1, -1)
+[INFO ] 2015-01-16 16:07:30,966 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:31,124 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:47,450 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:49,196 [default task-33] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:49,344 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:50,906 [default task-42] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:51,052 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:55,138 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:55,314 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:56,364 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:07:56,365 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:56,510 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:58,657 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:07:58,658 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:58,660 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:58,795 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:07:59,776 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:07:59,776 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:07:59,779 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 16:07:59,780 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 16:08:00,110 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:00,926 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:00,926 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:01,093 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:04,958 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:04,958 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:05,112 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:05,146 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:05,147 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:12,578 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:08:12,750 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:14,100 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:14,100 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:14,103 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:08:14,346 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:17,106 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:17,147 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:17,147 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:21,776 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:22,988 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:34,409 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:38,006 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:08:38,007 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:08:38,010 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:08:38,216 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:40,994 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:08:41,446 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:09:08,632 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:09:08,739 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:09:08,905 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:09:20,086 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:09:26,907 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:09:40,054 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:09:52,356 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:10:09,330 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:10:09,331 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:10:09,333 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:09,535 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:10:18,560 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:10:18,561 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:10:18,564 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,569 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,573 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,576 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,579 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,582 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,585 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,589 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:18,738 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:10:36,471 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:10:36,472 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:10:36,475 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:10:36,658 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:11:17,406 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:11:17,452 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:11:17,621 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:11:20,083 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:11:31,016 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:11:31,082 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:11:31,279 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:11:35,091 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:11:35,092 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:11:35,096 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:11:35,292 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:11:43,945 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:12:06,832 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:12:06,884 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:12:07,101 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:13:58,946 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:13:58,946 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:13:58,949 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:13:59,188 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:08,544 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:20,286 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:14:20,334 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:14:20,520 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:24,817 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:42,768 [repositories/fiteagle] POST transaction to repository
+[INFO ] 2015-01-16 16:14:42,800 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:14:42,959 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:45,782 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:14:45,783 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:14:45,786 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:14:45,971 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:54,134 [default task-36] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:14:54,309 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:14:58,524 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:14:58,674 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:01,698 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:01,847 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:36,005 [MSC service thread 1-8] Logback logging API implementation is configured.
+[INFO ] 2015-01-16 16:15:46,118 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:46,442 [default task-5] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:46,599 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:46,852 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:48,531 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:15:48,536 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:48,700 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:54,534 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:54,708 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:15:56,310 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:15:56,312 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:15:56,468 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:17:11,226 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:17:11,227 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:11,428 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:17:13,551 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:17:13,552 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:13,556 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:13,697 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:17:15,146 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:17:15,147 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:15,167 [repositories/fiteagle] POST query -1598642565
+[INFO ] 2015-01-16 16:17:15,216 [repositories/fiteagle] Request for query -1598642565 is finished
+[INFO ] 2015-01-16 16:17:15,428 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:17:17,869 [repositories/fiteagle] GET namespace list
+[INFO ] 2015-01-16 16:17:17,870 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:17,874 [repositories/fiteagle] GET statements
+[INFO ] 2015-01-16 16:17:18,057 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 16:17:19,576 [repositories/fiteagle] Request for query 3392903 is finished
+[INFO ] 2015-01-16 16:17:19,718 [repositories/SYSTEM] GET statements
+[INFO ] 2015-01-16 17:12:48,653 [default task-33] Request for query 3392903 is finished
+[INFO ] 2015-01-16 17:12:48,897 [repositories/SYSTEM] GET statements
