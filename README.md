@@ -29,16 +29,6 @@ http://localhost:9990/console/App.html
 open http://localhost:8080/native/gui/admin/console.html
 ```
 
-## Start SPARQL Server
-```
-./bootstrap/fiteagle.sh startSPARQL
-```
-
-## Have a look at the SPARQL GUI
-```
-open http://localhost:3030/sparql.html
-```
-
 ## Submit the first query
 ```
 SELECT ?s ?p ?o
