@@ -111,10 +111,11 @@ function installSesame() {
 	#Sesame von unserem Git beziehen(temporäre Lösung)
 	cp -r "${_bootstrap_res_folder}/openrdf-sesame.war" "${_container_standalone_deployments}"
 	cp -r "${_bootstrap_res_folder}/openrdf-workbench.war" "${_container_standalone_deployments}"
-        cp -r "${_bootstrap_res_folder}/standalone.conf" "${_container_standalone_config}"
-	mkdir "${_base}/server/sesame"
-   	cp -r "${_bootstrap_res_folder}/openrdf-workbench/" "${_base}/server/sesame/"
-        cp -r "${_bootstrap_res_folder}/openrdf-sesame/" "${_base}/server/sesame/" 
+    cp -r "${_bootstrap_res_folder}/standalone.conf" "${_container_standalone_config}"
+	mkdir -p "${_base}/server/sesame/openrdf-workbench" 2>/dev/null
+	mkdir -p "${_base}/server/sesame/openrdf-sesame" 2>/dev/null
+   	cp -r "${_bootstrap_res_folder}/openrdf-workbench"/* "${_base}/server/sesame/openrdf-workbench/"
+    cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${_base}/server/sesame/openrdf-sesame/" 
 }
 
 function installXMPP() {
