@@ -107,15 +107,14 @@ function checkRubyVersion {
    fi
 }
 
-function installSesame() {
+function deploySesame() {
 	#Sesame von unserem Git beziehen(temporäre Lösung)
 	cp -r "${_bootstrap_res_folder}/openrdf-sesame.war" "${_container_standalone_deployments}"
 	cp -r "${_bootstrap_res_folder}/openrdf-workbench.war" "${_container_standalone_deployments}"
-    cp -r "${_bootstrap_res_folder}/standalone.conf" "${_container_standalone_config}"
 	mkdir -p "${_base}/server/sesame/openrdf-workbench" 2>/dev/null
 	mkdir -p "${_base}/server/sesame/openrdf-sesame" 2>/dev/null
    	cp -r "${_bootstrap_res_folder}/openrdf-workbench"/* "${_base}/server/sesame/openrdf-workbench/"
-    cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${_base}/server/sesame/openrdf-sesame/" 
+    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${_base}/server/sesame/openrdf-sesame/" 
 }
 
 function installXMPP() {
@@ -284,9 +283,10 @@ function startContainer() {
     echo "Starting J2EE Container..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
+    RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
     cd "${WILDFLY_HOME}"
-    screen -S wildfly -dm ${CMD} -b 0.0.0.0 -c "${_container_config}"
+    screen -S wildfly -dm ${CMD}${RDF} -b 0.0.0.0 -c "${_container_config}"
     echo "Now running in background, to show it run:"
     echo "screen -R wildfly"
 }
@@ -295,9 +295,10 @@ function startContainerDebug() {
     echo "Starting J2EE Container in debug mode (port: 8787)..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
+    RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
     cd "${WILDFLY_HOME}"
-    ${CMD} --debug 8787 -b 0.0.0.0 -c "${_container_config}"
+    ${CMD}${RDF} --debug 8787 -b 0.0.0.0 -c "${_container_config}"
 }
 
 function stopContainer() {
@@ -384,7 +385,7 @@ function bootstrap() {
     installContainer
     configContainer
    
-    installSesame
+    deploySesame
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
@@ -404,13 +405,10 @@ function bootstrap() {
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
   echo "  stopXMPP           - Stop the XMPP Service";
-  echo "  startSPARQL        - Start the SPARQL service (Jena triplet store)";
-  echo "  startSPARQLPersist - Start the SPARQL service (non-memory only)";
-  echo "  stopSPARQL         - Stop the SPARQL service";
   echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
   echo "  startLabwiki       - Start LabWiki";
   echo "  installRuby        - Install ruby";
-  echo "  installSesame      - Install and configure OpenRDF/Sesame";
+  echo "  deploySesame       - Install and configure OpenRDF/Sesame";
   exit 1;
 }
 
@@ -431,6 +429,6 @@ for arg in "$@"; do
     [ "${arg}" = "installLabwiki" ] && installLabwiki
     [ "${arg}" = "installRuby" ] && installRuby
     [ "${arg}" = "startLabwiki" ] && startLabwiki
-    [ "${arg}" = "installSesame" ] && installSesame
+    [ "${arg}" = "deploySesame" ] && deploySesame
 done
 
