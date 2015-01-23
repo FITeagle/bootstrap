@@ -33,6 +33,22 @@
     </extensions>
 
 
+
+    <system-properties>
+        <property name="keystore_pass" value="jetty6"/>
+        <property name="keystore_name" value="jetty-ssl.keystore"/>
+        <property name="truststore_name" value="jetty-ssl.truststore"/>
+        <property name="truststore_pass" value="jetty6"/>
+        <property name="ca_alias" value="root"/>
+        <property name="prk_pass" value="jetty6"/>
+        <property name="ca_prkey_pass" value="jetty6"/>
+        <property name="server_alias" value="root"/>
+        <property name="sa_alias" value="fiteagleSA"/>
+        <property name="sa_prkey_pass" value="changeit"/>
+        <property name="resourceStore_name" value="resourceCertificateStore"/>
+        <property name="resourceStore_pass" value="changeit"/>
+    </system-properties>
+
     <management>
         <security-realms>
             <security-realm name="ManagementRealm">
