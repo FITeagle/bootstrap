@@ -41,7 +41,7 @@
         <property name="truststore_pass" value="jetty6"/>
         <property name="ca_alias" value="root"/>
         <property name="prk_pass" value="jetty6"/>
-        <property name="ca_prkey_pass" value="jetty6"/>
+        <property name="ca_prk_pass" value="jetty6"/>
         <property name="server_alias" value="root"/>
         <property name="sa_alias" value="fiteagleSA"/>
         <property name="sa_prkey_pass" value="changeit"/>
