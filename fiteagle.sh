@@ -373,6 +373,11 @@ function deployFT2 {
     cd "${_base}/native" && mvn clean install wildfly:deploy
 }
 
+function deployFT2sfa {
+    installFITeagleModule sfa
+    cd "${_base}/sfa" && mvn clean install wildfly:deploy
+}
+
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
@@ -401,6 +406,7 @@ function bootstrap() {
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
   echo "  deployFT1          - Deploy FITeagle 1";
   echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
+  echo "  deployFT2sfa       - Deploy FITeagle 2 SFA module";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
@@ -424,6 +430,7 @@ for arg in "$@"; do
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
     [ "${arg}" = "deployFT2" ] && deployFT2
+    [ "${arg}" = "deployFT2sfa" ] && deployFT2sfa
     [ "${arg}" = "deployFT1" ] && deployFT1
     [ "${arg}" = "deployOSCO" ] && deployOSCO
     [ "${arg}" = "installLabwiki" ] && installLabwiki
