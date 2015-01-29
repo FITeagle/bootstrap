@@ -390,8 +390,6 @@ function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
 
-    deploySesame
-
     installFITeagleModule bootstrap
     
     installXMPP
@@ -399,6 +397,8 @@ function bootstrap() {
     
     installContainer
     configContainer
+
+    deploySesame
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
