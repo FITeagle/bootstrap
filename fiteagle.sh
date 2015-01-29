@@ -392,8 +392,8 @@ function bootstrap() {
 
     installFITeagleModule bootstrap
     
-    installXMPP
-    configXMPP
+    #installXMPP
+    #configXMPP
     
     installContainer
     configContainer
