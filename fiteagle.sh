@@ -5,6 +5,7 @@ _dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 _base="$(pwd)"
 _resources_url="https://raw.githubusercontent.com/FITeagle/bootstrap/master/resources"
 _osco_url="https://svnsrv.fokus.fraunhofer.de/svn/cc/ngni/OpenSDNCore/orchestrator/branches/wildfly-branch"
+[[ "$OSTYPE" == "darwin"* ]] && _isOSX=1
 
 _sesame_type="openrdf-sesame"
 _sesame_version="2.7.14"
@@ -108,13 +109,20 @@ function checkRubyVersion {
 }
 
 function deploySesame() {
-	#Sesame von unserem Git beziehen(temporäre Lösung)
+	#TODO: temporary solution until 2.7.15 is available
 	cp -r "${_bootstrap_res_folder}/openrdf-sesame.war" "${_container_standalone_deployments}"
 	cp -r "${_bootstrap_res_folder}/openrdf-workbench.war" "${_container_standalone_deployments}"
 	mkdir -p "${_base}/server/sesame/openrdf-workbench" 2>/dev/null
-	mkdir -p "${_base}/server/sesame/openrdf-sesame" 2>/dev/null
-   	cp -r "${_bootstrap_res_folder}/openrdf-workbench"/* "${_base}/server/sesame/openrdf-workbench/"
-    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${_base}/server/sesame/openrdf-sesame/" 
+	cp -r "${_bootstrap_res_folder}/openrdf-workbench"/* "${_base}/server/sesame/openrdf-workbench/"
+	
+	if [ "${_isOSX}" ]; then
+        sesame_db="${_base}/server/sesame/OpenRDF Sesame"
+    else
+        sesame_db="${_base}/server/sesame/openrdf-sesame"
+    fi
+
+	mkdir -p "${sesame_db}" 2>/dev/null
+   	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/" 
 }
 
 function installXMPP() {
@@ -382,6 +390,8 @@ function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironment
 
+    deploySesame
+
     installFITeagleModule bootstrap
     
     installXMPP
@@ -389,8 +399,6 @@ function bootstrap() {
     
     installContainer
     configContainer
-   
-    deploySesame
 
     echo "Save to ~/.bashrc: export WILDFLY_HOME=${_container_root}"
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
