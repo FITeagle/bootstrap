@@ -227,6 +227,11 @@
 	</dependencies>
 	<build>
 		<plugins>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
 				<executions>
@@ -261,7 +266,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.1.201405082137</version>
+				<version>0.7.3-SNAPSHOT</version>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
@@ -410,7 +415,7 @@
 											jacoco-maven-plugin
 										</artifactId>
 										<versionRange>
-											[0.7.1.201405082137,)
+											[0.7.3,)
 										</versionRange>
 										<goals>
 											<goal>prepare-agent</goal>
@@ -439,7 +444,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.1.201405082137</version>
+				<version>0.7.3-SNAPSHOT</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
