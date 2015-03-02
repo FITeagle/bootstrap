@@ -109,20 +109,26 @@ function checkRubyVersion {
 }
 
 function deploySesame() {
-	#TODO: temporary solution until 2.7.15 is available
-	cp -r "${_bootstrap_res_folder}/openrdf-sesame.war" "${_container_standalone_deployments}"
-	cp -r "${_bootstrap_res_folder}/openrdf-workbench.war" "${_container_standalone_deployments}"
-	mkdir -p "${_base}/server/sesame/openrdf-workbench" 2>/dev/null
-	cp -r "${_bootstrap_res_folder}/openrdf-workbench"/* "${_base}/server/sesame/openrdf-workbench/"
-	
-	if [ "${_isOSX}" ]; then
+	mkdir -p "${_base}/tmp/sesame-git/" 2>/dev/null
+
+    git clone https://bitbucket.org/openrdf/sesame.git ${_base}/tmp/sesame-git
+    
+    if [ "${_isOSX}" ]; then
         sesame_db="${_base}/server/sesame/OpenRDF Sesame"
     else
         sesame_db="${_base}/server/sesame/openrdf-sesame"
-    fi
+  	fi
 
-	mkdir -p "${sesame_db}" 2>/dev/null
-   	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/" 
+   	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
+   	
+   	cd ${_base}/tmp/sesame-git/core/http/server
+   	mvn clean install -DskipTests
+   	cd ${_base}/tmp/sesame-git/core/http/workbench
+   	mvn clean install -DskipTests
+   	
+   	cp -r "${_base}/tmp/sesame-git/core/http/server/target/openrdf-sesame.war" "${_container_standalone_deployments}"
+   	cp -r "${_base}/tmp/sesame-git/core/http/workbench/target/openrdf-workbench.war" "${_container_standalone_deployments}"
+
 }
 
 function installXMPP() {
