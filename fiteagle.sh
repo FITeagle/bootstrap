@@ -121,9 +121,7 @@ function deploySesame() {
 
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
    	
-   	cd ${_base}/tmp/sesame-git/core/http/server
-   	mvn clean install -DskipTests
-   	cd ${_base}/tmp/sesame-git/core/http/workbench
+   	cd ${_base}/tmp/sesame-git
    	mvn clean install -DskipTests
    	
    	cp -r "${_base}/tmp/sesame-git/core/http/server/target/openrdf-sesame.war" "${_container_standalone_deployments}"
