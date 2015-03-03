@@ -14,6 +14,8 @@ _sesame_folder="${_base}/server"
 _bootstrap_res_folder="${_base}/bootstrap/resources/sesame"
 _sesame_git_url="https://bitbucket.org/openrdf/sesame.git"
 _sesame_zip_url="http://sourceforge.net/projects/sesame/files/Sesame%202/2.7.14/openrdf-sesame-2.7.14-sdk.zip/download"
+_sesame_workbench_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-workbench/2.8.0/sesame-http-workbench-2.8.0.war"
+_sesame_server_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-server/2.8.0/sesame-http-server-2.8.0.war"
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -109,24 +111,20 @@ function checkRubyVersion {
 }
 
 function deploySesame() {
-	mkdir -p "${_base}/tmp/sesame-git/" 2>/dev/null
-
-    git clone https://bitbucket.org/openrdf/sesame.git ${_base}/tmp/sesame-git
-    
+	
+	cd "${_base}/server/wildfly/standalone/deployments/"
+	wget --output-document=openrdf-sesame.war ${_sesame_server_url}
+	wget --output-document=openrdf-workbench.war ${_sesame_workbench_url}
+	
     if [ "${_isOSX}" ]; then
+    	mkdir -p "${_base}/server/sesame/OpenRDF Sesame"
         sesame_db="${_base}/server/sesame/OpenRDF Sesame"
     else
+       	mkdir -p "${_base}/server/sesame/openrdf-sesame"
         sesame_db="${_base}/server/sesame/openrdf-sesame"
   	fi
 
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
-   	
-   	cd ${_base}/tmp/sesame-git
-   	mvn clean install -DskipTests
-   	
-   	cp -r "${_base}/tmp/sesame-git/core/http/server/target/openrdf-sesame.war" "${_container_standalone_deployments}"
-   	cp -r "${_base}/tmp/sesame-git/core/http/workbench/target/openrdf-workbench.war" "${_container_standalone_deployments}"
-
 }
 
 function installXMPP() {
