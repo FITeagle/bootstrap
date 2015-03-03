@@ -374,13 +374,13 @@ function deployFT2 {
     checkContainer
 
     installFITeagleModule api
-    cd "${_base}/api" && mvn clean install
+    cd "${_base}/api" && mvn -DskipTests clean install
 
     installFITeagleModule core
-    cd "${_base}/core" && mvn clean install wildfly:deploy
+    cd "${_base}/core" && mvn -DskipTests clean install wildfly:deploy
 
     installFITeagleModule native
-    cd "${_base}/native" && mvn clean install wildfly:deploy
+    cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
 }
 
 function deployFT2sfa {
@@ -388,8 +388,8 @@ function deployFT2sfa {
     cd "${_base}/sfa" && mvn clean wildfly:deploy
 
     installFITeagleModule adapters
-    cd "${_base}/adapters/abstract" && mvn clean install
-    cd "${_base}/adapters/motor" && mvn clean wildfly:deploy
+    cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
+    cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 }
 
 function bootstrap() {
