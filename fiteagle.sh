@@ -7,13 +7,7 @@ _resources_url="https://raw.githubusercontent.com/FITeagle/bootstrap/master/reso
 _osco_url="https://svnsrv.fokus.fraunhofer.de/svn/cc/ngni/OpenSDNCore/orchestrator/branches/wildfly-branch"
 [[ "$OSTYPE" == "darwin"* ]] && _isOSX=1
 
-_sesame_type="openrdf-sesame"
-_sesame_version="2.7.14"
-_sesame_extractfolder="${_sesame_type}-${_sesame_version}"
-_sesame_folder="${_base}/server"
 _bootstrap_res_folder="${_base}/bootstrap/resources/sesame"
-_sesame_git_url="https://bitbucket.org/openrdf/sesame.git"
-_sesame_zip_url="http://sourceforge.net/projects/sesame/files/Sesame%202/2.7.14/openrdf-sesame-2.7.14-sdk.zip/download"
 _sesame_workbench_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-workbench/2.8.0/sesame-http-workbench-2.8.0.war"
 _sesame_server_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-server/2.8.0/sesame-http-server-2.8.0.war"
 
