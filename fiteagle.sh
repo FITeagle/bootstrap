@@ -11,6 +11,33 @@ _bootstrap_res_folder="${_base}/bootstrap/resources/sesame"
 _sesame_workbench_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-workbench/2.8.0/sesame-http-workbench-2.8.0.war"
 _sesame_server_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-server/2.8.0/sesame-http-server-2.8.0.war"
 
+_ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
+	org.fiteagle.core:reservation:0.1-SNAPSHOT \
+	org.fiteagle.core:bus:1.0-SNAPSHOT \
+	org.fiteagle.core:orchestrator:0.1-SNAPSHOT \
+	org.fiteagle.adapters:motor:0.1-SNAPSHOT \
+	org.fiteagle.core:federationManager:0.1-SNAPSHOT \
+	org.fiteagle:native:0.1-SNAPSHOT \
+	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
+	"
+_ft2_install_jar="org.fiteagle.interactors:usermanagement:0.1-SNAPSHOT "
+
+# curl --silent -H "Accept: application/json" "http://services.av.tu-berlin.de:8081/nexus/service/local/lucene/search?q=reservation&r=fiteagle" | jq .data[0]
+# find /opt/fiteagle/server/ -name \*.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/openrdf-sesame.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/reservation.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/bus.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/motor.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/orchestrator.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/federationManager.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/native.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/resourceAdapterManager.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/usermanagement.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/sfa.war
+# /opt/fiteagle/server/wildfly/standalone/tmp/openrdf-workbench.war
+# /opt/fiteagle/server/wildfly/standalone/deployments/openrdf-sesame.war
+# /opt/fiteagle/server/wildfly/standalone/deployments/openrdf-workbench.war
+
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
 _labwiki_git_url="https://github.com/mytestbed/labwiki.git"
@@ -106,9 +133,9 @@ function checkRubyVersion {
 
 function deploySesame() {
 	
-	cd "${_base}/server/wildfly/standalone/deployments/"
-	wget --output-document=openrdf-sesame.war ${_sesame_server_url}
-	wget --output-document=openrdf-workbench.war ${_sesame_workbench_url}
+	#cd "${_base}/server/wildfly/standalone/deployments/"
+	wget --output-document=${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war ${_sesame_server_url}
+	wget --output-document=${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war ${_sesame_workbench_url}
 	
     if [ "${_isOSX}" ]; then
     	mkdir -p "${_base}/server/sesame/OpenRDF Sesame"
@@ -119,6 +146,24 @@ function deploySesame() {
   	fi
 
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
+}
+
+function deployBinaryOnly() {
+	[ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
+
+	(checkBinary git && checkBinary java && checkBinary curl) || exit 1
+    #checkEnvironment
+
+    installFITeagleModule bootstrap
+
+    installContainer
+    configContainer
+
+    for component in ${_ft2_install_war}; do
+    	${_base}/bootstrap/bin/nxfetch.sh -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    done
+
+    deploySesame
 }
 
 function installXMPP() {
@@ -223,6 +268,7 @@ function checkEnvironment {
   checkBinary unzip; _error=$(($_error + $?))
   checkBinary screen; _error=$(($_error + $?))
   checkBinary svn; _error=$(($_error + $?))
+  checkBinary wget; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
@@ -423,6 +469,7 @@ function bootstrap() {
   echo "  startLabwiki       - Start LabWiki";
   echo "  installRuby        - Install ruby";
   echo "  deploySesame       - Install and configure OpenRDF/Sesame";
+  echo "  deployBinaryOnly   - Deploy binary only version of FT2"
   exit 1;
 }
 
@@ -445,5 +492,6 @@ for arg in "$@"; do
     [ "${arg}" = "installRuby" ] && installRuby
     [ "${arg}" = "startLabwiki" ] && startLabwiki
     [ "${arg}" = "deploySesame" ] && deploySesame
+    [ "${arg}" = "deployBinaryOnly" ] && deployBinaryOnly
 done
 
