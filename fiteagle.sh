@@ -133,9 +133,8 @@ function checkRubyVersion {
 
 function deploySesame() {
 	
-	#cd "${_base}/server/wildfly/standalone/deployments/"
-	wget --output-document=${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war ${_sesame_server_url}
-	wget --output-document=${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war ${_sesame_workbench_url}
+	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
+	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
 	
     if [ "${_isOSX}" ]; then
     	mkdir -p "${_base}/server/sesame/OpenRDF Sesame"
@@ -268,7 +267,6 @@ function checkEnvironment {
   checkBinary unzip; _error=$(($_error + $?))
   checkBinary screen; _error=$(($_error + $?))
   checkBinary svn; _error=$(($_error + $?))
-  checkBinary wget; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
