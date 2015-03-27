@@ -1,4 +1,4 @@
-FROM java:7
+FROM java:7-jre
 WORKDIR /opt/fiteagle
 
 RUN apt-get -y update && apt-get -y install git curl && apt-get -y clean && (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s deployBinaryOnly) || true
