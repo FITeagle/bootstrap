@@ -467,7 +467,7 @@ function usage() {
   echo "  startLabwiki       - Start LabWiki";
   echo "  installRuby        - Install ruby";
   echo "  deploySesame       - Install and configure OpenRDF/Sesame";
-  echo "  deployBinaryOnly   - Deploy binary only version of FT2"
+  echo "  deployBinaryOnly   - Deploy binary only version of FT2 and WildFly"
   exit 1;
 }
 
