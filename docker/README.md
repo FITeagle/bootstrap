@@ -17,6 +17,7 @@ Testing the installation of FT2 by running xmlRPC commands
     docker run -d --name=ft2 -p 8443:8443 fiteagle2bin
     ./xmlrpc-client.sh -t https://localhost:8443/sfa/api/am/v3 GetVersion
     ./xmlrpc-client.sh -t https://localhost:8443/sfa/api/am/v3 listRecources
+    docker stop ft2 && docker rm ft2
 
 To boot with custom wildfly arguments
 
