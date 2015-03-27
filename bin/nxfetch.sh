@@ -114,7 +114,7 @@ done
 REDIRECT_URL="${REDIRECT_URL}?${PARAMS}"
 
 echo "Fetching Artifact from $REDIRECT_URL..." >&2
-if [[${NOVERSION} == 1 ]]
+if [[ "${NOVERSION}" == "1" ]]
 then
   curl -o "${DLPATH}/${ARTIFACT_ID}.war" -sS -L ${REDIRECT_URL}
   ls -alh "${DLPATH}/${ARTIFACT_ID}.war"
