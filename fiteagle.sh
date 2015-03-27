@@ -451,7 +451,7 @@ function bootstrap() {
     ./bootstrap/fiteagle.sh
 }
 
-[ "${#}" -eq 0 ] && {
+function usage() {
   echo "Usage: $(basename $0) <command>";
   echo "  init               - Download and configure all required binaries";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
@@ -470,6 +470,8 @@ function bootstrap() {
   echo "  deployBinaryOnly   - Deploy binary only version of FT2"
   exit 1;
 }
+
+[ "${#}" -eq 0 ] && usage
 
 for arg in "$@"; do
     [ "${arg}" = "bootstrap" ] && bootstrap
@@ -491,5 +493,6 @@ for arg in "$@"; do
     [ "${arg}" = "startLabwiki" ] && startLabwiki
     [ "${arg}" = "deploySesame" ] && deploySesame
     [ "${arg}" = "deployBinaryOnly" ] && deployBinaryOnly
+    ([ "${arg}" = "help" ] || [ "${arg}" = "?" ]) && usage
 done
 
