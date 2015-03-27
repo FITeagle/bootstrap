@@ -30,6 +30,7 @@ OPTIONS:
    -p      Artifact Packaging
    -r      Repository
    -o      Destination folder
+   -n      Don't include version number in filename
 
 EOF
 }
@@ -43,8 +44,9 @@ PACKAGING="war"
 REPO="fiteagle"
 VERBOSE=0
 DLPATH="."
+NOVERSION=0
 
-while getopts "hvi:c:p:r:o:" OPTION
+while getopts "hvi:c:p:r:o:n" OPTION
 do
      case $OPTION in
          h)
@@ -74,6 +76,9 @@ do
              ;;
          o)
              DLPATH=$OPTARG
+             ;;
+         n)
+             NOVERSION=1
              ;;
          ?)
              usage
@@ -109,4 +114,11 @@ done
 REDIRECT_URL="${REDIRECT_URL}?${PARAMS}"
 
 echo "Fetching Artifact from $REDIRECT_URL..." >&2
-curl -o "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war" -sS -L ${REDIRECT_URL}
+if [[${NOVERSION} == 1 ]]
+then
+  curl -o "${DLPATH}/${ARTIFACT_ID}.war" -sS -L ${REDIRECT_URL}
+  ls -alh "${DLPATH}/${ARTIFACT_ID}.war"
+else
+  curl -o "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war" -sS -L ${REDIRECT_URL}
+  ls -alh "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war"
+fi

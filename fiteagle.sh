@@ -159,7 +159,7 @@ function deployBinaryOnly() {
     configContainer
 
     for component in ${_ft2_install_war}; do
-    	${_base}/bootstrap/bin/nxfetch.sh -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     done
 
     deploySesame
