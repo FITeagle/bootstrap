@@ -33,7 +33,8 @@ To be able to create a management user to access the administration console crea
 
     FROM fiteagle2bin
     RUN /opt/fiteagle/server/bin/add-user.sh admin Admin#70365 --silent
-    CMD ["/opt/fiteagle/bootstrap/fiteagle.sh", "startJ2EE", "-bmanagement", "0.0.0.0"]
+    ENV WILDFLY_ARGS="-bmanagement 0.0.0.0"
+    CMD ["/opt/fiteagle/bootstrap/fiteagle.sh", "startJ2EE"]
 
 Then you can build the image:
 
