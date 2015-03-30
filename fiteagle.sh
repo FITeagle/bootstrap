@@ -132,7 +132,7 @@ function checkRubyVersion {
 }
 
 function deploySesame() {
-	
+	echo "Downloading openrdf seasame & workbench..."
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
 	
@@ -143,26 +143,26 @@ function deploySesame() {
        	mkdir -p "${_base}/server/sesame/openrdf-sesame"
         sesame_db="${_base}/server/sesame/openrdf-sesame"
   	fi
-
+  	echo "Installing database..."
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
 }
 
 function deployBinaryOnly() {
 	[ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
 
-	(checkBinary git && checkBinary java && checkBinary curl) || exit 1
-    #checkEnvironment
+	(checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
 
     installFITeagleModule bootstrap
 
     installContainer
     configContainer
-
+    echo "Dowanloading binary components from repository..."
     for component in ${_ft2_install_war}; do
     	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     done
 
     deploySesame
+    echo "binary-only deployment DONE."
 }
 
 function installXMPP() {
