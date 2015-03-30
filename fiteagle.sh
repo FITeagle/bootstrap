@@ -65,6 +65,7 @@ _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
 _container_version="8.2.0.Final"
+#_container_version="9.0.0.Beta2" # to be tested
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
