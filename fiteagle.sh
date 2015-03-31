@@ -335,7 +335,7 @@ function startContainer() {
     RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
     cd "${WILDFLY_HOME}"
-    screen -S wildfly -dm ${CMD}${RDF} -b 0.0.0.0 -c "${_container_config} -Djava.security.egd=file:/dev/./urandom" ${WILDFLY_ARGS}
+    screen -S wildfly -dm ${CMD}${RDF} -b 0.0.0.0 -c "${_container_config}" -Djava.security.egd=file:/dev/./urandom ${WILDFLY_ARGS}
     echo "Now running in background, to show it run:"
     echo "screen -R wildfly"
 }
