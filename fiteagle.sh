@@ -480,6 +480,7 @@ function usage() {
   echo "  installRuby        - Install ruby";
   echo "  deploySesame       - Install and configure OpenRDF/Sesame";
   echo "  deployBinaryOnly   - Deploy binary only version of FT2 and WildFly"
+  echo "  buildDocker"
   exit 1;
 }
 
