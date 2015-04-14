@@ -4,9 +4,7 @@
 # date +%F_%T --date=@$(cat /tmp/fiteagle_state_file.txt)
 
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
-#_CONFIG_FT_BOOTSTAP_PATH=""
-_docker_path=""
-ECHO="echo run "
+#ECHO="echo run "
 ECHO=""
 
 if [ -f ${_CONFIG_TRIGGER_FILE} ] ; then
@@ -24,11 +22,11 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] ; then
 	CMD="docker rm ft2"
 	$ECHO $CMD
 	echo "starting new container 'ft2'..."
-	CMD="docker run -d --name=ft2 -p 8443:8443 --env WILDFLY_ARGS="" fiteagle2bin"
+	CMD='docker run -d --name=ft2 -p 8443:8443 --env WILDFLY_ARGS="" fiteagle2bin'
 	$ECHO $CMD
 	echo "moving state_file..."
 	CMD="mv ${_CONFIG_TRIGGER_FILE} ${_CONFIG_TRIGGER_FILE}.bak"
 	$ECHO $CMD
 else
-	echo "nothing to do"
+	#echo "nothing to do"
 fi
