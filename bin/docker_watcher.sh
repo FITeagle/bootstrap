@@ -31,7 +31,7 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	CMD="docker rm ft2"
 	$ECHO $CMD
 	echo "starting new container 'ft2'..."
-	CMD='docker run -d --name=ft2 -p 8443:8443 --env WILDFLY_ARGS="" fiteagle2bin'
+	CMD='docker run -d --name=ft2 -p 8443:8443 fiteagle2bin'
 	$ECHO $CMD || die "docker failed!"
 	if [ "x$1" != "x-f" ] ; then 
 		echo "moving state_file..."
