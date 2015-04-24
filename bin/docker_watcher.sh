@@ -16,6 +16,15 @@ cleanup() {
 	rm -rf $1
 }
 
+run_docker_ft2() {
+	CMD='docker run -d --name=ft2 -p 8443:8443 -p 8080:8080 fiteagle2bin'
+	$ECHO $CMD || die "docker failed!"
+}
+start_docker_ft2() {
+	CMD="docker start ft2"
+	$ECHO $CMD || die "docker start failed!"
+}
+
 if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	echo "downloading Dockerfile..."
 	_docker_path=$(mktemp -d)
@@ -31,8 +40,7 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	CMD="docker rm ft2"
 	$ECHO $CMD
 	echo "starting new container 'ft2'..."
-	CMD='docker run -d --name=ft2 -p 8443:8443 fiteagle2bin'
-	$ECHO $CMD || die "docker failed!"
+	run_docker_ft2
 	if [ "x$1" != "x-f" ] ; then 
 		echo "moving state_file..."
 		CMD="mv ${_CONFIG_TRIGGER_FILE} ${_CONFIG_TRIGGER_FILE}.bak"
@@ -40,5 +48,8 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	fi
 else
 	#echo "nothing to do"
-	true
+	if [ "$(docker inspect ft2 | jq '.[].State.Running==true')" = "false" ] ; then
+		echo "ft2 docker is not running! restarting..."
+		start_docker_ft2	
+	fi
 fi
