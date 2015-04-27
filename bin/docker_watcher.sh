@@ -17,7 +17,7 @@ cleanup() {
 }
 
 run_docker_ft2() {
-	CMD='docker run -d --name=ft2 -p 8443:8443 -p 8080:8080 fiteagle2bin'
+	CMD='docker run -d --name=ft2 -v ~/.fiteagle:/root/.fiteagle -p 8443:8443 -p 8080:8080 fiteagle2bin'
 	$ECHO $CMD || die "docker failed!"
 }
 start_docker_ft2() {
