@@ -19,6 +19,7 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle.core:federationManager:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
+	org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
 	"
 _ft2_install_jar="org.fiteagle.interactors:usermanagement:0.1-SNAPSHOT "
 
