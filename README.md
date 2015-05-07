@@ -5,7 +5,7 @@
 
 Scripts and configurations to bootstrap the environment.
 
-## Quick Start
+## Quick Start 
 
 ### Automatically download, configure and run FITeagle incl. SFA interface
 ```
