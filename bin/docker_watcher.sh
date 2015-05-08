@@ -26,6 +26,7 @@ run_docker_ft2() {
 }
 
 start_docker_ft2() {
+	cp fiteagle.properties.bak .fiteagle/fiteagle.properties
 	runcmd "docker start ft2" || die "docker start failed!"
 }
 
