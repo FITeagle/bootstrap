@@ -442,8 +442,6 @@ function deployFT2sfa {
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
     
-    #Eventuell redundant da dies nun auch in der deployFT2 Methode aufgerufen wird
-    #installFITeagleModule adapters
     cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 }
