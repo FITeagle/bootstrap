@@ -435,6 +435,7 @@ function deployFT2 {
     cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
 
     installFITeagleModule adapters
+    cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
     cd "${_base}/adapters/sshService" && mvn -DskipTests clean install wildfly:deploy
 }
 
@@ -442,7 +443,7 @@ function deployFT2sfa {
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
     
-    cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
+    installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 }
 
