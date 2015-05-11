@@ -40,7 +40,7 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	sed "s/DUMMY/$(date +%s)/g" ${_docker_path}/Dockerfile_ >${_docker_path}/Dockerfile
 	echo "rebuild docker 'fiteagle2bin'..."
 	#runcmd "docker build --rm --no-cache --tag=fiteagle2bin ${_docker_path}" || ( cleanup "${_docker_path}"; die "docker build failed!" )
-	runcmd "docker build --rm --tag=fiteagle2bin ${_docker_path}" || ( cleanup "${_docker_path}"; die "docker build failed!" )
+	runcmd "docker build --rm --force-rm --tag=fiteagle2bin ${_docker_path}" ||  cleanup "${_docker_path}" && die "docker build failed!" 
 	rm -rf "${_docker_path}"
 	echo "shutdown old docker container 'ft2'..."
 	runcmd "docker stop ft2"
