@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/FITeagle/bootstrap.svg?branch=master)](https://travis-ci.org/FITeagle/bootstrap)
+[![Join the chat at https://gitter.im/FITeagle/support](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FITeagle/support)
 
 # FITeagle Bootstrap
 

@@ -19,6 +19,8 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle.core:federationManager:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
+	org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
+	org.fiteagle.adapters:openstack:0.1-SNAPSHOT \
 	"
 _ft2_install_jar="org.fiteagle.interactors:usermanagement:0.1-SNAPSHOT "
 
@@ -441,15 +443,22 @@ function deployFT2 {
 
     installFITeagleModule native
     cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
+
+    installFITeagleModule adapters
+    cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
+    cd "${_base}/adapters/sshService" && mvn -DskipTests clean install wildfly:deploy
 }
 
 function deployFT2sfa {
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
-
+    
     installFITeagleModule adapters
-    cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
+}
+
+function testFT2sfa {
+    cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
 }
 
 function bootstrap() {
@@ -482,6 +491,7 @@ function usage() {
   echo "  deployFT1          - Deploy FITeagle 1";
   echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
   echo "  deployFT2sfa       - Deploy FITeagle 2 SFA module and core adapters";
+  echo "  testFT2sfa         - Test FITeagle 2 SFA module and core adapters";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  restartJ2EE        - Restart the J2EE service";
@@ -513,6 +523,7 @@ for arg in "$@"; do
     [ "${arg}" = "restartJ2EE" ] && restartContainer
     [ "${arg}" = "deployFT2" ] && deployFT2
     [ "${arg}" = "deployFT2sfa" ] && deployFT2sfa
+    [ "${arg}" = "testFT2sfa" ] && testFT2sfa
     [ "${arg}" = "deployFT1" ] && deployFT1
     [ "${arg}" = "deployOSCO" ] && deployOSCO
     [ "${arg}" = "installLabwiki" ] && installLabwiki
