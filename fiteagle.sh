@@ -369,6 +369,16 @@ function stopContainer() {
     ${CMD} --connect command=:shutdown
 }
 
+function restartContainer() {
+    stopContainer
+    startContainer
+}
+
+function restartContainerDebug() {
+    stopContainer
+    startContainerDebug
+}
+
 function startLabwiki() {
     echo "Starting Labwiki Server..."
     [ ! -z "${LABWIKI_TOP}" ] || LABWIKI_TOP="${_labwiki_root}"
@@ -468,11 +478,13 @@ function usage() {
   echo "  init               - Download and configure all required binaries";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
+  echo "  restartJ2EEDebug   - Restart the J2EE service with enabled debug port";
   echo "  deployFT1          - Deploy FITeagle 1";
   echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
   echo "  deployFT2sfa       - Deploy FITeagle 2 SFA module and core adapters";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
+  echo "  restartJ2EE        - Restart the J2EE service";
   echo "  startXMPP          - Start the XMPP service (needed e.g. for the IEEE Intercloud";
   echo "  stopXMPP           - Stop the XMPP Service";
   echo "  installLabwiki     - Install LabWiki (OMF client and GUI)";
@@ -496,7 +508,9 @@ for arg in "$@"; do
     [ "${arg}" = "stopSPARQL" ] && stopSPARQL
     [ "${arg}" = "startJ2EE" ] && startContainer
     [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
+    [ "${arg}" = "restartJ2EEDebug" ] && restartContainerDebug
     [ "${arg}" = "stopJ2EE" ] && stopContainer
+    [ "${arg}" = "restartJ2EE" ] && restartContainer
     [ "${arg}" = "deployFT2" ] && deployFT2
     [ "${arg}" = "deployFT2sfa" ] && deployFT2sfa
     [ "${arg}" = "deployFT1" ] && deployFT1
