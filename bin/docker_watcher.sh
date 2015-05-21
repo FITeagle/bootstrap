@@ -4,6 +4,10 @@
 # date +%F_%T --date=@$(cat /tmp/fiteagle_state_file.txt)
 
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
+#_CONFIG_LOCAL_BUILD=1
+
+#DOCKER_BUILD_ARGS="--no-cache --force-rm"
+DOCKER_BUILD_ARGS="--force-rm"
 
 runcmd() {
 	echo "cmd: $1"
@@ -36,11 +40,19 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	runcmd "docker rmi fiteagle2bin:latest"
 	echo "downloading Dockerfile..."
 	_docker_path=$(mktemp -d)
-	wget -q https://github.com/FITeagle/bootstrap/raw/master/docker/Dockerfile -O "${_docker_path}/Dockerfile_" || (echo "download failed!"; cleanup "${_docker_path}"; exit 1)
+	if [ "${_CONFIG_LOCAL_BUILD}" = "1" ] ; then
+		cp fiteagle-bootstrap/docker/Dockerfile ${_docker_path}/Dockerfile_ || die "fiteagle-bootstrap/docker/Dockerfile not found!!"
+	else
+		wget -q https://github.com/FITeagle/bootstrap/raw/master/docker/Dockerfile -O "${_docker_path}/Dockerfile_" || (echo "download failed!"; cleanup "${_docker_path}"; exit 1)
+	fi
 	sed "s/DUMMY/$(date +%s)/g" ${_docker_path}/Dockerfile_ >${_docker_path}/Dockerfile
 	echo "rebuild docker 'fiteagle2bin'..."
-	#runcmd "docker build --rm --no-cache --tag=fiteagle2bin ${_docker_path}" || ( cleanup "${_docker_path}"; die "docker build failed!" )
-	runcmd "docker build --rm --force-rm --tag=fiteagle2bin ${_docker_path}" ||  cleanup "${_docker_path}" && die "docker build failed!" 
+	if runcmd "docker build --rm ${DOCKER_BUILD_ARGS} --tag=fiteagle2bin ${_docker_path}" ; then
+		echo ok;
+	else
+		cleanup "${_docker_path}"
+		die "docker build failed!"
+	fi
 	rm -rf "${_docker_path}"
 	echo "shutdown old docker container 'ft2'..."
 	runcmd "docker stop ft2"
@@ -54,7 +66,6 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 		runcmd "mv ${_CONFIG_TRIGGER_FILE} ${_CONFIG_TRIGGER_FILE}.bak"
 	fi
 else
-	#echo "nothing to do"
 	if [ "$(docker inspect ft2 | jq '.[].State.Running==true')" = "false" ] ; then
 		echo "ft2 docker is not running! restarting..."
 		start_docker_ft2	
