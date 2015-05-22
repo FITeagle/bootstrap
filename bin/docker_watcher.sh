@@ -6,8 +6,11 @@
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
 #_CONFIG_LOCAL_BUILD=1
 
-#DOCKER_BUILD_ARGS="--no-cache --force-rm"
+#DOCKER_BUILD_ARGS="--no-cache --force-rm" #dont use the cache for building the image
 DOCKER_BUILD_ARGS="--force-rm"
+#DOCKER_RUN_ARGS="-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
+DOCKER_RUN_ARGS="-p 8443:8443 -p 8080:8080"
+DOCKER_RUN_VOLUMES="-v /root/.fiteagle:/root/.fiteagle"
 
 runcmd() {
 	echo "cmd: $1"
@@ -25,8 +28,7 @@ cleanup() {
 }
 
 run_docker_ft2() {
-	VOLUME="-v /root/.fiteagle:/root/.fiteagle"
-	runcmd "docker run -d --name=ft2 $VOLUME -p 8443:8443 -p 8080:8080 fiteagle2bin" || die "docker failed!"
+	runcmd "docker run -d --name=ft2 ${DOCKER_RUN_VOLUMES} ${DOCKER_RUN_ARGS} fiteagle2bin" || die "docker failed!"
 }
 
 start_docker_ft2() {
