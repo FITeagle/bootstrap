@@ -19,26 +19,11 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle.core:federationManager:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
-	org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
-	org.fiteagle.adapters:openstack:0.1-SNAPSHOT \
 	"
 _ft2_install_jar="org.fiteagle.interactors:usermanagement:0.1-SNAPSHOT "
-
-# curl --silent -H "Accept: application/json" "http://services.av.tu-berlin.de:8081/nexus/service/local/lucene/search?q=reservation&r=fiteagle" | jq .data[0]
-# find /opt/fiteagle/server/ -name \*.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/openrdf-sesame.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/reservation.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/bus.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/motor.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/orchestrator.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/federationManager.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/native.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/resourceAdapterManager.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/usermanagement.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/sfa.war
-# /opt/fiteagle/server/wildfly/standalone/tmp/openrdf-workbench.war
-# /opt/fiteagle/server/wildfly/standalone/deployments/openrdf-sesame.war
-# /opt/fiteagle/server/wildfly/standalone/deployments/openrdf-workbench.war
+_ft2_install_extra_war="org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
+	org.fiteagle.adapters:openstack:0.1-SNAPSHOT \
+	"
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -178,6 +163,19 @@ function deployBinaryOnly() {
     deploySesame
     echo "binary-only deployment DONE."
 }
+
+function deployExtraBinary() {
+	[ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
+
+	(checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
+
+    echo "Dowanloading binary components from repository..."
+    for component in ${_ft2_install_extra_war}; do
+    	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    done
+    echo "extra binary-only deployment DONE."
+}
+
 
 function installXMPP() {
     echo "Downloading XMPP server..."
@@ -531,6 +529,7 @@ for arg in "$@"; do
     [ "${arg}" = "startLabwiki" ] && startLabwiki
     [ "${arg}" = "deploySesame" ] && deploySesame
     [ "${arg}" = "deployBinaryOnly" ] && deployBinaryOnly
+    [ "${arg}" = "deployExtraBinary" ] && deployExtraBinary    
     [ "${arg}" = "buildDocker" ] && buildDocker
     ([ "${arg}" = "help" ] || [ "${arg}" = "?" ]) && usage
 done
