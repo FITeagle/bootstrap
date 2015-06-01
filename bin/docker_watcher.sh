@@ -4,6 +4,7 @@
 # date +%F_%T --date=@$(cat /tmp/fiteagle_state_file.txt)
 
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
+_CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
 #_CONFIG_LOCAL_BUILD=1
 
 #DOCKER_BUILD_ARGS="--no-cache --force-rm" #dont use the cache for building the image
@@ -43,7 +44,7 @@ if [ -f ${_CONFIG_TRIGGER_FILE} ] || [ "x$1" = "x-f" ] ; then
 	echo "downloading Dockerfile..."
 	_docker_path=$(mktemp -d)
 	if [ "${_CONFIG_LOCAL_BUILD}" = "1" ] ; then
-		cp fiteagle-bootstrap/docker/Dockerfile ${_docker_path}/Dockerfile_ || die "fiteagle-bootstrap/docker/Dockerfile not found!!"
+		cp ${_CONFIG_LOCAL_BUILD_PATH} ${_docker_path}/Dockerfile_ || die "fiteagle-bootstrap/docker/Dockerfile not found!!"
 	else
 		wget -q https://github.com/FITeagle/bootstrap/raw/master/docker/Dockerfile -O "${_docker_path}/Dockerfile_" || (echo "download failed!"; cleanup "${_docker_path}"; exit 1)
 	fi
