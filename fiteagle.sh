@@ -534,3 +534,4 @@ for arg in "$@"; do
     ([ "${arg}" = "help" ] || [ "${arg}" = "?" ]) && usage
 done
 
+exit 0
