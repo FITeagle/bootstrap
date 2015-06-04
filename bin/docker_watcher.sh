@@ -3,15 +3,21 @@
 # cron job for rebuilding the fiteagle Docker
 # date +%F_%T --date=@$(cat /tmp/fiteagle_state_file.txt)
 
+
+### config section #####
+########################
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
 _CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
 #_CONFIG_LOCAL_BUILD=1
+_CONFIG_DOT_FITEAGLE="/home/briemer/.fiteagle"
 
+### advanced config section ####
+################################
 #DOCKER_BUILD_ARGS="--no-cache --force-rm" #dont use the cache for building the image
 DOCKER_BUILD_ARGS="--force-rm"
 #DOCKER_RUN_ARGS="-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
-DOCKER_RUN_ARGS="-p 8443:8443 -p 8080:8080"
-DOCKER_RUN_VOLUMES="-v /root/.fiteagle:/root/.fiteagle"
+DOCKER_RUN_ARGS="-p 8043:8443"
+DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/root/.fiteagle"
 
 runcmd() {
 	echo "cmd: $1"
@@ -33,7 +39,7 @@ run_docker_ft2() {
 }
 
 start_docker_ft2() {
-	cp fiteagle.properties.bak .fiteagle/fiteagle.properties
+	cp ${_CONFIG_DOT_FITEAGLE}/fiteagle.properties.bak ${_CONFIG_DOT_FITEAGLE}/fiteagle.properties
 	runcmd "docker start ft2" || die "docker start failed!"
 }
 
