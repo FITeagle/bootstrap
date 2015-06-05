@@ -9,8 +9,8 @@
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
 _CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
 _CONFIG_LOCAL_BUILD=1
-_CONFIG_DOT_FITEAGLE="/home/briemer/.fiteagle"
-_CONFIG_FAST_REBUILD_FROM_CACHE=1
+_CONFIG_DOT_FITEAGLE="/opt/fiteagle2/dot_fiteagle"
+_CONFIG_FAST_REBUILD_FROM_CACHE=0
 
 ### advanced config section ####
 ################################
@@ -45,9 +45,10 @@ start_docker_ft2() {
 }
 
 if [ "x$1" = "x-r" ] ; then
-	echo "Restarting ft2 docker"
+	echo "re-running ft2 docker"
 	runcmd "docker stop ft2"
-	start_docker_ft2
+	runcmd "docker rm ft2"
+	run_docker_ft2	
 	exit 0
 fi
 
