@@ -45,9 +45,10 @@ start_docker_ft2() {
 }
 
 if [ "x$1" = "x-r" ] ; then
-	echo "Restarting ft2 docker"
+	echo "re-running ft2 docker"
 	runcmd "docker stop ft2"
-	start_docker_ft2
+	runcmd "docker rm ft2"
+	run_docker_ft2
 	exit 0
 fi
 
