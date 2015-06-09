@@ -20,6 +20,14 @@ DOCKER_BUILD_ARGS="--force-rm"
 DOCKER_RUN_ARGS="-p 8443:8443"
 DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/root/.fiteagle"
 
+[ -f "./docker_watcher.config" ] && . ./docker_watcher.config
+
+
+######### ARGS ################
+# -f  - force rebuild of image (docker build)
+# -r  - recreate instance (docker run)
+#############################
+
 runcmd() {
 	echo "cmd: $1"
 	$1
