@@ -11,16 +11,16 @@ _CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
 #_CONFIG_LOCAL_BUILD=1
 _CONFIG_DOT_FITEAGLE="/root/.fiteagle"
 #_CONFIG_FAST_REBUILD_FROM_CACHE=1
-
-### advanced config section ####
-################################
-#DOCKER_BUILD_ARGS="--no-cache --force-rm" #dont use the cache for building the image
-DOCKER_BUILD_ARGS="--force-rm"
-#DOCKER_RUN_ARGS="-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
-DOCKER_RUN_ARGS="-p 8443:8443"
-DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/root/.fiteagle"
+_CONFIG_EXPOSE_PORT_ARGS="-p 8443:8443" #-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
 
 [ -f "./docker_watcher.config" ] && . ./docker_watcher.config
+
+### dont change anything here! ###
+##################################
+DOCKER_BUILD_ARGS="--force-rm"
+DOCKER_RUN_ARGS="${_CONFIG_EXPOSE_PORT_ARGS}"
+DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/root/.fiteagle"
+
 
 
 ######### ARGS ################
