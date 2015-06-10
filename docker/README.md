@@ -46,9 +46,9 @@ Run it:
 
 The administration console should be available at http://localhost:9990.
 
-## Image internals [updated 2015-03-27]
+## Image internals [updated 2015-06-10]
 
-This image extends the [`java:7-jre`](https://github.com/docker-library/java/tree/master/openjdk-7-jre) image.
+This image extends the [`java:8-jre`](https://github.com/docker-library/java/tree/master/openjdk-8-jre) image.
 
 WildFly is installed in the `/opt/fiteagle/server` directory.
 
