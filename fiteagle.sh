@@ -157,6 +157,7 @@ function deploySesame() {
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
 }
 
+
 function deployBinaryOnly() {
 	[ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
 
@@ -442,6 +443,36 @@ function deployFT1 {
     cd "${_base}/ft1" && mvn clean install -DskipTests && mvn wildfly:deploy -DskipTests
 }
 
+function deployFT2binary() {
+  [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
+
+  (checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
+
+    installFITeagleModule bootstrap
+
+    installContainer
+    configContainer
+    echo "Dowanloading binary components from repository..."
+
+  _deployFT2binary_war="org.fiteagle.core:reservation:0.1-SNAPSHOT \
+                    org.fiteagle.core:bus:1.0-SNAPSHOT \
+                    org.fiteagle.core:orchestrator:0.1-SNAPSHOT \
+                    org.fiteagle.core:federationManager:0.1-SNAPSHOT \
+                    org.fiteagle:native:0.1-SNAPSHOT \
+                    org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
+                    "
+
+    for component in ${_deployFT2binary_war}; do
+      ${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    done
+
+    #${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:abstract:0.1-SNAPSHOT" -r fiteagle -p jar -o ${_base}/server/wildfly/standalone/deployments
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:sshService:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+
+    deploySesame
+    echo "binary deployment DONE."
+}
+
 function deployFT2 {
     checkContainer
 
@@ -457,6 +488,12 @@ function deployFT2 {
     installFITeagleModule adapters
     cd "${_base}/adapters/abstract" && mvn -DskipTests clean install
     cd "${_base}/adapters/sshService" && mvn -DskipTests clean install wildfly:deploy
+}
+
+function deployFT2sfaBinary {
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 }
 
 function deployFT2sfa {
@@ -501,6 +538,8 @@ function usage() {
   echo "  deployFT1          - Deploy FITeagle 1";
   echo "  deployFT2          - Deploy FITeagle 2 (core modules)";
   echo "  deployFT2sfa       - Deploy FITeagle 2 SFA module and core adapters";
+  echo "  deployFT2binary    - Deploy FITeagle 2 (core modules) (without maven)";
+  echo "  deployFT2sfaBinary - Deploy FITeagle 2 SFA module and core adapters (without maven)";
   echo "  testFT2sfa         - Test FITeagle 2 SFA module and core adapters";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
@@ -533,6 +572,8 @@ for arg in "$@"; do
     [ "${arg}" = "restartJ2EE" ] && restartContainer
     [ "${arg}" = "deployFT2" ] && deployFT2
     [ "${arg}" = "deployFT2sfa" ] && deployFT2sfa
+    [ "${arg}" = "deployFT2binary" ] && deployFT2binary
+    [ "${arg}" = "deployFT2sfaBinary" ] && deployFT2sfaBinary
     [ "${arg}" = "testFT2sfa" ] && testFT2sfa
     [ "${arg}" = "deployFT1" ] && deployFT1
     [ "${arg}" = "deployOSCO" ] && deployOSCO
