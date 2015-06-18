@@ -87,10 +87,21 @@ _wildfly_app_group="guest"
 function checkBinary {
   echo -n " * Checking for '$1'..."
   if command -v $1 >/dev/null 2>&1; then
-     echo "OK"
+     echo "OK."
      return 0
    else
      echo >&2 "FAILED."
+     return 1
+   fi
+}
+
+function checkDirectory {
+  echo -n " * Checking for '${1}' folder..."
+  if [ -d ${2} ] >/dev/null 2>&1; then
+     echo "OK."
+     return 0
+   else
+     echo >&2 "FAILED (directory does not exist!)."
      return 1
    fi
 }
@@ -134,7 +145,7 @@ function deploySesame() {
 	echo "Downloading openrdf seasame & workbench..."
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
-	
+
     if [ "${_isOSX}" ]; then
     	mkdir -p "${_base}/server/sesame/OpenRDF Sesame"
         sesame_db="${_base}/server/sesame/OpenRDF Sesame"
@@ -279,6 +290,7 @@ function checkEnvironment {
   checkBinary unzip; _error=$(($_error + $?))
   checkBinary screen; _error=$(($_error + $?))
   checkBinary svn; _error=$(($_error + $?))
+	checkDirectory JAVA_HOME ${JAVA_HOME}; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
@@ -317,7 +329,7 @@ function installFITeagleModule {
     echo -n "Getting FITeagle ${repo} sources..."
     git clone -q --recursive --depth 1 ${git_url} ${_src_folder}
   fi
-  
+
   echo "OK"
 }
 
@@ -399,15 +411,15 @@ function checkContainer {
 function deployOSCO {
     echo "WARNING: this only works within the Fraunhofer FOKUS network. Press ENTER."
     read
-    checkContainer    
+    checkContainer
     echo "Getting OSCO..."
     svn checkout "${_osco_url}" "${_base}/osco"
 
     echo "Building OSCO..."
     cd "${_base}/osco"
     find . -iname "application-*.properties" -exec cp {} "${_container_root}/standalone/configuration" \;
-    mvn clean install 
-    
+    mvn clean install
+
     echo "Configuring container..."
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --connect command="data-source remove --name=opensdncore"
@@ -450,7 +462,7 @@ function deployFT2 {
 function deployFT2sfa {
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
-    
+
     installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 }
@@ -464,10 +476,10 @@ function bootstrap() {
     checkEnvironment
 
     installFITeagleModule bootstrap
-    
+
     #installXMPP
     #configXMPP
-    
+
     installContainer
     configContainer
 
@@ -529,7 +541,7 @@ for arg in "$@"; do
     [ "${arg}" = "startLabwiki" ] && startLabwiki
     [ "${arg}" = "deploySesame" ] && deploySesame
     [ "${arg}" = "deployBinaryOnly" ] && deployBinaryOnly
-    [ "${arg}" = "deployExtraBinary" ] && deployExtraBinary    
+    [ "${arg}" = "deployExtraBinary" ] && deployExtraBinary
     [ "${arg}" = "buildDocker" ] && buildDocker
     ([ "${arg}" = "help" ] || [ "${arg}" = "?" ]) && usage
 done
