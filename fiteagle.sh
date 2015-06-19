@@ -618,6 +618,10 @@ for arg in "$@"; do
       deployFT2sfa
       RESULT=$(($RESULT+$?))
       ;;
+    deployFT2sfaBinary)
+      deployFT2sfaBinary
+      RESULT=$(($RESULT+$?))
+      ;;
     deployFT2binary)
       deployFT2binary
       RESULT=$(($RESULT+$?))
@@ -663,6 +667,7 @@ for arg in "$@"; do
       RESULT=$(($RESULT+$?))
       ;;
     *)
+      echo "Unknown command $arg"
       usage
       exit 1
     ;;

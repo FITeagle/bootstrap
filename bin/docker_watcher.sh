@@ -40,7 +40,7 @@ die() {
 
 cleanup() {
 	#TODO: check for path not empty
-	rm -rf $1
+	[ -z $1 ] || rm -rf $1
 }
 
 run_docker_ft2() {
