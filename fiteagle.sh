@@ -448,11 +448,11 @@ function deployFT2binary() {
 
   (checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
 
-    installFITeagleModule bootstrap
+  installFITeagleModule bootstrap
 
-    installContainer
-    configContainer
-    echo "Dowanloading binary components from repository..."
+  installContainer
+  configContainer
+  echo "Dowanloading binary components from repository..."
 
   _deployFT2binary_war="org.fiteagle.core:reservation:0.1-SNAPSHOT \
                     org.fiteagle.core:bus:1.0-SNAPSHOT \
@@ -470,6 +470,9 @@ function deployFT2binary() {
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:sshService:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 
     deploySesame
+
+    #checkContainer # start j2ee
+    
     echo "binary deployment DONE."
 }
 
@@ -530,7 +533,7 @@ function bootstrap() {
 }
 
 function usage() {
-  echo "Usage: $(basename $0) <command>";
+  echo "Usage: $(basename $0) <command> [<command2> ...]";
   echo "  init               - Download and configure all required binaries";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
@@ -557,34 +560,106 @@ function usage() {
 
 [ "${#}" -eq 0 ] && usage
 
+RESULT=0
+
 for arg in "$@"; do
-    [ "${arg}" = "bootstrap" ] && bootstrap
-    [ "${arg}" = "init" ] && bootstrap
-    [ "${arg}" = "startXMPP" ] && startXMPP
-    [ "${arg}" = "stopXMPP" ] && stopXMPP
-    [ "${arg}" = "startSPARQL" ] && startSPARQL
-    [ "${arg}" = "startSPARQLPersist" ] && startSPARQLPersist
-    [ "${arg}" = "stopSPARQL" ] && stopSPARQL
-    [ "${arg}" = "startJ2EE" ] && startContainer
-    [ "${arg}" = "startJ2EEDebug" ] && startContainerDebug
-    [ "${arg}" = "restartJ2EEDebug" ] && restartContainerDebug
-    [ "${arg}" = "stopJ2EE" ] && stopContainer
-    [ "${arg}" = "restartJ2EE" ] && restartContainer
-    [ "${arg}" = "deployFT2" ] && deployFT2
-    [ "${arg}" = "deployFT2sfa" ] && deployFT2sfa
-    [ "${arg}" = "deployFT2binary" ] && deployFT2binary
-    [ "${arg}" = "deployFT2sfaBinary" ] && deployFT2sfaBinary
-    [ "${arg}" = "testFT2sfa" ] && testFT2sfa
-    [ "${arg}" = "deployFT1" ] && deployFT1
-    [ "${arg}" = "deployOSCO" ] && deployOSCO
-    [ "${arg}" = "installLabwiki" ] && installLabwiki
-    [ "${arg}" = "installRuby" ] && installRuby
-    [ "${arg}" = "startLabwiki" ] && startLabwiki
-    [ "${arg}" = "deploySesame" ] && deploySesame
-    [ "${arg}" = "deployBinaryOnly" ] && deployBinaryOnly
-    [ "${arg}" = "deployExtraBinary" ] && deployExtraBinary
-    [ "${arg}" = "buildDocker" ] && buildDocker
-    ([ "${arg}" = "help" ] || [ "${arg}" = "?" ]) && usage
+  case $arg in
+    bootstrap)
+      bootstrap
+      RESULT=$(($RESULT+$?))
+    ;;
+    init)
+      bootstrap
+      RESULT=$(($RESULT+$?))
+    ;;
+    startXMPP)
+      startXMPP
+      RESULT=$(($RESULT+$?))
+      ;;
+    stopXMPP)
+      RESULT=$(($RESULT+$?))
+      ;;
+    startSPARQL)
+      startSPARQL
+      RESULT=$(($RESULT+$?))
+      ;;
+    startJ2EE)
+      startContainer
+      RESULT=$(($RESULT+$?))
+      ;;
+    startJ2EEDebug)
+      startContainerDebug
+      RESULT=$(($RESULT+$?))
+      ;;
+    restartJ2EEDebug)
+      restartContainerDebug
+      RESULT=$(($RESULT+$?))
+      ;;
+    stopJ2EE)
+      stopContainer
+      RESULT=$(($RESULT+$?))
+      ;;
+    restartJ2EE)
+      restartContainer
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployFT2)
+      deployFT2
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployFT2sfa)
+      deployFT2sfa
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployFT2binary)
+      deployFT2binary
+      RESULT=$(($RESULT+$?))
+      ;;
+    testFT2sfa)
+      testFT2sfa
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployFT1)
+      deployFT1
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployOSCO)
+      deployOSCO
+      RESULT=$(($RESULT+$?))
+      ;;
+    installLabwiki)
+      installLabwiki
+      RESULT=$(($RESULT+$?))
+      ;;
+    installRuby)
+      installRuby
+      RESULT=$(($RESULT+$?))
+      ;;
+    startLabwiki)
+      startLabwiki
+      RESULT=$(($RESULT+$?))
+      ;;
+    deploySesame)
+      deploySesame
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployBinaryOnly)
+      deployBinaryOnly
+      RESULT=$(($RESULT+$?))
+      ;;
+    deployExtraBinary)
+      deployExtraBinary
+      RESULT=$(($RESULT+$?))
+      ;;
+    buildDocker)
+      buildDocker
+      RESULT=$(($RESULT+$?))
+      ;;
+    *)
+      usage
+      exit 1
+    ;;
+  esac
 done
 
-exit 0
+exit $RESULT
