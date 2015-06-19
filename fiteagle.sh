@@ -529,7 +529,8 @@ function bootstrap() {
     echo "Save to ~/.bashrc: export OPENFIRE_HOME=${_xmpp_root}"
     echo ""
     echo "Now play around with ./bootstrap/fiteagle.sh"
-    ./bootstrap/fiteagle.sh
+    #./bootstrap/fiteagle.sh
+    usage
 }
 
 function usage() {
@@ -555,7 +556,6 @@ function usage() {
   echo "  deploySesame       - Install and configure OpenRDF/Sesame";
   echo "  deployBinaryOnly   - Deploy binary only version of FT2 and WildFly"
   echo "  buildDocker"
-  exit 1;
 }
 
 [ "${#}" -eq 0 ] && usage
