@@ -660,6 +660,7 @@ for arg in "$@"; do
       exit 1
     ;;
   esac
+  echo "RESULT: $RESULT"
 done
 
 exit $RESULT
