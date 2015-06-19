@@ -494,6 +494,9 @@ function deployFT2 {
 }
 
 function deployFT2sfaBinary {
+
+    installFITeagleModule integration-test
+
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
@@ -508,7 +511,11 @@ function deployFT2sfa {
 }
 
 function testFT2sfa {
-    cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
+    if [ -d "${_base}/sfa" ]; then
+      cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
+    elif [ -d "${_base}/integration-test" ]; then
+      cd "${_base}/integration-test" && ./runJfed_local.sh
+    fi
 }
 
 function bootstrap() {
