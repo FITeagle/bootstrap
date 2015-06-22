@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -6,12 +7,58 @@
     <link rel="stylesheet" type="text/css" href="fiteagle.css"/>
   </head>
   <body>
+    <script src="js/jquery.js"></script>
+
     <div>
         <img id="background" src="fiteagle_bg.jpg" alt="background" />
         <a href="http://fiteagle.org" id="mailer">
             <img id="logo" src="fiteagle_logo.png" alt="FITeagle" title="FITeagle"/>
         </a>
+	<div id="text">	
+	<h2 class="section-heading">Welcome to FITeagle<br></h2>
+	<p class="lead"> This is the Landingpage of a FITeagle Testbed.<br>
+	If you don't know what FITeagle is,you can check out our <a href="http://fiteagle.github.io">Homepage</a><br> 
+	If you want to communicate with this Server you will need a sfa compatible Software like for Example <a href="http://jfed.iminds.be/">jFed</a>
+
+	<h2 class="section-heading">Testbed API<br></h2>
+	<p class="lead" id="api-url"> 
+	<script>
+	var url = location.href;
+	var sfa = "sfa/api/am/v3";
+	var result = url.concat(sfa);
+	document.getElementById("api-url").innerHTML = result;
+	</script>
+
+
+	<h2 class="section-heading">Testbed Informations<br></h2>
+	<p class="lead" id="testbed-meta"> 
+	<script>
+	$.ajax({
+			cache: false,
+			type: "POST",
+			async: false,
+			url: "/sfa/api/am/v3",
+			data: "<?xml version=\"1.0\"?><methodCall><methodName>GetVersion</methodName><params></params></methodCall>",
+			contentType: "text/html",
+			success: function(data,status){	
+			document.getElementById("testbed-meta").innerHTML = data;		
+			},
+			error: function(xhl,status){
+			document.getElementById("testbed-meta").innerHTML = "Fehler";
+			},
+			statusCode:{				
+				201: function(){
+				alert("fehler");
+				}
+			}
+		});
+
+	</script>
+	</div>
     </div>
+
+
+    	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </body>
 </html>
-
