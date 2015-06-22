@@ -446,7 +446,7 @@ function deployFT1 {
 function deployFT2binary() {
   [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
 
-  (checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
+  (checkBinary git && checkBinary java && checkBinary curl && checkBinary unzip) || (echo "please install missing binaries."; exit 1)
 
   installFITeagleModule bootstrap
 
