@@ -6,7 +6,8 @@
 
 ### config section #####
 ########################
-_CONFIG_TRIGGER_FILE="/tmp/fiteagle_state_file.txt"
+_CONFIG_TRIGGER_FILE="/tmp/fiteagle_integration-ok.txt"
+
 _CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
 #_CONFIG_LOCAL_BUILD=1
 _CONFIG_DOT_FITEAGLE="/root/.fiteagle"
