@@ -6,14 +6,17 @@ EXPOSE 8080 8443 9990 8787
 
 RUN apt-get -y update && apt-get -y install git curl && apt-get -y clean
 
-ADD . /opt/fiteagle/bootstrap
+COPY . /opt/fiteagle/bootstrap
 
-RUN (cd /opt/fiteagle/bootstrap; git status; git branch; rm -rf .git/*) || echo "DUMMY"
+RUN (cd /opt/fiteagle/bootstrap; git branch; rm -rf .git/*) || echo "DUMMY"
+
+RUN grep org.jboss.as.threads /opt/fiteagle/bootstrap/resources/wildfly/standalone/configuration/standalone-fiteagle.xml; [ $? -eq 1 ]
 
 RUN /opt/fiteagle/bootstrap/fiteagle.sh deployBinaryOnly deployExtraBinary || echo "DUMMY"
 
 #RUN cp /opt/fiteagle/bootstrap/resources/wildfly/standalone/configuration/standalone-fiteagle.xml /opt/fiteagle/server/wildfly/standalone/configuration/standalone-fiteagle.xml
-RUN grep org.jboss.as.threads /opt/fiteagle/server/wildfly/standalone/configuration/standalone-fiteagle.xml || false
+
+RUN grep org.jboss.as.threads /opt/fiteagle/server/wildfly/standalone/configuration/standalone-fiteagle.xml; [ $? -eq 1 ]
 
 RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnlib.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnlib&v=0.0.1-SNAPSHOT&e=war"
 
