@@ -3,6 +3,8 @@ jdk:
   - oraclejdk7
 script:
   - mvn clean install site
+after_success:
+- curl http://demo.fiteagle.org/trigger.php?c=fiteagle
 notifications:
   email:
     - alexander.willner@tu-berlin.de
