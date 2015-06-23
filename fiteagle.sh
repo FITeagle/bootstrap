@@ -68,6 +68,8 @@ _container_index="index.html"
 _container_index_url="${_resources_url}/wildfly/welcome-content/${_container_index}"
 _container_css="fiteagle.css"
 _container_css_url="${_resources_url}/wildfly/welcome-content/${_container_css}"
+_container_jQuery="jquery.js"
+_container_jQuery_url="${_resources_url}/wildfly/welcome-content/${_container_jQuery}"
 _container_bg="fiteagle_bg.jpg"
 _container_bg_url="${_resources_url}/wildfly/welcome-content/${_container_bg}"
 _container_logo="fiteagle_logo.png"
@@ -278,6 +280,9 @@ function configContainer() {
     cp "${_installer_folder}/${_container_bg}" "${_container_root}/welcome-content/"
     curl -fsSSkL -o "${_installer_folder}/${_container_logo}" "${_container_logo_url}"
     cp "${_installer_folder}/${_container_logo}" "${_container_root}/welcome-content/"
+    curl -fsSSkL -o "${_installer_folder}/${_container_jQuery}" "${_container_jQuery_url}"
+    mkdir -p "${_container_root}/welcome-content/js/"
+    cp "${_installer_folder}/${_container_jQuery}" "${_container_root}/welcome-content/js/"
 }
 
 function checkEnvironment {
