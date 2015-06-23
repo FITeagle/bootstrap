@@ -169,7 +169,7 @@ function deployBinaryOnly() {
 
     installContainer
     configContainer
-    echo "Dowanloading binary components from repository..."
+    echo "Downloading binary components from repository..."
     for component in ${_ft2_install_war}; do
     	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     done
@@ -183,7 +183,7 @@ function deployExtraBinary() {
 
 	(checkBinary git && checkBinary java && checkBinary curl) || (echo "please install missing binaries."; exit 1)
 
-    echo "Dowanloading binary components from repository..."
+    echo "Downloading binary components from repository..."
     for component in ${_ft2_install_extra_war}; do
     	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     done
@@ -457,7 +457,7 @@ function deployFT2binary() {
 
   installContainer
   configContainer
-  echo "Dowanloading binary components from repository..."
+  echo "Downloading binary components from repository..."
 
   _deployFT2binary_war="org.fiteagle.core:reservation:0.1-SNAPSHOT \
                     org.fiteagle.core:bus:1.0-SNAPSHOT \
@@ -477,7 +477,7 @@ function deployFT2binary() {
     deploySesame
 
     #checkContainer # start j2ee
-    
+
     echo "binary deployment DONE."
 }
 
@@ -503,7 +503,7 @@ function deployFT2sfaBinary {
     installFITeagleModule integration-test
 
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
-    
+
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 }
 
