@@ -159,7 +159,6 @@ function deploySesame() {
    	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
 }
 
-
 function deployBinaryOnly() {
 	[ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
 
@@ -260,6 +259,10 @@ function installContainer() {
 }
 
 function configContainer() {
+  configContainerFromCheckout
+}
+
+function configContainerFromMaster() {
     echo "Configuring container..."
     curl -fsSSkL -o "${_installer_folder}/${_container_config}" "${_container_config_url}"
     cp "${_installer_folder}/${_container_config}" "${_container_root}/standalone/configuration"
@@ -283,6 +286,27 @@ function configContainer() {
     curl -fsSSkL -o "${_installer_folder}/${_container_jQuery}" "${_container_jQuery_url}"
     mkdir -p "${_container_root}/welcome-content/js/"
     cp "${_installer_folder}/${_container_jQuery}" "${_container_root}/welcome-content/js/"
+}
+
+function configContainerFromCheckout() {
+    echo "Configuring container from checkout..."
+    [ ! -d "${_base}/bootstrap" ] && echo "bootstrap not found" && exit 1
+    _wildfly_res_path="${_base}/bootstrap/resources/wildfly"
+
+    cp "${_wildfly_res_path}/standalone/configuration/${_container_config}" "${_container_root}/standalone/configuration"
+    cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration"
+    cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${_container_root}/standalone/configuration"
+    (
+     cd "${_container_root}"
+     ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
+     ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
+    )
+    cp "${_wildfly_res_path}/welcome-content/${_container_index}" "${_container_root}/welcome-content/"
+    cp "${_wildfly_res_path}/welcome-content/${_container_css}" "${_container_root}/welcome-content/"
+    cp "${_wildfly_res_path}/welcome-content/${_container_bg}" "${_container_root}/welcome-content/"
+    cp "${_wildfly_res_path}/welcome-content/${_container_logo}" "${_container_root}/welcome-content/"
+    mkdir -p "${_container_root}/welcome-content/js/"
+    cp "${_wildfly_res_path}/welcome-content/${_container_jQuery}" "${_container_root}/welcome-content/js/"
 }
 
 function checkEnvironment {
