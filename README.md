@@ -7,9 +7,14 @@ Scripts and configurations to bootstrap the environment.
 
 ## Quick Start
 
-### Automatically download, configure and run FITeagle incl. SFA interface
+### Automatically download, configure and run FITeagle incl. SFA interface (using maven)
 ```
 curl -fsSL fiteagle.org/bootstrap | bash -s init deployFT2 deployFT2sfa
+```
+
+### Automatically download, configure and run FITeagle incl. SFA interface (binary snapshot, **FASTER**)
+```
+curl -fsSL fiteagle.org/bootstrap | bash -s init deployFT2binary deployFT2sfaBinary startJ2EE
 ```
 
 ### Have a look at the J2EE Server Management Console. Default login is: admin/admin
