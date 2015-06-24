@@ -381,7 +381,7 @@ function stopXMPP() {
     ${OPENFIRE_CMD} stop
 }
 
-function startContainer() {
+function startContainerScreen() {
     echo "Starting J2EE Container..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
@@ -391,6 +391,23 @@ function startContainer() {
     screen -S wildfly -dm ${CMD}${RDF} -b 0.0.0.0 -c "${_container_config}" -Djava.security.egd=file:/dev/./urandom ${WILDFLY_ARGS}
     echo "Now running in background, to show it run:"
     echo "screen -R wildfly"
+}
+function startContainer() {
+    startContainerService
+}
+
+function startContainerService() {
+    echo "Starting J2EE Container as service..."
+    [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
+    #CMD="${WILDFLY_HOME}/bin/standalone.sh"
+    CMD="${WILDFLY_HOME}/bin/standalone.sh"
+    RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
+    [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
+    cd "${WILDFLY_HOME}"
+    _LOGFILE="/dev/null"
+    echo "logging to ${_LOGFILE}"
+    LAUNCH_JBOSS_IN_BACKGROUND=1 ${CMD} ${RDF} --debug 8787 -b 0.0.0.0 -Djava.security.egd=file:/dev/./urandom -c "${_container_config}" ${WILDFLY_ARGS} 2>&1 >$_LOGFILE &
+    #java -D[Standalone] -server -Xms64m -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n -Dorg.jboss.boot.log.file=/opt/fiteagle/server/wildfly/standalone/log/server.log -Dlogging.configuration=file:/opt/fiteagle/server/wildfly/standalone/configuration/logging.properties -jar /opt/fiteagle/server/wildfly/jboss-modules.jar -mp /opt/fiteagle/server/wildfly/modules org.jboss.as.standalone -Djboss.home.dir=/opt/fiteagle/server/wildfly -Djboss.server.base.dir=/opt/fiteagle/server/wildfly/standalone -Dinfo.aduna.platform.appdata.basedir=../sesame -b 0.0.0.0 -Djava.security.egd=file:/dev/./urandom -c standalone-fiteagle.xml -bmanagement=0.0.0.0 2>&1 >/dev/null &
 }
 
 function startContainerDebug() {

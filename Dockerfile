@@ -1,6 +1,6 @@
 
 ##
-# build with: sudo docker build --rm --force-rm --tag=fiteagle2test .
+# build with: sudo docker rmi fiteagle2test; sudo docker build --rm --force-rm --tag=fiteagle2test .
 # run with: sudo docker run --rm -it -p 8443:8443 --name ft2test fiteagle2test
 ##
 
