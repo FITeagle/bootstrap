@@ -7,12 +7,14 @@ Scripts and configurations to bootstrap the environment.
 
 ## Quick Start
 
-### Automatically download, configure and run FITeagle incl. SFA interface (using maven)
+### Automatically download, configure and run FITeagle incl. SFA interface
+This method uses maven to compile and deploy the components
 ```
 curl -fsSL fiteagle.org/bootstrap | bash -s init deployFT2 deployFT2sfa
 ```
 
-### Automatically download, configure and run FITeagle incl. SFA interface (binary snapshot, **FASTER**)
+### Automatically download, configure and run FITeagle incl. SFA interface
+This method will download precompiled war files and does not use maven which is a lof **faster**
 ```
 curl -fsSL fiteagle.org/bootstrap | bash -s init deployFT2binary deployFT2sfaBinary startJ2EE
 ```
