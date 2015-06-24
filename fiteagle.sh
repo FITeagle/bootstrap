@@ -513,6 +513,11 @@ function deployFT2 {
 
     installFITeagleModule core
     cd "${_base}/core" && mvn -DskipTests clean install wildfly:deploy
+    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+      mkdir ${HOME}/.fiteagle
+      cp "${_base}/core/federationManager/src/main/resources/ontologies/defaultFederation.ttl" "${HOME}/.fiteagle/Federation.ttl"
+      #curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
+    fi
 
     installFITeagleModule native
     cd "${_base}/native" && mvn -DskipTests clean install wildfly:deploy
@@ -528,6 +533,11 @@ function deployFT2sfaBinary {
 
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 
+    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+      mkdir ${HOME}/.fiteagle
+      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
+    fi
+
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 }
 
@@ -540,6 +550,22 @@ function deployFT2sfa {
 }
 
 function testFT2sfa {
+    if [ -f "${_base}/bootstrap/bin/xmlrpc-client.sh" ]; then
+      echo "waiting for server to be ready..."
+      CNT=0
+      while [[ ! $(${_base}/bootstrap/bin/xmlrpc-client.sh -t https://localhost:8443/sfa/api/am/v3 GetVersion) ]]; do
+        echo "sleep 15..."
+        sleep 15
+        CNT=$((${CNT}+1))
+        if [ ${CNT} -gt "20" ]; then
+          echo "cnt:" ${CNT}
+          echo timeout !
+          screen -S wildfly -X kill
+          exit 1
+        fi
+      done
+    fi
+
     if [ -d "${_base}/sfa" ]; then
       cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
     elif [ -d "${_base}/integration-test" ]; then

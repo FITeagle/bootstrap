@@ -57,6 +57,11 @@ generateRequestXml() {
 rpcxml=rpc$$.xml
 generateRequestXml "$@" > $rpcxml
 [ "$verbose" = "--verbose" ] && cat "$rpcxml"
-#curl -k $verbose --data "@$rpcxml" "$servUrl" 
-curl -k $verbose --data "@$rpcxml" "$servUrl" 2>/dev/null | xmllint --format -
+
+#curl -kf $verbose --data "@$rpcxml" "$servUrl" 
+XMLRES=$(curl -kf $verbose --data "@$rpcxml" "$servUrl" 2>/dev/null)
+RET=$?
+#[ $RET = 0 ] && echo $XMLRES | xmllint --format -
+[ $RET = 0 ] && echo $XMLRES 
 \rm -f $rpcxml
+exit $RET
