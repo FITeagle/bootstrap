@@ -318,7 +318,7 @@ function checkEnvironment {
   checkBinary git; _error=$(($_error + $?))
   checkBinary curl; _error=$(($_error + $?))
   checkBinary unzip; _error=$(($_error + $?))
-  checkBinary screen; _error=$(($_error + $?))
+  #checkBinary screen; _error=$(($_error + $?))
   checkBinary svn; _error=$(($_error + $?))
 	checkDirectory JAVA_HOME ${JAVA_HOME}; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
@@ -577,7 +577,7 @@ function testFT2sfa {
         if [ ${CNT} -gt "20" ]; then
           echo "cnt:" ${CNT}
           echo timeout !
-          screen -S wildfly -X kill
+          #screen -S wildfly -X kill
           exit 1
         fi
       done
