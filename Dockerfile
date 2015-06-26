@@ -1,6 +1,6 @@
 
 ##
-# build with: sudo docker build --rm --force-rm --tag=fiteagle2test .
+# build with: sudo docker rmi fiteagle2test && sudo docker build --rm --force-rm --tag=fiteagle2test .
 # run with: sudo docker run --rm -it -p 8443:8443 --name ft2test fiteagle2test
 ##
 
@@ -10,7 +10,7 @@ WORKDIR /opt/fiteagle
 ENV WILDFLY_ARGS -bmanagement=0.0.0.0
 EXPOSE 8080 8443 9990 8787
 
-RUN apt-get -y update && apt-get -y install git curl screen && apt-get -y clean
+RUN apt-get update -y && apt-get -y install git curl && apt-get -y clean
 
 COPY . /opt/fiteagle/bootstrap
 
