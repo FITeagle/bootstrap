@@ -61,7 +61,7 @@ If you want to run multiple commands and keep the data between them omit the ```
 the combined command ```docker run --rm -it --name=ft2test fiteagle2test deployFT2binary deployFT2sfaBinary startJ2EEdebug``` could be split in the following commands:
 ```shell
 docker run -it --name=ft2test fiteagle2test deployFT2binary
-docker exec -t -i ft2test deployFT2sfaBinary 
-docker exec -t -i ft2test startJ2EEdebug
+docker exec -t -i ft2test /opt/fiteagle/bootstrap/fiteagle.sh testFT2sfa deployFT2sfaBinary 
+docker exec -t -i ft2test /opt/fiteagle/bootstrap/fiteagle.sh testFT2sfa startJ2EEdebug
 ```
-When the container is running the SFA test could be run inside like this ``` docker exec -t -i ft2test testFT2sfa```
+When the container is running the SFA test could be run inside like this ``` docker exec -t -i ft2test /opt/fiteagle/bootstrap/fiteagle.sh testFT2sfa testFT2sfa```
