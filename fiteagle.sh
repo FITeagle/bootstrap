@@ -532,6 +532,7 @@ function deployFT2 {
     cd "${_base}/core" && mvn -DskipTests clean install wildfly:deploy
     if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
       mkdir ${HOME}/.fiteagle
+      echo "using defaultFederation.ttl"
       cp "${_base}/core/federationManager/src/main/resources/ontologies/defaultFederation.ttl" "${HOME}/.fiteagle/Federation.ttl"
       #curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
     fi
@@ -552,7 +553,8 @@ function deployFT2sfaBinary {
 
     if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
       mkdir ${HOME}/.fiteagle
-      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
+      echo "dowloading defaultFederation.ttl"
+      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
     fi
 
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
