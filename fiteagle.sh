@@ -412,6 +412,9 @@ function startContainerService() {
 
 function startContainerDebug() {
     echo "Starting J2EE Container in debug mode (port: 8787)..."
+    echo "HOME: $HOME user: $USERNAME"
+    ls -al $HOME/.fiteagle
+
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
     RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
@@ -512,6 +515,12 @@ function deployFT2binary() {
       ${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     done
 
+    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+      mkdir ${HOME}/.fiteagle
+      echo "dowloading defaultFederation.ttl"
+      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
+    fi
+
     #${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:abstract:0.1-SNAPSHOT" -r fiteagle -p jar -o ${_base}/server/wildfly/standalone/deployments
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:sshService:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 
@@ -550,12 +559,6 @@ function deployFT2sfaBinary {
     installFITeagleModule integration-test
 
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
-
-    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
-      mkdir ${HOME}/.fiteagle
-      echo "dowloading defaultFederation.ttl"
-      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
-    fi
 
     ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
 }
