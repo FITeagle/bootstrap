@@ -132,15 +132,25 @@ function checkRubyVersion {
    fi
 }
 
-function buildDocker() {
-	echo "(Re)building Docker image..."
+function buildDemoDocker() {
+	echo "(Re)building demo Docker image..."
 	(checkBinary docker && checkBinary sudo) || (echo "please install missing binaries."; exit 1)
 	_docker_path="${_base}/bootstrap/docker/"
 	[[ -d "docker" && -e "docker/Dockerfile" ]] && _docker_path="./docker/"
 
 	sudo docker build $1 --rm --no-cache --tag=fiteagle2bin ${_docker_path}
 	echo "Done"
-	echo 'Now start container (e.g. sudo docker run -d --name=ft2 -p 8443:8443 -p 9990:9990 --env WILDFLY_ARGS="-bmanagement 0.0.0.0" fiteagle2bin)'
+	echo 'Now start container (e.g. sudo docker run -d --name=ft2 -p 8443:8443 -p 9990:9990 --env "WILDFLY_ARGS=-bmanagement 0.0.0.0" fiteagle2bin)'
+}
+
+function buildDevDocker() {
+  echo "(Re)building Development Docker image..."
+  (checkBinary docker && checkBinary sudo) || (echo "please install missing binaries."; exit 1)
+  _docker_path="${_base}/bootstrap/"
+
+  sudo docker build $1 --rm --no-cache --tag=fiteagle2bin ${_docker_path}
+  echo "Done"
+  echo 'Now start container (e.g. sudo docker run -d --name=ft2 -p 8443:8443 -p 9990:9990 --env "WILDFLY_ARGS=-bmanagement 0.0.0.0" fiteagle2bin)'
 }
 
 function deploySesame() {
@@ -621,6 +631,7 @@ function bootstrap() {
 function usage() {
   echo "Usage: $(basename $0) <command> [<command2> ...]";
   echo "  init               - Download and configure all required binaries";
+  echo "  sleep-<seconds>    - wait n seconds before running next command (e.g. sleep-10)";
   echo "  startJ2EE          - Start the J2EE service (WildFly)";
   echo "  startJ2EEDebug     - Start the J2EE service with enabled debug port";
   echo "  restartJ2EEDebug   - Restart the J2EE service with enabled debug port";
@@ -640,7 +651,8 @@ function usage() {
   echo "  installRuby        - Install ruby";
   echo "  deploySesame       - Install and configure OpenRDF/Sesame";
   echo "  deployBinaryOnly   - Deploy binary only version of FT2 and WildFly"
-  echo "  buildDocker"
+  echo "  buildDemoDocker    - Rebuild the Docker images used for demo.fiteagle.org (image name: ft2)";
+  echo "  buildDevDocker     - Rebuild Development Docker from current working copy"
 }
 
 [ "${#}" -eq 0 ] && usage
@@ -656,6 +668,11 @@ for arg in "$@"; do
     init)
       bootstrap
       RESULT=$(($RESULT+$?))
+    ;;
+    sleep-*)
+      SEC=$(echo $arg | cut -d'-' -f2)
+      echo "sleep ${SEC}"
+      sleep ${SEC} || exit 1
     ;;
     startXMPP)
       startXMPP
@@ -740,8 +757,12 @@ for arg in "$@"; do
       deployExtraBinary
       RESULT=$(($RESULT+$?))
       ;;
-    buildDocker)
-      buildDocker
+    buildDemoDocker)
+      buildDemoDocker
+      RESULT=$(($RESULT+$?))
+      ;;
+    buildDevDocker)
+      buildDevDocker
       RESULT=$(($RESULT+$?))
       ;;
     *)
