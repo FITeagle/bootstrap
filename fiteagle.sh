@@ -579,6 +579,8 @@ function deployFT2sfa {
 
     installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
+
+    installFITeagleModule integration-test
 }
 
 function testFT2sfa {
