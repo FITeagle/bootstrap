@@ -9,19 +9,19 @@
   <body>
     <script src="js/jquery.js"></script>
 
-    <div>
-        <img id="background" src="fiteagle_bg.jpg" alt="background" />
+    <div class="logo-holder">
+        <!--<img id="background" src="fiteagle_bg.jpg" alt="background" />-->
         <a href="http://fiteagle.org" id="mailer">
             <img id="logo" src="fiteagle_logo.png" alt="FITeagle" title="FITeagle"/>
         </a>
 	<div id="text">	
-	<h2 class="section-heading">Welcome to FITeagle<br></h2>
-	<p class="lead"> This is the Landingpage of a FITeagle Testbed.<br>
-	If you don't know what FITeagle is,you can check out our <a href="http://fiteagle.github.io">Homepage</a><br> 
+	<h2 class="section-heading">Welcome to FITeagle</h2>
+	<p class="lead"> This is the Landingpage of a FITeagle Testbed.<p>
+	<p>If you don't know what FITeagle is, you can check out our <a href="http://fiteagle.github.io">Homepage</a><p> 
 	If you want to communicate with this Server you will need a sfa compatible Software like for Example <a href="http://jfed.iminds.be/">jFed</a>
 
-	<h2 class="section-heading">Testbed API<br></h2>
-	<p class="lead" id="api-url"> 
+	<h2 class="section-heading">Testbed API</h2>
+	<output class="lead" id="api-url"> </output>
 	<script>
 	var url = location.href;
 	var sfa = "sfa/api/am/v3";
@@ -30,21 +30,20 @@
 	</script>
 
 
-	<h2 class="section-heading">Testbed Informations<br></h2>
-	<p class="lead" id="testbed-meta"> 
+	<h2 class="section-heading">Testbed Informations</h2>
+	<button type="button" class="lead" id="testbed-meta">Get Informations</button>
 	<script>
+	function get_Version () {
 	$.ajax({
 			cache: false,
-			type: "POST",
+			type: "GET",
 			async: false,
-			url: "/sfa/api/am/v3",
-			data: "<?xml version=\"1.0\"?><methodCall><methodName>GetVersion</methodName><params></params></methodCall>",
-			contentType: "text/html",
-			success: function(data,status){	
-			document.getElementById("testbed-meta").innerHTML = data;		
+			url: document.getElementById("api-url").value.replace("/sfa/api/am/v3","/native/api/resources"),
+			success: function(data,status){
+			alert(data);
 			},
 			error: function(xhl,status){
-			document.getElementById("testbed-meta").innerHTML = "Fehler";
+			alert("Sorry, an error occurred");
 			},
 			statusCode:{				
 				201: function(){
@@ -52,13 +51,10 @@
 				}
 			}
 		});
-
+	}
+	document.getElementById("testbed-meta").onclick = get_Version;
 	</script>
 	</div>
     </div>
-
-
-    	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </body>
 </html>
