@@ -36,11 +36,15 @@
 	function get_Version () {
 	$.ajax({
 			cache: false,
-			type: "GET",
+			type: "POST",
 			async: false,
-			url: document.getElementById("api-url").value.replace("/sfa/api/am/v3","/native/api/resources"),
-			success: function(data,status){
-			alert(data);
+			data: "<?xml version=\"1.0\"?><methodCall><methodName>GetVersion</methodName><params></params></methodCall>",
+			url: document.getElementById("api-url").value,
+			success: function(data2,status){
+			var newData = data2.replace('<?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>output</name><value><string>SUCCESS</string></value></member><member><name>geni_api</name><value><int>3</int></value></member><member><name>code</name><value><struct><member><name>geni_code</name><value><int>0</int></value></member><member><name>am_code</name><value><int>0</int></value></member></struct></value></member><member><name>value</name><value><struct><member><name>geni_api_versions</name><value><struct><member><name>3</name><value><string>localhost/sfa/api/am/v3</string></value></member></struct></value></member><member><name>geni_credential_types</name><value><array><data><value><struct><member><name>geni_type</name><value><string>geni_sfa</string></value></member><member><name>geni_version</name><value><string>1</string></value></member></struct></value></data></array></value></member><member><name>geni_api</name><value><int>3</int></value></member><member><name>geni_ad_rspec_versions</name><value><array><data><value><struct><member><name>schema</name><value><string>http://www.geni.net/resources/rspec/3/ad.xsd</string></value></member><member><name>extensions</name><value><array><data></data></array></value></member><member><name>namespace</name><value><string>http://open-multinet.info/ontology/omn-resource</string></value></member><member><name>type</name><value><string>open-multinet</string></value></member><member><name>version</name><value><string>1</string></value></member></struct></value><value><struct><member><name>schema</name><value><string>http://www.geni.net/resources/rspec/3/ad.xsd</string></value></member><member><name>extensions</name><value><array><data></data></array></value></member><member><name>namespace</name><value><string>http://www.geni.net/resources/rspec/3</string></value></member><member><name>type</name><value><string>GENI</string></value></member><member><name>version</name><value><string>3</string></value></member></struct></value></data></array></value></member><member><name>geni_request_rspec_versions</name><value><array><data><value><struct><member><name>schema</name><value><string>http://www.geni.net/resources/rspec/3/request.xsd</string></value></member><member><name>extensions</name><value><array><data></data></array></value></member><member><name>namespace</name><value><string>http://open-multinet.info/ontology/omn-resource</string></value></member><member><name>type</name><value><string>open-multinet</string></value></member><member><name>version</name><value><string>1</string></value></member></struct></value><value><struct><member><name>schema</name><value><string>http://www.geni.net/resources/rspec/3/request.xsd</string></value></member><member><name>extensions</name><value><array><data></data></array></value></member><member><name>namespace</name><value><string>http://www.geni.net/resources/rspec/3</string></value></member><member><name>type</name><value><string>GENI</string></value></member><member><name>version</name><value><string>3</string></value></member></struct></value></data></array></value></member><member><name>omn_testbed</name><value><string>', " ");
+			
+			var newData2 = newData.replace('</string></value></member></struct></value></member></struct></value></param></params></methodResponse>', '');
+			alert(newData2);
 			},
 			error: function(xhl,status){
 			alert("Sorry, an error occurred");
