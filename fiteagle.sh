@@ -51,8 +51,9 @@ _xmpp_keystore_url="${_resources_url}/${_xmpp_type}/${_xmpp_keystore_path}/${_xm
 _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
-_container_version="8.2.0.Final"
-#_container_version="9.0.0.Beta2" # to be tested
+#_container_version="8.2.0.Final"
+_container_version="9.0.0.Final"
+_container_init_config="standalone-fiteagle.txt"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
 _container_url="http://download.jboss.org/${_container_type}/${_container_version}/${_container_file}"
@@ -275,8 +276,13 @@ function configContainer() {
 
 function configContainerFromMaster() {
     echo "Configuring container..."
+ 
+#    CMD="${_container_root}/bin/jboss-cli.sh"
+#    ${CMD} --file="${_installer_folder}/${_container_row_config}"
+
     curl -fsSSkL -o "${_installer_folder}/${_container_config}" "${_container_config_url}"
     cp "${_installer_folder}/${_container_config}" "${_container_root}/standalone/configuration"
+
     curl -fsSSkL -o "${_installer_folder}/${_container_keystore}" "${_container_keystore_url}"
     cp "${_installer_folder}/${_container_keystore}" "${_container_root}/standalone/configuration"
     curl -fsSSkL -o "${_installer_folder}/${_container_truststore}" "${_container_truststore_url}"
@@ -304,10 +310,14 @@ function configContainerFromCheckout() {
     [ ! -d "${_base}/bootstrap" ] && echo "bootstrap not found" && exit 1
     _wildfly_res_path="${_base}/bootstrap/resources/wildfly"
 
-    cp "${_wildfly_res_path}/standalone/configuration/${_container_config}" "${_container_root}/standalone/configuration"
+    [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
+
     cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration"
     cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${_container_root}/standalone/configuration"
-    (
+
+    CMD="${_container_root}/bin/jboss-cli.sh"
+    ${CMD} --file="${_wildfly_res_path}/standalone/configuration/${_container_init_config}"
+     (
      cd "${_container_root}"
      ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
      ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
@@ -606,6 +616,8 @@ function testFT2sfa {
       cd "${_base}/integration-test" && ./runJfed_local.sh
     elif [ -d "${_base}/sfa" ]; then
       cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
+    elif [ -d "${_base}/integration-test" ]; then
+      cd "${_base}/integration-test" && ./runJfed_local.sh
     fi
 }
 
