@@ -1,9 +1,9 @@
 
 ##
 # build with: 
-#    sudo docker tag fiteagle2test fiteagle2test:old; sudo docker rmi fiteagle2test; sudo docker build --rm --force-rm --tag=fiteagle2test . && sudo docker rmi fiteagle2test:old
+#    sudo docker tag fiteagle2dev:latest fiteagle2dev:old; sudo docker rmi fiteagle2dev:latest; sudo docker build --rm --force-rm --tag=fiteagle2dev . && sudo docker rmi fiteagle2dev:old
 # run with: 
-#    sudo docker run --rm -it -p 8443:8443 --name ft2test fiteagle2test
+#    sudo docker run --rm -it -p 8443:8443 --name ft2test fiteagle2dev:latest
 ##
 
 FROM java:8-jre
