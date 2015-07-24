@@ -5,11 +5,15 @@ ENV WILDFLY_ARGS -bmanagement=0.0.0.0
 EXPOSE 8080 8443 9990 8787
 
 RUN apt-get -y update && apt-get -y install git curl && apt-get -y clean
+RUN addgroup --gid 9999 app && adduser --uid 9999 --gid 9999 --disabled-password --gecos "Application" app && usermod -L app
+
+#TODO: add user app
 
 RUN (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s deployBinaryOnly) || echo "DUMMY"
 RUN /opt/fiteagle/bootstrap/fiteagle.sh deployExtraBinary; echo "DUMMY"
 
 RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnlib.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnlib&v=0.0.1-SNAPSHOT&e=war"
+RUN /opt/fiteagle/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:tosca:0.1-SNAPSHOT" -r fiteagle -p war -o /opt/fiteagle/server/wildfly/standalone/deployments/
 
 ENTRYPOINT ["/opt/fiteagle/bootstrap/fiteagle.sh"]
 CMD ["startJ2EEDebug"]
