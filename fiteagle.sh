@@ -263,6 +263,7 @@ function installContainer() {
     curl -C - -fsSSkL -o "${_installer_folder}/${_container_file}" "${_container_url}"
     echo "Installing container..."
     mkdir -p "${_installer_folder}"
+    mkdir -p "${_container_folder}"
     unzip -qo "${_installer_folder}/${_container_file}" -d "${_container_folder}"
     rm -r "${_container_root}" 2>/dev/null
     mv "${_container_folder}/${_container_name}" "${_container_root}"
