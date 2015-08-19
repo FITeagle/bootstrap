@@ -616,8 +616,6 @@ function testFT2sfa {
       cd "${_base}/integration-test" && ./runJfed_local.sh
     elif [ -d "${_base}/sfa" ]; then
       cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
-    elif [ -d "${_base}/integration-test" ]; then
-      cd "${_base}/integration-test" && ./runJfed_local.sh
     fi
 }
 
