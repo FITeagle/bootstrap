@@ -418,6 +418,7 @@ function startContainer() {
 }
 
 function prepareTruststore() {
+    echo "=============== prepareTruststore ================"
     mkdir ${HOME}/.fiteagle
     if [ ! -f "${HOME}/.fiteagle/${_container_keystore}" ]; then
       echo "Preparing Truststore in: \"${HOME}/.fiteagle/${_container_keystore}\""
@@ -425,20 +426,19 @@ function prepareTruststore() {
     else
       echo "Truststore \"${HOME}/.fiteagle/${_container_keystore}\" is present"
     fi
-    if [ ! -L "${HOME}/.fiteagle/${_container_keystore}" ]; then
+    if [ ! -L "${_container_root}/standalone/configuration/${_container_keystore}" ]; then
       mv "${_container_root}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}".bak
       ln -s "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle/${_container_keystore}" 
     fi
-    ls -al "${HOME}/.fiteagle/${_container_keystore}"
+    echo "dir: ${HOME}/.fiteagle/"
+    ls -al "${HOME}/.fiteagle/"
+    echo "------------ prepareTruststore ------------"
 }
 
 function startContainerService() {
+    prepareTruststore
     echo "Starting J2EE Container as service..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
-
-    prepareTruststore
-
-    #CMD="${WILDFLY_HOME}/bin/standalone.sh"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
     RDF=" -Dinfo.aduna.platform.appdata.basedir=../sesame"
     [ -x "${CMD}" ] || { echo "Please set WILDFLY_HOME first "; exit 2; }
@@ -450,10 +450,8 @@ function startContainerService() {
 }
 
 function startContainerDebug() {
-    echo "Starting J2EE Container in debug mode (port: 8787)..."
-    
     prepareTruststore
-    
+    echo "Starting J2EE Container in debug mode (port: 8787)..."
     echo "HOME: $HOME user: $USERNAME"
     ls -al $HOME/.fiteagle
 
