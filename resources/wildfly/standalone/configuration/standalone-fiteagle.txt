@@ -37,7 +37,8 @@ batch
 
 ############Properties###########
 /system-property=keystore_pass:add(value=jetty6)
-/system-property=keystore_name:add(value=jetty-ssl.keystore)
+#/system-property=keystore_name:add(value=jetty-ssl.keystore)
+/system-property=keystore_name:add(value=${env.HOME}/.fiteagle/jetty-ssl.keystore)
 /system-property=truststore_name:add(value=jetty-ssl.truststore)
 /system-property=truststore_pass:add(value=jetty6)
 /system-property=ca_alias:add(value=root)

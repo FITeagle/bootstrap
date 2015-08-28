@@ -21,7 +21,7 @@ _CONFIG_DOCKER_IMAGE_NAME="fiteagle2bin"
 ##################################
 DOCKER_BUILD_ARGS="--force-rm"
 DOCKER_RUN_ARGS="${_CONFIG_EXPOSE_PORT_ARGS}"
-DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/root/.fiteagle"
+DOCKER_RUN_VOLUMES="-v ${_CONFIG_DOT_FITEAGLE}:/home/app/.fiteagle"
 
 
 

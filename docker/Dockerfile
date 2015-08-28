@@ -9,6 +9,7 @@ RUN apt-get -y update && apt-get -y install git curl libaio1 && apt-get -y clean
 RUN addgroup --gid 9999 app && adduser --uid 9999 --gid 9999 --disabled-password --gecos "Application" app && usermod -L app
 RUN chown -R app:app /opt/fiteagle
 USER app
+VOLUME /home/app/.fiteagle
 
 RUN (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s deployBinaryOnly) || echo "DUMMY"
 RUN /opt/fiteagle/bootstrap/fiteagle.sh deployExtraBinary; echo "DUMMY"
