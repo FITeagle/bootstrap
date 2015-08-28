@@ -422,11 +422,14 @@ function prepareTruststore() {
     if [ ! -f "${HOME}/.fiteagle/${_container_keystore}" ]; then
       echo "Preparing Truststore in: \"${HOME}/.fiteagle/${_container_keystore}\""
       cp "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle"
-      mv "${_container_root}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}".bak
-      ln -s "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle/${_container_keystore}" 
     else
       echo "Truststore \"${HOME}/.fiteagle/${_container_keystore}\" is present"
     fi
+    if [ ! -L "${HOME}/.fiteagle/${_container_keystore}" ]; then
+      mv "${_container_root}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}".bak
+      ln -s "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle/${_container_keystore}" 
+    fi
+    ls -al "${HOME}/.fiteagle/${_container_keystore}"
 }
 
 function startContainerService() {
