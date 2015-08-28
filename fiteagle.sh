@@ -436,7 +436,7 @@ function prepareTruststore() {
 }
 
 function startContainerService() {
-    prepareTruststore
+    #FIXME: prepareTruststore
     echo "Starting J2EE Container as service..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
@@ -450,7 +450,7 @@ function startContainerService() {
 }
 
 function startContainerDebug() {
-    prepareTruststore
+    # FIXME: prepareTruststore
     echo "Starting J2EE Container in debug mode (port: 8787)..."
     echo "HOME: $HOME user: $USERNAME"
     ls -al $HOME/.fiteagle
