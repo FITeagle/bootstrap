@@ -31,6 +31,7 @@ OPTIONS:
    -r      Repository
    -o      Destination folder
    -n      Don't include version number in filename
+   -s      Set Nexus Base URL (default: ${NEXUS_BASE})
 
 EOF
 }
@@ -46,7 +47,7 @@ VERBOSE=0
 DLPATH="."
 NOVERSION=0
 
-while getopts "hvi:c:p:r:o:n" OPTION
+while getopts "hvi:c:p:r:o:ns:" OPTION
 do
      case $OPTION in
          h)
@@ -80,6 +81,9 @@ do
          n)
              NOVERSION=1
              ;;
+         s)
+             NEXUS_BASE=$OPTARG
+             ;;
          ?)
              usage
              exit
@@ -87,7 +91,7 @@ do
      esac
 done
 
-if [[ -z $GROUP_ID ]] || [[ -z $ARTIFACT_ID ]] || [[ -z $VERSION ]]
+if [[ -z $GROUP_ID ]] || [[ -z $ARTIFACT_ID ]] || [[ -z $VERSION ]] || [[ -z $NEXUS_BASE ]]
 then
      echo "BAD ARGUMENTS: Either groupId, artifactId, or version was not supplied" >&2
      usage
