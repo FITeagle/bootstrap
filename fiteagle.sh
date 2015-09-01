@@ -403,6 +403,7 @@ function stopXMPP() {
 }
 
 function startContainerScreen() {
+    prepareTruststore
     echo "Starting J2EE Container..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
@@ -421,14 +422,14 @@ function prepareTruststore() {
     echo "=============== prepareTruststore ================"
     mkdir ${HOME}/.fiteagle
     if [ ! -f "${HOME}/.fiteagle/${_container_keystore}" ]; then
-      echo "Preparing Truststore in: \"${HOME}/.fiteagle/${_container_keystore}\""
+      echo "**Preparing Truststore in: \"${HOME}/.fiteagle/${_container_keystore}\""
       cp "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle"
     else
-      echo "Truststore \"${HOME}/.fiteagle/${_container_keystore}\" is present"
+      echo "**Truststore \"${HOME}/.fiteagle/${_container_keystore}\" is present"
     fi
     if [ ! -L "${_container_root}/standalone/configuration/${_container_keystore}" ]; then
       mv "${_container_root}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}".bak
-      ln -s "${_container_root}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle/${_container_keystore}" 
+      ln -s "${HOME}/.fiteagle/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}"
     fi
     echo "dir: ${HOME}/.fiteagle/"
     ls -al "${HOME}/.fiteagle/"
@@ -436,7 +437,7 @@ function prepareTruststore() {
 }
 
 function startContainerService() {
-    #FIXME: prepareTruststore
+    prepareTruststore
     echo "Starting J2EE Container as service..."
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
@@ -450,7 +451,7 @@ function startContainerService() {
 }
 
 function startContainerDebug() {
-    # FIXME: prepareTruststore
+    prepareTruststore
     echo "Starting J2EE Container in debug mode (port: 8787)..."
     echo "HOME: $HOME user: $USERNAME"
     ls -al $HOME/.fiteagle
