@@ -9,9 +9,9 @@
 _CONFIG_TRIGGER_FILE="/tmp/fiteagle_integration-ok.txt"
 
 _CONFIG_LOCAL_BUILD_PATH=$(dirname `readlink -f $0`)/../docker/Dockerfile
-#_CONFIG_LOCAL_BUILD=1
+_CONFIG_LOCAL_BUILD=0
 _CONFIG_DOT_FITEAGLE="/root/.fiteagle"
-#_CONFIG_FAST_REBUILD_FROM_CACHE=1
+_CONFIG_FAST_REBUILD_FROM_CACHE=0
 _CONFIG_EXPOSE_PORT_ARGS="-p 8443:8443" #-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
 _CONFIG_DOCKER_IMAGE_NAME="fiteagle2bin"
 
