@@ -20,10 +20,9 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
 	"
-_ft2_install_jar="org.fiteagle.interactors:usermanagement:0.1-SNAPSHOT "
 _ft2_install_extra_war="org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
 	org.fiteagle.adapters:openstack:0.1-SNAPSHOT \
-	"
+  "
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -614,7 +613,17 @@ function deployFT2sfa {
     installFITeagleModule integration-test
 }
 
+function deployBin() {
+  if [ -z $1 ]; then
+    echo "ERROR: artefact id is null"
+    exit 1
+  else
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+  fi
+}
+
 function testFT2sfa {
+
     if [ -f "${_base}/bootstrap/bin/xmlrpc-client.sh" ]; then
       echo "waiting for server to be ready..."
       CNT=0
@@ -631,6 +640,7 @@ function testFT2sfa {
       done
     fi
 
+    [ -z ${WILDFLY_HOME} ] && export WILDFLY_HOME="${_base}/server/wildfly"
     
     if [ -d "${_base}/integration-test" ]; then
       cd "${_base}/integration-test" && ./runJfed_local.sh
@@ -673,6 +683,7 @@ function usage() {
   echo "  deployFT2sfa       - Deploy FITeagle 2 SFA module and core adapters";
   echo "  deployFT2binary    - Deploy FITeagle 2 (core modules) (without maven)";
   echo "  deployFT2sfaBinary - Deploy FITeagle 2 SFA module and core adapters (without maven)";
+  echo "  binDeploy-<artefactID> - Deploy Artefact ID from sonatype nexus (e.g.: \"deployBin-org.fiteagle.adapters:tosca:0.1-SNAPSHOT\")";
   echo "  testFT2sfa         - Test FITeagle 2 SFA module and core adapters";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
@@ -706,6 +717,10 @@ for arg in "$@"; do
       SEC=$(echo $arg | cut -d'-' -f2)
       echo "sleep ${SEC}"
       sleep ${SEC} || exit 1
+    ;;
+    binDeploy-*)
+      ARTEFACT=$(echo $arg | cut -d'-' -f2)
+      deployBin $ARTEFACT
     ;;
     startXMPP)
       startXMPP

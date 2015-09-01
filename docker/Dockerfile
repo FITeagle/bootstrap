@@ -17,8 +17,11 @@ RUN /opt/fiteagle/bootstrap/fiteagle.sh deployExtraBinary; echo "DUMMY"
 RUN rm -rf /opt/fiteagle/server/wildfly/standalone/configuration/standalone_xml_history
 
 
-RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnlib.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnlib&v=0.0.1-SNAPSHOT&e=war"
-RUN /opt/fiteagle/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:tosca:0.1-SNAPSHOT" -r fiteagle -p war -o /opt/fiteagle/server/wildfly/standalone/deployments/
+#RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnlib.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnlib&v=0.0.1-SNAPSHOT&e=war"
+RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnweb.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnweb&v=0.0.1-SNAPSHOT&e=war"
+RUN /opt/fiteagle/bootstrap/fiteagle.sh deployBin-org.fiteagle.adapters:tosca:0.1-SNAPSHOT deployBin-org.fiteagle.adapters:sshAdapter:0.1-SNAPSHOT
+#RUN /opt/fiteagle/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:tosca:0.1-SNAPSHOT" -r fiteagle -p war -o /opt/fiteagle/server/wildfly/standalone/deployments/
+#RUN /opt/fiteagle/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:sshAdapter:0.1-SNAPSHOT" -r fiteagle -p war -o /opt/fiteagle/server/wildfly/standalone/deployments/
 
 ENTRYPOINT ["/opt/fiteagle/bootstrap/fiteagle.sh"]
 CMD ["startJ2EEDebug"]
