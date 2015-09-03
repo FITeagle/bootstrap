@@ -750,6 +750,9 @@ for arg in "$@"; do
       RESULT=$(($RESULT+$?))
       ;;
     deployBin-*)
+      ARTEFACT=$(echo $arg | sed 's/binDeploy-//g')
+      deployBin $ARTEFACT
+    ;;
     binDeploy-*)
       ARTEFACT=$(echo $arg | sed 's/binDeploy-//g')
       deployBin $ARTEFACT
