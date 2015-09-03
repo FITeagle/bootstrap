@@ -718,10 +718,6 @@ for arg in "$@"; do
       echo "sleep ${SEC}"
       sleep ${SEC} || exit 1
     ;;
-    binDeploy-*)
-      ARTEFACT=$(echo $arg | cut -d'-' -f2)
-      deployBin $ARTEFACT
-    ;;
     startXMPP)
       startXMPP
       RESULT=$(($RESULT+$?))
@@ -753,6 +749,11 @@ for arg in "$@"; do
       restartContainer
       RESULT=$(($RESULT+$?))
       ;;
+    deployBin-*)
+    binDeploy-*)
+      ARTEFACT=$(echo $arg | sed 's/binDeploy-//g')
+      deployBin $ARTEFACT
+    ;;
     deployFT2)
       deployFT2
       RESULT=$(($RESULT+$?))
