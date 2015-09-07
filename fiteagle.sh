@@ -132,6 +132,16 @@ function checkRubyVersion {
    fi
 }
 
+
+function deployBin() {
+  if [ -z $1 ]; then
+    echo "ERROR: artefact id is null"
+    exit 1
+  else
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+  fi
+}
+
 function buildDemoDocker() {
 	echo "(Re)building demo Docker image..."
 	(checkBinary docker && checkBinary sudo) || (echo "please install missing binaries."; exit 1)
@@ -180,7 +190,7 @@ function deployBinaryOnly() {
     configContainer
     echo "Downloading binary components from repository..."
     for component in ${_ft2_install_war}; do
-    	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+      deployBin ${component}
     done
 
     deploySesame
@@ -194,7 +204,7 @@ function deployExtraBinary() {
 
     echo "Downloading binary components from repository..."
     for component in ${_ft2_install_extra_war}; do
-    	${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+      deployBin ${component}
     done
     echo "extra binary-only deployment DONE."
 }
@@ -453,7 +463,6 @@ function startContainerDebug() {
     prepareTruststore
     echo "Starting J2EE Container in debug mode (port: 8787)..."
     echo "HOME: $HOME user: $USERNAME"
-    ls -al $HOME/.fiteagle
 
     [ ! -z "${WILDFLY_HOME}" ] || WILDFLY_HOME="${_container_root}"
     CMD="${WILDFLY_HOME}/bin/standalone.sh"
@@ -552,7 +561,7 @@ function deployFT2binary() {
                     "
 
     for component in ${_deployFT2binary_war}; do
-      ${_base}/bootstrap/bin/nxfetch.sh -n -i ${component} -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+      deployBin ${component}
     done
 
     if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
@@ -561,8 +570,7 @@ function deployFT2binary() {
       curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
     fi
 
-    #${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:abstract:0.1-SNAPSHOT" -r fiteagle -p jar -o ${_base}/server/wildfly/standalone/deployments
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:sshService:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    deployBin "org.fiteagle.adapters:sshService:0.1-SNAPSHOT"
 
     deploySesame
 
@@ -598,9 +606,8 @@ function deployFT2sfaBinary {
 
     installFITeagleModule integration-test
 
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.north:sfa:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
-
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i "org.fiteagle.adapters:motor:0.1-SNAPSHOT" -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    deployBin "org.fiteagle.north:sfa:0.1-SNAPSHOT"
+    deployBin "org.fiteagle.adapters:motor:0.1-SNAPSHOT"
 }
 
 function deployFT2sfa {
@@ -611,15 +618,6 @@ function deployFT2sfa {
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 
     installFITeagleModule integration-test
-}
-
-function deployBin() {
-  if [ -z $1 ]; then
-    echo "ERROR: artefact id is null"
-    exit 1
-  else
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
-  fi
 }
 
 function testFT2sfa {
