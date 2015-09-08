@@ -84,6 +84,11 @@ _wildfly_app_user="fiteagle"
 _wildfly_app_pwd="fiteagle"
 _wildfly_app_group="guest"
 
+runcmd() {
+        echo "running: $*"
+        $*
+}
+
 function checkBinary {
   echo -n " * Checking for '$1'..."
   if command -v $1 >/dev/null 2>&1; then
@@ -320,6 +325,11 @@ function configContainerFromCheckout() {
 
     cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration"
     cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${_container_root}/standalone/configuration"
+
+    runcmd mkdir -p "${HOME}/.fiteagle"
+    runcmd cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle"
+    runcmd cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${HOME}/.fiteagle"
+    runcmd ls -al ${HOME}/.fiteagle
 
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --file="${_wildfly_res_path}/standalone/configuration/${_container_init_config}"
@@ -814,6 +824,9 @@ for arg in "$@"; do
     buildDevDocker)
       buildDevDocker
       RESULT=$(($RESULT+$?))
+      ;;
+    bash)
+      exec bash
       ;;
     *)
       echo "Unknown command $arg"
