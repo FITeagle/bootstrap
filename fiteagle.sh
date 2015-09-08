@@ -20,9 +20,7 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
 	"
-_ft2_install_extra_war="org.fiteagle.adapters:monitoring:0.1-SNAPSHOT \
-	org.fiteagle.adapters:openstack:0.1-SNAPSHOT \
-  "
+_ft2_install_extra_war="org.fiteagle.adapters:openstack:0.1-SNAPSHOT"
 
 _labwiki_folder="${_base}/server"
 _labwiki_root="${_labwiki_folder}/labwiki"
@@ -131,7 +129,6 @@ function checkRubyVersion {
      return 1
    fi
 }
-
 
 function deployBin() {
   if [ -z $1 ]; then
@@ -436,10 +433,13 @@ function prepareTruststore() {
     else
       echo "**Truststore \"${HOME}/.fiteagle/${_container_keystore}\" is present"
     fi
-    if [ ! -L "${_container_root}/standalone/configuration/${_container_keystore}" ]; then
-      mv "${_container_root}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}".bak
-      ln -s "${HOME}/.fiteagle/${_container_keystore}" "${_container_root}/standalone/configuration/${_container_keystore}"
+    if [ ! -f "${HOME}/.fiteagle/${_container_truststore}" ]; then
+      echo "**Preparing Truststore in: \"${HOME}/.fiteagle/${_container_truststore}\""
+      cp "${_container_root}/standalone/configuration/${_container_truststore}" "${HOME}/.fiteagle"
+    else
+      echo "**Truststore \"${HOME}/.fiteagle/${_container_truststore}\" is present"
     fi
+
     echo "dir: ${HOME}/.fiteagle/"
     ls -al "${HOME}/.fiteagle/"
     echo "------------ prepareTruststore ------------"

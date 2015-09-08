@@ -35,10 +35,15 @@ batch
 /extension=org.wildfly.extension.undertow:add
 /extension=org.wildfly.iiop-openjdk:add
 
+#### Path definitions ####
+
+# <path name="fiteagle-config-dir" path=".fiteagle" relative-to="user.home"/>
+/paths/path=fiteagle-config-dir:add(path=.fiteagle,relative-to=user.home)
+
 ############Properties###########
 /system-property=keystore_pass:add(value=jetty6)
-#/system-property=keystore_name:add(value=jetty-ssl.keystore)
-/system-property=keystore_name:add(value=${env.HOME}/.fiteagle/jetty-ssl.keystore)
+/system-property=keystore_name:add(value=jetty-ssl.keystore)
+#/system-property=keystore_name:add(value=${fiteagle-config-dir}/jetty-ssl.keystore)
 /system-property=truststore_name:add(value=jetty-ssl.truststore)
 /system-property=truststore_pass:add(value=jetty6)
 /system-property=ca_alias:add(value=root)
@@ -62,8 +67,8 @@ batch
 /core-service=management/security-realm=ApplicationRealm/authentication=properties:add(path=application-users.properties,relative-to=jboss.server.config.dir)
 /core-service=management/security-realm=ApplicationRealm/authorization=properties:add(path=application-roles.properties,relative-to=jboss.server.config.dir)
 /core-service=management/security-realm=xmlrpc-realm:add
-/core-service=management/security-realm=xmlrpc-realm/server-identity=ssl:add(keystore-path=jetty-ssl.keystore,keystore-relative-to=jboss.server.config.dir,keystore-password=jetty6)
-/core-service=management/security-realm=xmlrpc-realm/authentication=truststore:add(keystore-path=jetty-ssl.truststore, keystore-relative-to=jboss.server.config.dir,keystore-password=jetty6)
+/core-service=management/security-realm=xmlrpc-realm/server-identity=ssl:add(keystore-path=jetty-ssl.keystore,keystore-relative-to=fiteagle-config-dir,keystore-password=jetty6)
+/core-service=management/security-realm=xmlrpc-realm/authentication=truststore:add(keystore-path=jetty-ssl.truststore, keystore-relative-to=fiteagle-config-dir,keystore-password=jetty6)
 /core-service=management/access=audit:add
 /core-service=management/access=audit/json-formatter=json-formatter:add
 /core-service=management/access=audit/file-handler=file:add(formatter=json-formatter,relative-to=jboss.server.data.dir,path=audit-log.log)
