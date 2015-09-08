@@ -35,11 +35,6 @@ batch
 /extension=org.wildfly.extension.undertow:add
 /extension=org.wildfly.iiop-openjdk:add
 
-#### Path definitions ####
-
-# <path name="fiteagle-config-dir" path=".fiteagle" relative-to="user.home"/>
-/path=fiteagle-config-dir:add(path=.fiteagle,relative-to=user.home)
-
 ############Properties###########
 /system-property=keystore_pass:add(value=jetty6)
 /system-property=keystore_name:add(value=jetty-ssl.keystore)
@@ -55,6 +50,14 @@ batch
 /system-property=resourceStore_name:add(value=resourceCertificateStore)
 /system-property==resourceStore_pass:add(value=changeit)
 run-batch
+
+
+batch
+#### Path definitions ####
+# <path name="fiteagle-config-dir" path=".fiteagle" relative-to="user.home"/>
+/path=fiteagle-config-dir:add(path=.fiteagle,relative-to=user.home)
+run-batch
+
 
 ##########Management############
 batch
