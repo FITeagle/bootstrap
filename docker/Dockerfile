@@ -18,7 +18,7 @@ RUN rm -rf /opt/fiteagle/server/wildfly/standalone/configuration/standalone_xml_
 
 
 RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnweb.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnweb&v=0.0.1-SNAPSHOT&e=war"
-RUN /opt/fiteagle/bootstrap/fiteagle.sh binDeploy-org.fiteagle.adapters:tosca:0.1-SNAPSHOT binDeploy-org.fiteagle.adapters:sshService:0.1-SNAPSHOT
+RUN /opt/fiteagle/bootstrap/fiteagle.sh binDeploy-org.fiteagle.adapters:tosca:0.1-SNAPSHOT binDeploy-org.fiteagle.adapters:sshService:0.1-SNAPSHOT binDeploy-org.fiteagle.adapters:monitoring:0.1-SNAPSHOT
 
 ENTRYPOINT ["/opt/fiteagle/bootstrap/fiteagle.sh"]
 CMD ["startJ2EEDebug"]
