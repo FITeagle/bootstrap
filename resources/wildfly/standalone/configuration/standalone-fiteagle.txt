@@ -38,7 +38,7 @@ batch
 #### Path definitions ####
 
 # <path name="fiteagle-config-dir" path=".fiteagle" relative-to="user.home"/>
-/paths/path=fiteagle-config-dir:add(path=.fiteagle,relative-to=user.home)
+/path=fiteagle-config-dir:add(path=.fiteagle,relative-to=user.home)
 
 ############Properties###########
 /system-property=keystore_pass:add(value=jetty6)
