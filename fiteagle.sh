@@ -286,11 +286,8 @@ function configContainer() {
 }
 
 function configContainerFromMaster() {
-    echo "Configuring container..."
-
-#    CMD="${_container_root}/bin/jboss-cli.sh"
-#    ${CMD} --file="${_installer_folder}/${_container_row_config}"
-
+    echo "Configuring container from github..."
+ 
     curl -fsSSkL -o "${_installer_folder}/${_container_config}" "${_container_config_url}"
     cp "${_installer_folder}/${_container_config}" "${_container_root}/standalone/configuration"
 
@@ -299,9 +296,9 @@ function configContainerFromMaster() {
     curl -fsSSkL -o "${_installer_folder}/${_container_truststore}" "${_container_truststore_url}"
     cp "${_installer_folder}/${_container_truststore}" "${_container_root}/standalone/configuration"
     (
-    cd "${_container_root}"
-    ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
-    ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
+      cd "${_container_root}"
+      ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
+      ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
     )
     curl -fsSSkL -o "${_installer_folder}/${_container_index}" "${_container_index_url}"
     cp "${_installer_folder}/${_container_index}" "${_container_root}/welcome-content/"
@@ -326,17 +323,17 @@ function configContainerFromCheckout() {
     cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${_container_root}/standalone/configuration"
     cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${_container_root}/standalone/configuration"
 
+    #
     runcmd mkdir -p "${HOME}/.fiteagle"
     runcmd cp "${_wildfly_res_path}/standalone/configuration/${_container_keystore}" "${HOME}/.fiteagle"
     runcmd cp "${_wildfly_res_path}/standalone/configuration/${_container_truststore}" "${HOME}/.fiteagle"
-    runcmd ls -al ${HOME}/.fiteagle
 
     CMD="${_container_root}/bin/jboss-cli.sh"
     ${CMD} --file="${_wildfly_res_path}/standalone/configuration/${_container_init_config}"
-     (
-     cd "${_container_root}"
-     ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
-     ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
+    (
+      cd "${_container_root}"
+      ./bin/add-user.sh -s -u "${_wildfly_admin_user}" -p "${_wildfly_admin_pwd}"
+      ./bin/add-user.sh -s -a -g "${_wildfly_app_group}" -u "${_wildfly_app_user}" -p "${_wildfly_app_pwd}"
     )
     cp "${_wildfly_res_path}/welcome-content/${_container_index}" "${_container_root}/welcome-content/"
     cp "${_wildfly_res_path}/welcome-content/${_container_css}" "${_container_root}/welcome-content/"
@@ -574,13 +571,14 @@ function deployFT2binary() {
       deployBin ${component}
     done
 
-		if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
       mkdir ${HOME}/.fiteagle
       echo "dowloading defaultFederation.ttl"
       curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
     fi
-		if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
+    if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
       mkdir ${HOME}/.fiteagle
+      echo "dowloading MotorGarage.properties"
       curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/MotorGarage.properties -o /${HOME}/.fiteagle/MotorGarage.properties
     fi
 
@@ -834,7 +832,7 @@ for arg in "$@"; do
       RESULT=$(($RESULT+$?))
       ;;
     bash)
-      exec bash
+      bash
       ;;
     *)
       echo "Unknown command $arg"
