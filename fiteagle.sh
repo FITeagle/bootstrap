@@ -287,7 +287,7 @@ function configContainer() {
 
 function configContainerFromMaster() {
     echo "Configuring container..."
- 
+
 #    CMD="${_container_root}/bin/jboss-cli.sh"
 #    ${CMD} --file="${_installer_folder}/${_container_row_config}"
 
@@ -574,10 +574,14 @@ function deployFT2binary() {
       deployBin ${component}
     done
 
-    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+		if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
       mkdir ${HOME}/.fiteagle
       echo "dowloading defaultFederation.ttl"
       curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
+    fi
+		if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/MotorGarage.properties -o /${HOME}/.fiteagle/MotorGarage.properties
     fi
 
     deployBin "org.fiteagle.adapters:sshService:0.1-SNAPSHOT"
@@ -602,6 +606,10 @@ function deployFT2 {
       echo "using defaultFederation.ttl"
       cp "${_base}/core/federationManager/src/main/resources/ontologies/defaultFederation.ttl" "${HOME}/.fiteagle/Federation.ttl"
       #curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
+    fi
+		if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      cp "${_base}/integration-test/conf/MotorGarage.properties" "${HOME}/.fiteagle/MotorGarage.properties"
     fi
 
     installFITeagleModule native
@@ -649,7 +657,7 @@ function testFT2sfa {
     fi
 
     [ -z ${WILDFLY_HOME} ] && export WILDFLY_HOME="${_base}/server/wildfly"
-    
+
     if [ -d "${_base}/integration-test" ]; then
       cd "${_base}/integration-test" && ./runJfed_local.sh
     elif [ -d "${_base}/sfa" ]; then
