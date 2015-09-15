@@ -120,9 +120,12 @@ REDIRECT_URL="${REDIRECT_URL}?${PARAMS}"
 echo "Fetching Artifact from $REDIRECT_URL..." >&2
 if [[ "${NOVERSION}" == "1" ]]
 then
-  curl -o "${DLPATH}/${ARTIFACT_ID}.war" -sS -L ${REDIRECT_URL}
+  curl -o "${DLPATH}/${ARTIFACT_ID}.war" -sSf -L ${REDIRECT_URL}
+  RET=$?
   ls -alh "${DLPATH}/${ARTIFACT_ID}.war"
 else
-  curl -o "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war" -sS -L ${REDIRECT_URL}
+  curl -o "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war" -sSf -L ${REDIRECT_URL}
+  RET=$?
   ls -alh "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war"
 fi
+exit $RET

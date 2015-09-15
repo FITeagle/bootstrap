@@ -140,7 +140,8 @@ function deployBin() {
     echo "ERROR: artefact id is null"
     exit 1
   else
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments 
+    return $?
   fi
 }
 
@@ -192,7 +193,7 @@ function deployBinaryOnly() {
     configContainer
     echo "Downloading binary components from repository..."
     for component in ${_ft2_install_war}; do
-      deployBin ${component}
+      deployBin ${component} || return $?
     done
 
     deploySesame
@@ -206,7 +207,7 @@ function deployExtraBinary() {
 
     echo "Downloading binary components from repository..."
     for component in ${_ft2_install_extra_war}; do
-      deployBin ${component}
+      deployBin ${component} || return $?
     done
     echo "extra binary-only deployment DONE."
 }
@@ -766,10 +767,12 @@ for arg in "$@"; do
     deployBin-*)
       ARTEFACT=$(echo $arg | sed 's/binDeploy-//g')
       deployBin $ARTEFACT
+      RESULT=$(($RESULT+$?))
     ;;
     binDeploy-*)
       ARTEFACT=$(echo $arg | sed 's/binDeploy-//g')
       deployBin $ARTEFACT
+      RESULT=$(($RESULT+$?))
     ;;
     deployFT2)
       deployFT2
