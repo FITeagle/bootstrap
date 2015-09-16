@@ -24,6 +24,10 @@ curl -fsSL fiteagle.org/bootstrap | bash -s init deployFT2binary deployFT2sfaBin
 ```
 http://localhost:9990/console/App.html
 ```
+### Quickstart using docker
+```
+docker run --rm -it -p 8443:8443 -p 9990:9990 java:8-jre bash -c "apt-get update; apt-get install -y git curl unzip libxml2-utils; cd /tmp ;curl -fsSkL fiteagle.org/bootstrap | bash -s deployFT2binary deployFT2sfaBinary startJ2EE testFT2sfa; bash"
+```
 
 ## Further Setup
 
