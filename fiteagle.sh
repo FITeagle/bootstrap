@@ -49,7 +49,7 @@ _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
 #_container_version="8.2.0.Final"
-_container_version="9.0.0.Final"
+_container_version="9.0.1.Final"
 _container_init_config="standalone-fiteagle.txt"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
@@ -140,7 +140,7 @@ function deployBin() {
     echo "ERROR: artefact id is null"
     exit 1
   else
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments 
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     return $?
   fi
 }
@@ -288,7 +288,7 @@ function configContainer() {
 
 function configContainerFromMaster() {
     echo "Configuring container from github..."
- 
+
     curl -fsSSkL -o "${_installer_folder}/${_container_config}" "${_container_config_url}"
     cp "${_installer_folder}/${_container_config}" "${_container_root}/standalone/configuration"
 
