@@ -732,6 +732,8 @@ function usage() {
   echo "  deployFT2sfaBinary - Deploy FITeagle 2 SFA module and core adapters (without maven)";
   echo "  binDeploy-<artefactID> - Deploy Artefact ID from sonatype nexus (e.g.: \"deployBin-org.fiteagle.adapters:tosca:0.1-SNAPSHOT\")";
   echo "  testFT2sfa         - Test FITeagle 2 SFA module and core adapters";
+	echo "  showLog            - Show the log file";
+	echo "  runJfed            - Downloads and starts the jFed Experimenter GUI";
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  restartJ2EE        - Restart the J2EE service";
@@ -830,6 +832,14 @@ for arg in "$@"; do
       deployFT1
       RESULT=$(($RESULT+$?))
       ;;
+		showLog)
+			less "${_base}/server/wildfly/standalone/log/server.log"
+			RESULT=$(($RESULT+$?))
+			;;
+		runJfed)
+			${_dir}/bin/runJfedExperimenterGUI.sh
+			RESULT=$(($RESULT+$?))
+			;;
     deployOSCO)
       deployOSCO
       RESULT=$(($RESULT+$?))
