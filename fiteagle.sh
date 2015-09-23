@@ -143,7 +143,6 @@ function deployBin() {
     echo "ERROR: artefact id is null"
     exit 1
   else
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     _warfile=$(echo $1|cut -d: -f2)
     rm ${_base}/server/wildfly/standalone/deployments/${_warfile}.war.failed 2>/dev/null
     ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments 
