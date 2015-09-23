@@ -116,15 +116,16 @@ do
 done
 
 REDIRECT_URL="${REDIRECT_URL}?${PARAMS}"
+TMPNAME=$(mktemp -u)
 
 echo "Fetching Artifact from $REDIRECT_URL..." >&2
 if [[ "${NOVERSION}" == "1" ]]
 then
-  curl -o "${DLPATH}/${ARTIFACT_ID}.war" -sSf -L ${REDIRECT_URL}
+  curl -o "${TMPNAME}" -sSf -L ${REDIRECT_URL} && mv "${TMPNAME}" "${DLPATH}/${ARTIFACT_ID}.war"
   RET=$?
   ls -alh "${DLPATH}/${ARTIFACT_ID}.war"
 else
-  curl -o "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war" -sSf -L ${REDIRECT_URL}
+  curl -o "${TMPNAME}" -sSf -L ${REDIRECT_URL} && mv "${TMPNAME}" "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war"
   RET=$?
   ls -alh "${DLPATH}/${ARTIFACT_ID}-${VERSION}.war"
 fi
