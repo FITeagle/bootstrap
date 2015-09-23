@@ -145,7 +145,7 @@ function deployBin() {
   else
     _warfile=$(echo $1|cut -d: -f2)
     rm ${_base}/server/wildfly/standalone/deployments/${_warfile}.war.failed 2>/dev/null
-    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments 
+    ${_base}/bootstrap/bin/nxfetch.sh -n -i $1 -r fiteagle -p war -o ${_base}/server/wildfly/standalone/deployments
     return $?
   fi
 }
@@ -173,7 +173,9 @@ function buildDevDocker() {
 
 function deploySesame() {
 	echo "Downloading openrdf seasame & workbench..."
+	[ ! -f "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" ] &&
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
+	[ ! -f "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" ] &&
 	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
 
     if [ "${_isOSX}" ]; then
@@ -184,7 +186,8 @@ function deploySesame() {
         sesame_db="${_base}/server/sesame/openrdf-sesame"
   	fi
   	echo "Installing database..."
-   	cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
+		[ ! -d "${_bootstrap_res_folder}/openrdf-sesame/" ] &&
+		cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
 }
 
 function deployBinaryOnly() {
