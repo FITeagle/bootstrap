@@ -174,9 +174,9 @@ function buildDevDocker() {
 function deploySesame() {
 	echo "Downloading openrdf seasame & workbench..."
 	[ ! -f "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" ] &&
-	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
+		curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-sesame.war" "${_sesame_server_url}"
 	[ ! -f "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" ] &&
-	curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
+		curl -fsSSkL -o "${_base}/server/wildfly/standalone/deployments/openrdf-workbench.war" "${_sesame_workbench_url}"
 
     if [ "${_isOSX}" ]; then
     	mkdir -p "${_base}/server/sesame/OpenRDF Sesame"
@@ -186,8 +186,8 @@ function deploySesame() {
         sesame_db="${_base}/server/sesame/openrdf-sesame"
   	fi
   	echo "Installing database..."
-		[ ! -d "${_bootstrap_res_folder}/openrdf-sesame/" ] &&
-		cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
+		[ ! -d "${sesame_db}/conf" ] &&
+			cp -r "${_bootstrap_res_folder}/openrdf-sesame/"* "${sesame_db}/"
 }
 
 function deployBinaryOnly() {
