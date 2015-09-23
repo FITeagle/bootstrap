@@ -349,22 +349,38 @@ function configContainerFromCheckout() {
     cp "${_wildfly_res_path}/welcome-content/${_container_jQuery}" "${_container_root}/welcome-content/js/"
 }
 
-function checkEnvironment {
+function checkEnvironmentMinimal {
   _error=0
   echo "Checking environment..."
   checkBinary java; _error=$(($_error + $?))
-  checkBinary javac; _error=$(($_error + $?))
-  checkBinary mvn; _error=$(($_error + $?))
   checkBinary git; _error=$(($_error + $?))
   checkBinary curl; _error=$(($_error + $?))
   checkBinary unzip; _error=$(($_error + $?))
-  #checkBinary screen; _error=$(($_error + $?))
-  checkBinary svn; _error=$(($_error + $?))
 	checkDirectory JAVA_HOME ${JAVA_HOME}; _error=$(($_error + $?))
   if [ "0" != "$_error" ]; then
     echo >&2 "FAILED. Please install the above mentioned binaries."
     exit 1
   fi
+}
+
+function checkEnvironmentDev {
+  _error=0
+  echo "Checking environment..."
+  checkBinary javac; _error=$(($_error + $?))
+  checkBinary mvn; _error=$(($_error + $?))
+  checkBinary git; _error=$(($_error + $?))
+  #checkBinary screen; _error=$(($_error + $?))
+  checkBinary svn; _error=$(($_error + $?))
+  checkDirectory JAVA_HOME ${JAVA_HOME}; _error=$(($_error + $?))
+  if [ "0" != "$_error" ]; then
+    echo >&2 "FAILED. Please install the above mentioned binaries."
+    exit 1
+  fi
+}
+
+function checkEnvironment {
+  checkEnvironmentMinimal
+  checkEnvironmentDev
 }
 
 function checkEnvironmentForLabwiki {
@@ -557,12 +573,15 @@ function deployFT1 {
 function deployFT2binary() {
   [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
 
-  (checkBinary git && checkBinary java && checkBinary curl && checkBinary unzip) || (echo "please install missing binaries."; exit 1)
+  #(checkBinary git && checkBinary java && checkBinary curl && checkBinary unzip) || (echo "please install missing binaries."; exit 1)
+  checkEnvironmentMinimal
 
   installFITeagleModule bootstrap
-
-  installContainer
-  configContainer
+  
+  if [ ! -d "${_container_root}" ]; then
+    installContainer
+    configContainer
+  fi
   echo "Downloading binary components from repository..."
 
   _deployFT2binary_war="org.fiteagle.core:reservation:0.1-SNAPSHOT \
@@ -598,6 +617,7 @@ function deployFT2binary() {
 }
 
 function deployFT2 {
+    checkEnvironmentDev
     checkContainer
 
     installFITeagleModule api
@@ -633,6 +653,7 @@ function deployFT2sfaBinary {
 }
 
 function deployFT2sfa {
+    checkEnvironmentDev
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
 
@@ -671,7 +692,7 @@ function testFT2sfa {
 
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
-    checkEnvironment
+    checkEnvironmentMinimal
 
     installFITeagleModule bootstrap
 
