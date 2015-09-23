@@ -577,7 +577,7 @@ function deployFT2binary() {
   checkEnvironmentMinimal
 
   installFITeagleModule bootstrap
-  
+
   if [ ! -d "${_container_root}" ]; then
     installContainer
     configContainer
@@ -687,6 +687,9 @@ function testFT2sfa {
       cd "${_base}/integration-test" && ./runJfed_local.sh
     elif [ -d "${_base}/sfa" ]; then
       cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
+    else
+      echo "\"integration-test\" or \"sfa\" sources are missing !! can't run test"
+      exit 23
     fi
 }
 
