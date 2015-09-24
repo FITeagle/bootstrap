@@ -595,26 +595,19 @@ function deployFT2binary() {
                     org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
                     "
 
-    for component in ${_deployFT2binary_war}; do
-      deployBin ${component}
-    done
-
     if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
       mkdir ${HOME}/.fiteagle
       echo "dowloading defaultFederation.ttl"
       curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
     fi
-    if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
-      mkdir ${HOME}/.fiteagle
-      echo "dowloading MotorGarage.properties"
-      curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/MotorGarage.properties -o /${HOME}/.fiteagle/MotorGarage.properties
-    fi
+
+    for component in ${_deployFT2binary_war}; do
+      deployBin ${component}
+    done
 
     deployBin "org.fiteagle.adapters:sshService:0.1-SNAPSHOT"
 
     deploySesame
-
-    #checkContainer # start j2ee
 
     echo "binary deployment DONE."
 }
@@ -632,11 +625,6 @@ function deployFT2 {
       mkdir ${HOME}/.fiteagle
       echo "using defaultFederation.ttl"
       cp "${_base}/core/federationManager/src/main/resources/ontologies/defaultFederation.ttl" "${HOME}/.fiteagle/Federation.ttl"
-      #curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /root/.fiteagle/Federation.ttl
-    fi
-		if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
-      mkdir ${HOME}/.fiteagle
-      cp "${_base}/integration-test/conf/MotorGarage.properties" "${HOME}/.fiteagle/MotorGarage.properties"
     fi
 
     installFITeagleModule native
@@ -652,6 +640,13 @@ function deployFT2sfaBinary {
     installFITeagleModule integration-test
 
     deployBin "org.fiteagle.north:sfa:0.1-SNAPSHOT"
+
+    if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      echo "dowloading MotorGarage.properties"
+      curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/MotorGarage.properties -o /${HOME}/.fiteagle/MotorGarage.properties
+    fi
+
     deployBin "org.fiteagle.adapters:motor:0.1-SNAPSHOT"
 }
 
@@ -659,6 +654,11 @@ function deployFT2sfa {
     checkEnvironmentDev
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
+
+    if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      cp "${_base}/integration-test/conf/MotorGarage.properties" "${HOME}/.fiteagle/MotorGarage.properties"
+    fi
 
     installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
@@ -692,7 +692,7 @@ function testFT2sfa {
       cd "${_base}/sfa" && ./src/test/bin/runJfed.sh
     else
       echo "\"integration-test\" or \"sfa\" sources are missing !! can't run test"
-      exit 23
+      return 23
     fi
 }
 
