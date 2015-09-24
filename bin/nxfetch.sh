@@ -116,7 +116,7 @@ do
 done
 
 REDIRECT_URL="${REDIRECT_URL}?${PARAMS}"
-TMPNAME=$(mktemp -u)
+TMPNAME=$(mktemp -u /tmp/ft2XXXX)
 
 echo "Fetching Artifact from $REDIRECT_URL..." >&2
 if [[ "${NOVERSION}" == "1" ]]
