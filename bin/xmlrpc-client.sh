@@ -3,11 +3,11 @@
 # - jiyin@redhat.com
 # - bjoern.riemer@tu-berlin.de
 
-TEMP=`getopt -o vt: --long target   -n 'example.bash' -- "$@"`
-if [ $? != 0 ] ; then echo "getopt fail, terminating..." >&2 ; exit 1 ; fi
+#TEMP=`getopt -o vt:  -n 'example.bash' -- "$@"`
+#if [ $? != 0 ] ; then echo "getopt fail, terminating..." >&2 ; exit 1 ; fi
 
 # Note the quotes around `$TEMP': they are essential!
-eval set -- "$TEMP"
+#eval set -- "$TEMP"
 
 Usage() {
     echo "usage: $0 -t <rpcServUrl> <method> [arg1 arg2 ...]"
@@ -23,12 +23,12 @@ structArg() {
         : parse wait complete ...
 }
 
-while true ; do
-    case "$1" in
-    -t|--target) servUrl=$2; shift 2;;
-    -v) verbose=--verbose; shift;;
-    --) shift; break;;
-    *) echo "Internal error!"; exit 1;;
+while getopts "t:v" opt ; do
+    case "$opt" in
+    t) servUrl=$OPTARG;shift 2;;
+    v) verbose=--verbose;shift ;;
+
+    \?) echo "Internal error!"; exit 1;;
     esac
 done
 [ -z "$servUrl" ] && Usage
