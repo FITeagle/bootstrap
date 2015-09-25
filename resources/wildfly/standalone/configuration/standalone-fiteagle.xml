@@ -472,7 +472,7 @@
         <subsystem xmlns="urn:jboss:domain:undertow:1.1">
             <buffer-cache name="default"/>
             <server name="default-server">
-                <http-listener name="default" socket-binding="http"/ max-post-size="974247881">
+                <http-listener name="default" socket-binding="http" max-post-size="974247881" />
                 <https-listener name="xmlrpc-listener" socket-binding="https" security-realm="xmlrpc-realm" verify-client="REQUESTED"/>
                 <host name="default-host" alias="localhost">
                     <location name="/" handler="welcome-content"/>
