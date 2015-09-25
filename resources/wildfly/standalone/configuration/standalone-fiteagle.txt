@@ -318,7 +318,7 @@ batch
 /subsystem=undertow/configuration=handler:add
 /subsystem=undertow/buffer-cache=default:add
 /subsystem=undertow/server=default-server:add
-/subsystem=undertow/server=default-server/http-listener=default:add(socket-binding=http)
+/subsystem=undertow/server=default-server/http-listener=default:add(socket-binding=http,max-post-size=999999999)
 /subsystem=undertow/server=default-server/https-listener=xmlrpc-listener:add(socket-binding=https,security-realm=xmlrpc-realm,verify-client=REQUESTED)
 /subsystem=undertow/server=default-server/host=default-host:add(alias=[localhost])
 /subsystem=undertow/server=default-server/host=default-host/location="/":add(handler=welcome-content)
