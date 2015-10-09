@@ -11,13 +11,14 @@ RUN chown -R app:app /opt/fiteagle
 USER app
 #VOLUME /home/app/.fiteagle
 
-RUN (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s deployBinaryOnly) || echo "DUMMY"
-RUN /opt/fiteagle/bootstrap/fiteagle.sh deployExtraBinary; echo "DUMMY"
+#RUN (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s deployBinaryOnly) || echo "DUMMY"
+#RUN /opt/fiteagle/bootstrap/fiteagle.sh deployExtraBinary; echo "DUMMY"
+RUN (curl -fsSL https://raw.githubusercontent.com/FITeagle/bootstrap/master/fiteagle.sh | bash -s init deployFT2binary deployFT2sfaBinary) || echo "DUMMY"
 #Fix for: WFLYCTL0056: Could not rename /opt/fiteagle/server/wildfly/standalone/configuration/standalone_xml_history/current to 
 RUN rm -rf /opt/fiteagle/server/wildfly/standalone/configuration/standalone_xml_history
 
-
-RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnweb.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnweb&v=0.0.1-SNAPSHOT&e=war"
+#RUN curl -fsSSkL -o /opt/fiteagle/server/wildfly/standalone/deployments/omnweb.war "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=info.open-multinet&a=omnweb&v=0.0.1-SNAPSHOT&e=war"
+#RUN /opt/fiteagle/bootstrap/fiteagle.sh binDeploy-org.fiteagle:native:0.1-SNAPSHOT
 RUN /opt/fiteagle/bootstrap/fiteagle.sh binDeploy-org.fiteagle.adapters:tosca:0.1-SNAPSHOT binDeploy-org.fiteagle.adapters:sshService:0.1-SNAPSHOT binDeploy-org.fiteagle.adapters:monitoring:0.1-SNAPSHOT
 
 ENTRYPOINT ["/opt/fiteagle/bootstrap/fiteagle.sh"]

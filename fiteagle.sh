@@ -595,25 +595,27 @@ function deployFT2binary() {
                     org.fiteagle.core:bus:1.0-SNAPSHOT \
                     org.fiteagle.core:orchestrator:0.1-SNAPSHOT \
                     org.fiteagle.core:federationManager:0.1-SNAPSHOT \
-                    org.fiteagle:native:0.1-SNAPSHOT \
                     org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
                     "
+  echo "NOTE: native was removed from default deployment!!"
+  echo "      if you need the WEB gui please run \"fiteagle.sh binDeploy-org.fiteagle:native:0.1-SNAPSHOT\""
+  echo ""
 
-    if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
-      mkdir ${HOME}/.fiteagle
-      echo "dowloading defaultFederation.ttl"
-      curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
-    fi
+  if [[ ! -f "${HOME}/.fiteagle/Federation.ttl" ]]; then
+    mkdir ${HOME}/.fiteagle
+    echo "dowloading defaultFederation.ttl"
+    curl -sSL https://github.com/FITeagle/core/raw/master/federationManager/src/main/resources/ontologies/defaultFederation.ttl -o /${HOME}/.fiteagle/Federation.ttl
+  fi
 
-    for component in ${_deployFT2binary_war}; do
-      deployBin ${component}
-    done
+  for component in ${_deployFT2binary_war}; do
+    deployBin ${component}
+  done
 
-    deployBin "org.fiteagle.adapters:sshService:0.1-SNAPSHOT"
+  deployBin "org.fiteagle.adapters:sshService:0.1-SNAPSHOT"
 
-    deploySesame
+  deploySesame
 
-    echo "binary deployment DONE."
+  echo "binary deployment DONE."
 }
 
 function deployFT2 {
