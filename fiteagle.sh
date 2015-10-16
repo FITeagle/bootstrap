@@ -8,8 +8,8 @@ _osco_url="https://svnsrv.fokus.fraunhofer.de/svn/cc/ngni/OpenSDNCore/orchestrat
 [[ "$OSTYPE" == "darwin"* ]] && _isOSX=1
 
 _bootstrap_res_folder="${_base}/bootstrap/resources/sesame"
-_sesame_workbench_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-workbench/2.8.0/sesame-http-workbench-2.8.0.war"
-_sesame_server_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-server/2.8.0/sesame-http-server-2.8.0.war"
+_sesame_workbench_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-workbench/2.8.6/sesame-http-workbench-2.8.6.war"
+_sesame_server_url="http://search.maven.org/remotecontent?filepath=org/openrdf/sesame/sesame-http-server/2.8.6/sesame-http-server-2.8.6.war"
 
 _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle.core:reservation:0.1-SNAPSHOT \
