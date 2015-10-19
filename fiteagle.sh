@@ -652,6 +652,11 @@ function deployFT2sfaBinary {
       echo "dowloading MotorGarage.properties"
       curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/MotorGarage.properties -o /${HOME}/.fiteagle/MotorGarage.properties
     fi
+		if [[ ! -f "${HOME}/.fiteagle/NetworkingAdapter.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      echo "dowloading NetworkingAdapter.properties"
+      curl -sSL https://raw.githubusercontent.com/FITeagle/integration-test/master/conf/NetworkingAdapter.properties -o /${HOME}/.fiteagle/NetworkingAdapter.properties
+    fi
 
     deployBin "org.fiteagle.adapters:motor:0.1-SNAPSHOT"
 }
@@ -664,6 +669,10 @@ function deployFT2sfa {
     if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
       mkdir ${HOME}/.fiteagle
       cp "${_base}/integration-test/conf/MotorGarage.properties" "${HOME}/.fiteagle/MotorGarage.properties"
+    fi
+		if [[ ! -f "${HOME}/.fiteagle/NetworkingAdapter.properties" ]]; then
+      mkdir ${HOME}/.fiteagle
+      cp "${_base}/integration-test/conf/NetworkingAdapter.properties" "${HOME}/.fiteagle/NetworkingAdapter.properties"
     fi
 
     installFITeagleModule adapters
