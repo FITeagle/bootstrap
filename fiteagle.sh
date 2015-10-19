@@ -16,6 +16,7 @@ _ft2_install_war="org.fiteagle.north:sfa:0.1-SNAPSHOT \
 	org.fiteagle.core:bus:1.0-SNAPSHOT \
 	org.fiteagle.core:orchestrator:0.1-SNAPSHOT \
 	org.fiteagle.adapters:motor:0.1-SNAPSHOT \
+	org.fiteagle.adapters:networking:0.1-SNAPSHOT \
 	org.fiteagle.core:federationManager:0.1-SNAPSHOT \
 	org.fiteagle:native:0.1-SNAPSHOT \
 	org.fiteagle.core:resourceAdapterManager:0.1-SNAPSHOT \
