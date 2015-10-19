@@ -109,7 +109,7 @@ batch
 /subsystem=logging/console-handler=CONSOLE:add(level=INFO,named-formatter=COLOR-PATTERN)
 /subsystem=logging/periodic-rotating-file-handler=FILE:add(autoflush=true,named-formatter=PATTERN,file={relative-to=jboss.server.log.dir,path=server.log},suffix=.yyyy-MM-dd,append=true)
 /subsystem=logging/periodic-rotating-file-handler=FITEAGLE:add(autoflush=true,named-formatter=PATTERN,file={relative-to=jboss.server.log.dir,path=fiteagle.log},suffix=.yyyy-MM-dd,append=true)
-/subsystem=logging/logger=org.fiteagle:add(level=INFO,handlers=[FITEAGLE])
+/subsystem=logging/logger=org.fiteagle:add(level=DEBUG,handlers=[FITEAGLE])
 /subsystem=logging/logger=com.arjuna:add(level=WARN)
 /subsystem=logging/logger=org.apache.tomcat.util.modeler:add(level=WARN)
 /subsystem=logging/logger=org.jboss.as.config:add(level=DEBUG)
