@@ -660,7 +660,7 @@ function deployFT2sfaBinary {
     fi
 
     deployBin "org.fiteagle.adapters:motor:0.1-SNAPSHOT"
-		deployBin "org.fiteagle.adapters:networking:0.1-SNAPSHOT"
+    deployBin "org.fiteagle.adapters:networking:0.1-SNAPSHOT"
 }
 
 function deployFT2sfa {
@@ -679,6 +679,7 @@ function deployFT2sfa {
 
     installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
+		cd "${_base}/adapters/networking" && mvn -DskipTests clean wildfly:deploy
 
     installFITeagleModule integration-test
 }
