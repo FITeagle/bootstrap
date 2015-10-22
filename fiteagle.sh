@@ -668,6 +668,7 @@ function deployFT2sfa {
     installFITeagleModule sfa
     cd "${_base}/sfa" && mvn clean wildfly:deploy
 
+		installFITeagleModule integration-test
     if [[ ! -f "${HOME}/.fiteagle/MotorGarage.properties" ]]; then
       mkdir ${HOME}/.fiteagle
       cp "${_base}/integration-test/conf/MotorGarage.properties" "${HOME}/.fiteagle/MotorGarage.properties"
@@ -680,8 +681,6 @@ function deployFT2sfa {
     installFITeagleModule adapters
     cd "${_base}/adapters/motor" && mvn -DskipTests clean wildfly:deploy
 		cd "${_base}/adapters/networking" && mvn -DskipTests clean wildfly:deploy
-
-    installFITeagleModule integration-test
 }
 
 function testFT2sfa {
