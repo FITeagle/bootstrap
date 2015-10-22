@@ -466,8 +466,8 @@
 							<ruleset>/rulesets/ecmascript/braces.xml</ruleset>
 							<ruleset>/rulesets/java/clone.xml</ruleset>
 							<ruleset>/rulesets/java/codesize.xml</ruleset>
-					 <!--   <ruleset>/rulesets/java/comments.xml</ruleset> -->
-							<ruleset>/rulesets/java/controversial.xml</ruleset>
+					 <!--  <ruleset>/rulesets/java/comments.xml</ruleset> -->
+					 <!--  <ruleset>/rulesets/java/controversial.xml</ruleset> -->
 					 <!--  <ruleset>/rulesets/java/coupling.xml</ruleset> -->
 							<ruleset>/rulesets/java/design.xml</ruleset>
 							<ruleset>/rulesets/java/empty.xml</ruleset>
