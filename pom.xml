@@ -45,7 +45,7 @@
 		<site.version>3.3</site.version>
 		<taglist.version>2.4</taglist.version>
 		<jdepend.version>2.0</jdepend.version>
-		<pmd.version>3.1</pmd.version>
+		<pmd.version>3.5</pmd.version>
 		<wildfly.version>1.0.2.Final</wildfly.version>
 		<resteasy.version>3.0.8.Final</resteasy.version>
 	</properties>
@@ -467,7 +467,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.5</version>
+				<version>${pmd.version}</version>
 				<configuration>
 					<linkXref>true</linkXref>
 					<sourceEncoding>utf-8</sourceEncoding>
