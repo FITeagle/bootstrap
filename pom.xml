@@ -60,6 +60,20 @@
 			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
+
+	<pluginRepositories>
+        <pluginRepository>
+            <id>opendaylight-release</id>
+            <name>opendaylight-release</name>
+            <url>http://nexus.opendaylight.org/content/repositories/opendaylight.release/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>opendaylight-snapshot</id>
+            <name>opendaylight-snapshot</name>
+            <url>http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/</url>
+        </pluginRepository>
+  </pluginRepositories>
+
 	<developers>
 		<developer>
 			<email>alexander.willner@tu-berlin.de</email>
