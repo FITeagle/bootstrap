@@ -660,6 +660,7 @@ function deployFT2sfaBinary {
     fi
 
     deployBin "org.fiteagle.adapters:motor:0.1-SNAPSHOT"
+		deployBin "org.fiteagle.adapters:networking:0.1-SNAPSHOT"
 }
 
 function deployFT2sfa {
