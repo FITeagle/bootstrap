@@ -768,6 +768,7 @@ function usage() {
 [ "${#}" -eq 0 ] && usage
 
 RESULT=0
+[ ! -z "${WILDFLY_HOME}" ] || export WILDFLY_HOME="${_container_root}"
 
 for arg in "$@"; do
   case $arg in
