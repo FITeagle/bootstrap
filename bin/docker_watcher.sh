@@ -15,7 +15,10 @@ _CONFIG_FAST_REBUILD_FROM_CACHE=0
 _CONFIG_EXPOSE_PORT_ARGS="-p 8443:8443" #-p 8443:8443 -p 8080:8080 -p 9990:9990" #expose management interface on port 9990
 _CONFIG_DOCKER_IMAGE_NAME="fiteagle2bin"
 
-[ -f "./docker_watcher.config" ] && . ./docker_watcher.config
+_dir="."
+[ -f "${_dir}/docker_watcher.config" ] && . ${_dir}/docker_watcher.config
+_dir=$(dirname $(readlink -f $0))
+[ -f "${_dir}/docker_watcher.config" ] && . ${_dir}/docker_watcher.config
 
 ### dont change anything here! ###
 ##################################
