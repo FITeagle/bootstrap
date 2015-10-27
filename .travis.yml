@@ -10,7 +10,3 @@ notifications:
   email:
     - alexander.willner@tu-berlin.de
     - fiteagle.dev@av.tu-berlin.de
-cache:
-  directories:
-  - $HOME/.m2
-
