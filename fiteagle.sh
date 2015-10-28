@@ -713,6 +713,23 @@ function testFT2sfa {
     fi
 }
 
+function createAdapter() {
+		folder="${_base}/../adapters"
+		script="createNewAdapter.sh"
+
+		if [ ! -f "${folder}/${script}" ]; then
+			return 33;
+		fi
+
+		echo -n "Adapter name (e.g. 'CoffeeMachine'): "
+		read adapterName
+		echo -n "Resource name (e.g. 'Coffee'): "
+		read resourceName
+
+		cd ${folder} || exit 34
+		bash ${script} ${adapterName} ${resourceName}
+
+}
 function bootstrap() {
     [ ! -d ".git" ] || { echo "Do not bootstrap within a repository"; exit 4; }
     checkEnvironmentMinimal
@@ -751,6 +768,7 @@ function usage() {
   echo "  testFT2sfa         - Test FITeagle 2 SFA module and core adapters";
 	echo "  showLog            - Show the log file";
 	echo "  runJfed            - Downloads and starts the jFed Experimenter GUI";
+	echo "  createAdapter      - Create a new adapter"
   echo "  deployOSCO         - Deploy OpenSDNCore Orchestrator";
   echo "  stopJ2EE           - Stop the J2EE service";
   echo "  restartJ2EE        - Restart the J2EE service";
@@ -858,6 +876,10 @@ for arg in "$@"; do
 			${_dir}/bin/runJfedExperimenterGUI.sh
 			RESULT=$(($RESULT+$?))
 			;;
+		createAdapter)
+				createAdapter
+				RESULT=$(($RESULT+$?))
+				;;
     deployOSCO)
       deployOSCO
       RESULT=$(($RESULT+$?))
