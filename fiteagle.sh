@@ -788,6 +788,16 @@ function usage() {
 RESULT=0
 [ ! -z "${WILDFLY_HOME}" ] || export WILDFLY_HOME="${_container_root}"
 
+## hotfix for old docker versions
+case ${HOME} in
+  root)
+    export HOME=/root
+  ;;
+  /)
+    export HOME=/home/$(id -nu)
+  ;;
+esac
+
 for arg in "$@"; do
   case $arg in
     bootstrap)
