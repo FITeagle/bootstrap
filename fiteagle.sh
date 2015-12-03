@@ -92,6 +92,24 @@ runcmd() {
         $*
 }
 
+fold_begin () {
+  if [[ -n ${TRAVIS_BUILD_DIR} ]]; then
+    echo -en "travis_fold:start:${1}\r"
+    if [ "x${2}" = "x" ]; then 
+      echo "${1}: "
+    else
+      echo "${2}: "
+    fi
+  fi
+}
+
+fold_end () {
+  if [[ -n ${TRAVIS_BUILD_DIR} ]]; then
+    echo -en "travis_fold:end:${1}\r"
+  fi
+}
+
+
 function checkBinary {
   echo -n " * Checking for '$1'..."
   if command -v $1 >/dev/null 2>&1; then
@@ -789,16 +807,19 @@ RESULT=0
 [ ! -z "${WILDFLY_HOME}" ] || export WILDFLY_HOME="${_container_root}"
 
 ## hotfix for old docker versions
-case ${HOME} in
-  root)
-    export HOME=/root
-  ;;
-  /)
-    export HOME=/home/$(id -nu)
-  ;;
-esac
+if [[ ${HOME} = "/" ]]; then
+  case $(id -nu) in
+    root)
+      export HOME=/root
+    ;;
+    *)
+      export HOME=/home/$(id -nu)
+    ;;
+  esac
+fi
 
 for arg in "$@"; do
+  fold_begin $arg "Running: $arg"
   case $arg in
     bootstrap)
       bootstrap
@@ -932,10 +953,12 @@ for arg in "$@"; do
     *)
       echo "Unknown command $arg"
       usage
+      fold_end $arg
       exit 1
     ;;
   esac
   echo "RESULT: $RESULT"
+  fold_end $arg
 done
 
 exit $RESULT
