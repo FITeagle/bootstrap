@@ -39,6 +39,8 @@ generateUserCert(){
 	openssl x509 -req -days ${U_DAYS} -in ${U_USERNAME}.csr -keyform PKCS12 -passin pass:${PASSWD} -signkey ${KEYSTORE}.p12 -out ${U_USERNAME}.crt -extensions v3_req -extfile createNewUserCertLocal_${U_USERNAME}.conf
 	## print cert
 	openssl x509 -in ${U_USERNAME}.crt -noout -text
+	## combine cert & key
+	cat ${U_USERNAME}.key ${U_USERNAME}.crt > ${U_USERNAME}.pem
 }
 
 foo_from_server(){
