@@ -12,6 +12,6 @@ CHAIN="/etc/letsencrypt/live/${MYDOMAIN}/fullchain.pem"
 ##to see wat we are doing..
 set +x
 
-openssl pkcs12 -export -in ${MYCERT} -inkey ${MYKEY} -out mycert.p12 -name tomcat -passout pass:${PASSWORD}
+openssl pkcs12 -export -in ${CHAIN} -inkey ${MYKEY} -out mycert.p12 -name tomcat -passout pass:${PASSWORD}
 keytool -importkeystore -srcstoretype PKCS12 -srckeystore mycert.p12 -srcstorepass ${PASSWORD} -srcalias tomcat -destkeystore ${KEYSTORE} -deststorepass ${PASSWORD} -destalias tomcat
-keytool -importcert -alias root -keystore ${KEYSTORE} -trustcacerts -file ${CACERT} -storepass ${PASSWORD}
+#keytool -importcert -alias root -keystore ${KEYSTORE} -trustcacerts -file ${CACERT} -storepass ${PASSWORD}
