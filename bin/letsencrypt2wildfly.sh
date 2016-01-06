@@ -1,18 +1,15 @@
 #!/bin/sh
 
-# /etc/letsencrypt/live/demo.fiteagle.org
-# /etc/letsencrypt/live/demo.fiteagle.org/fullchain.pem
-# /etc/letsencrypt/live/demo.fiteagle.org/chain.pem
-# /etc/letsencrypt/live/demo.fiteagle.org/privkey.pem
-# /etc/letsencrypt/live/demo.fiteagle.org/cert.pem
-
-MYCERT="/etc/letsencrypt/live/demo.fiteagle.org/cert.pem"
-MYKEY="/etc/letsencrypt/live/demo.fiteagle.org/privkey.pem"
-CACERT="/etc/letsencrypt/live/demo.fiteagle.org/chain.pem"
-CHAIN="/etc/letsencrypt/live/demo.fiteagle.org/fullchain.pem"
+MYDOMAIN="demo.fiteagle.org"
 KEYSTORE="./jetty-ssl.keystore"
 PASSWORD="changeme"
 
+MYCERT="/etc/letsencrypt/live/${MYDOMAIN}/cert.pem"
+MYKEY="/etc/letsencrypt/live/${MYDOMAIN}/privkey.pem"
+CACERT="/etc/letsencrypt/live/${MYDOMAIN}/chain.pem"
+CHAIN="/etc/letsencrypt/live/${MYDOMAIN}/fullchain.pem"
+
+##to see wat we are doing..
 set +x
 
 openssl pkcs12 -export -in ${MYCERT} -inkey ${MYKEY} -out mycert.p12 -name tomcat -passout pass:${PASSWORD}
