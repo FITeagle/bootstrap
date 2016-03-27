@@ -50,7 +50,7 @@ _xmpp_root="${_xmpp_folder}/${_xmpp_type}"
 
 _container_type="wildfly"
 #_container_version="8.2.0.Final"
-_container_version="9.0.1.Final"
+_container_version="10.0.0.Final"
 _container_init_config="standalone-fiteagle.txt"
 _container_name="${_container_type}-${_container_version}"
 _container_file="${_container_name}.zip"
