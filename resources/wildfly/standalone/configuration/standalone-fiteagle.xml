@@ -426,8 +426,10 @@
             </hornetq-server>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
-        <simple name="java:global/RDF-Database-Ready" value="false" type="java.lang.Boolean"/>                
-		<simple name="java:global/RDF-Database-Testing" value="false" type="java.lang.Boolean"/>
+        <bindings>
+                <simple name="java:global/RDF-Database-Ready" value="false" type="java.lang.Boolean"/>
+                <simple name="java:global/RDF-Database-Testing" value="false" type="java.lang.Boolean"/>
+            </bindings>
             <remote-naming/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
