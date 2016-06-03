@@ -47,7 +47,7 @@
 		<jdepend.version>2.0</jdepend.version>
 		<pmd.version>3.5</pmd.version>
 		<wildfly.version>1.0.2.Final</wildfly.version>
-		<resteasy.version>3.0.8.Final</resteasy.version>
+		<resteasy.version>3.0.16.Final</resteasy.version>
 	</properties>
 
 	<repositories>
@@ -190,11 +190,6 @@
 			<type>pom</type>
 			<version>2.12.1</version>
 		</dependency>
-		<dependency>
-  		<groupId>org.rdfhdt</groupId>
-  		<artifactId>hdt-java-core</artifactId>
-  		<version>1.1.1-SNAPSHOT</version>
-  	</dependency>
   	<dependency>
   		<groupId>org.rdfhdt</groupId>
   		<artifactId>hdt-jena</artifactId>
