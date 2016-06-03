@@ -8,7 +8,7 @@ batch
 /extension=org.jboss.as.deployment-scanner:add
 /extension=org.jboss.as.ee:add
 /extension=org.jboss.as.ejb3:add
-/extension=org.jboss.as.jacorb:add
+#/extension=org.jboss.as.jacorb:add
 /extension=org.jboss.as.jaxrs:add
 /extension=org.jboss.as.jdr:add
 /extension=org.jboss.as.jmx:add
@@ -17,7 +17,7 @@ batch
 /extension=org.jboss.as.jsr77:add
 /extension=org.jboss.as.logging:add
 /extension=org.jboss.as.mail:add
-/extension=org.jboss.as.messaging:add
+#/extension=org.jboss.as.messaging:add
 /extension=org.jboss.as.modcluster:add
 /extension=org.jboss.as.naming:add
 /extension=org.jboss.as.pojo:add
@@ -27,6 +27,7 @@ batch
 /extension=org.jboss.as.transactions:add
 /extension=org.jboss.as.webservices:add
 /extension=org.jboss.as.weld:add
+/extension=org.wildfly.extension.messaging-activemq:add
 /extension=org.wildfly.extension.batch:add
 /extension=org.wildfly.extension.bean-validation:add
 /extension=org.wildfly.extension.io:add
